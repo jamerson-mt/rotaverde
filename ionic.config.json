@@ -1,0 +1,7 @@
+{
+  "name": "cpApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
