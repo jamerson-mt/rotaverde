@@ -1,56 +1,59 @@
+<script setup lang="ts">
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/vue';
+import NavBotton from '@/components/NavBotton.vue';
+import Card from '@/components/Card.vue';
+import Header from '@/components/Header.vue';
+</script>
+
 <template>
   <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title>Blank</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
+      <ion-content :fullscreen="true">
+      <div>
+          <Header
+            color="#249B9B"
+          />
+      </div>
 
       <div id="container">
-        <strong class="text-red-500">Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+          <Card  
+            title="Português"
+            content="content"
+            image="../../public/img/curuja.png"
+            link="/att/port/escrita"
+          />
+          <Card  
+            title="Raciocínio Lógico"
+            content="content"
+            image="../../public/img/curuja.png"
+            link="/"
+          />
+          <Card  
+            title="Matemática"
+            content="content"
+            image="../../public/img/curuja.png"
+            link="/"
+          />
+          <Card  
+            title="Tecnologia"
+            content="content"
+            image="../../public/img/curuja.png"
+            link="/"
+          />
       </div>
     </ion-content>
+    <div class="bottom-0">
+        <NavBotton />
+    </div>
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-</script>
-
 <style scoped>
 #container {
-  text-align: center;
-  
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  
-  color: #8c8c8c;
-  
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
 </style>

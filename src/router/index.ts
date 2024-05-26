@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/Home.vue';
 import Start from '../views/Start.vue';
 import Loading from '../views/Loading.vue';
+import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/home',
     name: 'Home',
     component: HomePage
+  },
+  {
+    path: '/att/port/escrita',
+    name: 'Escrita Portugues',
+    component: EscritaPort
   }
 ]
 

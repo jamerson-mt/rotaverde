@@ -5,27 +5,27 @@ import { IonImg } from '@ionic/vue';
 
 <template>
     <ion-tab-bar class="nav-botton" slot="bottom">
-        <ion-tab-button tab="profile" href="/tabs/tab1">
+        <ion-tab-button tab="profile" href="/home">
           <ion-img class="person-icon" 
             src="../../public/img/pessoa.png" />
         </ion-tab-button>
 
-        <ion-tab-button tab="listen" href="/tabs/tab2">
+        <ion-tab-button tab="listen" href="/home">
           <ion-img class="listen-icon" 
             src="../../public/img/ouvir.png" />
         </ion-tab-button>
 
-        <ion-tab-button tab="home" href="/tabs/">
+        <ion-tab-button tab="home" href="/home">
           <ion-img class="home-icon" 
             src="../../public/img/casa.png" />
         </ion-tab-button>
 
-        <ion-tab-button tab="wins" href="/tabs/tab3">
+        <ion-tab-button tab="wins" href="/home">
           <ion-img class="win-icon" 
             src="../../public/img/trofeu.png" />
         </ion-tab-button>
 
-        <ion-tab-button tab="conf" href="/tabs/tab3">
+        <ion-tab-button tab="conf" href="/home">
           <ion-img class="conf-icon" 
             src="../../public/img/conf.png" />
         </ion-tab-button>
@@ -58,4 +58,5 @@ import { IonImg } from '@ionic/vue';
     width: 40px;
     height: 40px;
 }
+
 </style>

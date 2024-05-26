@@ -21,7 +21,9 @@ import Button from '@/components/Button.vue';
                 </div>                
             </div>
             <div class="my-1.5 flex justify-center mt-5 h-24">
-                <Button />
+                <Button  
+                    link="/loading"
+                />
             </div>
             <div id="img"  class="w-5/12 mt-3.5 absolute right-0">
                 <img src="../../public/img/mont2.png" alt="Motagem01">

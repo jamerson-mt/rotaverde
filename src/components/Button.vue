@@ -1,13 +1,43 @@
 <script lang="ts">
-  import { IonButton } from '@ionic/vue';
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
-  export default defineComponent({
-    components: { IonButton },
-  });
-
+export default defineComponent({
+    name: 'Button',
+    props: {
+        link: {
+            type: String,
+            required: true
+        }
+    }
+});
 </script>
 
 <template>
-    <ion-button href="/loading" expand="block" class="w-64 font-sans h-12">Iniciar aprendizado</ion-button>
+    <div id="button">
+      <RouterLink id="link" :to="link" class="">Iniciar aprendizado</RouterLink>
+    </div>
 </template>
+
+<style scoped>
+#link {
+    color: aliceblue;
+    font-size: 15px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    display: inline-block;
+    height: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#button {
+  width: 75%;
+  height: 3rem;
+  display: flex;
+  background-color: #2b25dd;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+</style>
