@@ -1,32 +1,31 @@
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { IonImg } from '@ionic/vue';
 </script>
 
 <template>
     <ion-tab-bar class="nav-botton" slot="bottom">
         <ion-tab-button tab="profile" href="/home">
-          <ion-img class="person-icon" 
+          <img class="person-icon" 
             src="../../public/img/pessoa.png" />
         </ion-tab-button>
 
         <ion-tab-button tab="listen" href="/home">
-          <ion-img class="listen-icon" 
+          <img class="listen-icon" 
             src="../../public/img/ouvir.png" />
         </ion-tab-button>
 
         <ion-tab-button tab="home" href="/home">
-          <ion-img class="home-icon" 
+          <img class="home-icon" 
             src="../../public/img/casa.png" />
         </ion-tab-button>
 
         <ion-tab-button tab="wins" href="/home">
-          <ion-img class="win-icon" 
+          <img class="win-icon" 
             src="../../public/img/trofeu.png" />
         </ion-tab-button>
 
         <ion-tab-button tab="conf" href="/home">
-          <ion-img class="conf-icon" 
+          <img class="conf-icon" 
             src="../../public/img/conf.png" />
         </ion-tab-button>
     </ion-tab-bar>
