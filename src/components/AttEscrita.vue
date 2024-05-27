@@ -10,8 +10,8 @@ const props = defineProps({
         type: String,
         required: true
     },
-    link: {
-        type: String,
+    options: {
+        type: Object,
         required: true
     }
 });
@@ -23,22 +23,21 @@ const props = defineProps({
             <h1 id="title">{{ title }}</h1>
             <img  class="w-48" :src="image">
             <div class="w-full">
-                <Options options1="Girafa" options2="Girrafa" options3="Girraffa" options4="Girrafa" />
+                <Options 
+                    :options1="options.option1" 
+                    :options2="options.option2" 
+                    :options3="options.option3" 
+                    :options4="options.option4" 
+                />
             </div>
-            <RouterLink :to="link" id="router" class="text-white font-bold py-2 px-4 rounded-3xl mt-5 w-3/5 text-center mt-10">Próximo</RouterLink>
         </div>
 </template>
 
 <style scoped>
-    #title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 1rem;
-    }
-
-    #router {
-        background-color: #6D4D2F;
-        font-size: 1.5rem;
-    }
+#title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem;
+}
 
 </style>
