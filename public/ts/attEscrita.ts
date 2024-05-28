@@ -1,5 +1,5 @@
 
-// ------------------- ATIVIDADES DE ESCRITA ----------------//
+// ------------------------ ATIVIDADES DE ESCRITA -----------------------//
 
 export interface Exercise {
     title: string;
@@ -10,6 +10,7 @@ export interface Exercise {
         option2: string;
         option3: string;
         option4: string;
+        response: string;
     }
 }
 
@@ -21,7 +22,8 @@ export const exercise: Exercise[] = [
             option1: "casa",
             option2: "caza",
             option3: "casaa",
-            option4: "cazaa"
+            option4: "cazaa",
+            response: "casa",
         }
     },
     {
@@ -31,7 +33,8 @@ export const exercise: Exercise[] = [
             option1: "coruja",
             option2: "curuja",
             option3: "corujaa",
-            option4: "curujaa"
+            option4: "curujaa",
+            response: "coruja",
         }
     },
     {
@@ -41,7 +44,8 @@ export const exercise: Exercise[] = [
             option1: "girafa",
             option2: "girrafa",
             option3: "giraffa",
-            option4: "girraffa"
+            option4: "girraffa",
+            response: "girafa",
         }
 
     },
@@ -52,7 +56,8 @@ export const exercise: Exercise[] = [
             option1: "idoso",
             option2: "idosa",
             option3: "idosaa",
-            option4: "idosa"
+            option4: "idosa",
+            response: "idoso",
         }
     },
     {
@@ -62,7 +67,8 @@ export const exercise: Exercise[] = [
             option1: "trofeu",
             option2: "troféu",
             option3: "trofeuu",
-            option4: "troféuu"
+            option4: "troféuu",
+            response: "troféu",
         }
     }
 ];

@@ -3,6 +3,13 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/vue'
 import NavBotton from '@/components/NavBotton.vue';
 import Card from '@/components/Card.vue';
 import Header from '@/components/Header.vue';
+import { speakText } from '../../public/ts/fala';
+
+
+speakText('Bem Vindo');
+
+
+
 </script>
 
 <template>

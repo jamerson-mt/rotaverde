@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { IonContent, IonHeader, IonPage } from '@ionic/vue';
 import Button from '@/components/Button.vue';
+
+
 </script>
 
 <template>

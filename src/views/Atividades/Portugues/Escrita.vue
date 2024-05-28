@@ -23,7 +23,7 @@ function nextAtt () {
     itemArray.value++;
     if (itemArray.value >= exercise.length) {
         itemArray.value = 0; 
-    }
+    } 
 } 
 </script>
 

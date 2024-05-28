@@ -28,6 +28,7 @@ const props = defineProps({
                     :options2="options.option2" 
                     :options3="options.option3" 
                     :options4="options.option4" 
+                    :response="options.response"
                 />
             </div>
         </div>
