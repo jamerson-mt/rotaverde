@@ -3,17 +3,17 @@ import { IonContent, IonPage } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue';
 import Progress from '@/components/Progress.vue';
-import { speakText } from '../../public/ts/fala';
+import { speakText , speek } from '../../public/ts/fala';
 
 const router = useRouter();
 
 onMounted(() => {
   setTimeout(() => {
-    router.push('/home');
+    router.push('/home?q=i');
   }, 5500);
 });
 
-speakText('Carregando');
+speakText(speek[1].text);
 </script>
 
 <template>

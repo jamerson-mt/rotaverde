@@ -4,6 +4,9 @@ import HomePage from '../views/Home.vue';
 import Start from '../views/Start.vue';
 import Loading from '../views/Loading.vue';
 import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
+import AttTec from '../views/Atividades/Tecnologia/Att.vue';
+import Null from '../views/Atividades/Null.vue';
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,7 +28,23 @@ const routes: Array<RouteRecordRaw> = [
     path: '/att/port/escrita',
     name: 'Escrita Portugues',
     component: EscritaPort
-  }
+  },
+  {
+    path: '/att/tec',
+    name: 'atividade de tecnologia',
+    component: AttTec
+  },
+  {
+    path: '/att/mat',
+    name: 'atividade de matematica',
+    component: Null
+  },
+  {
+    path: '/att/rl',
+    name: 'atividade de raciocinio logico',
+    component: Null
+  },
+ 
 ]
 
 const router = createRouter({

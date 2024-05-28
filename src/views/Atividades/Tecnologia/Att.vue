@@ -6,18 +6,7 @@ import { exercise } from "../../../../public/ts/attEscrita.ts";
 import NavBotton from '@/components/NavBotton.vue';
 import Header from '@/components/Header.vue';
 import AttEscrita from "@/components/AttEscrita.vue";
-import { speakText , speek } from '/public/ts/fala.ts';
-import { useRouter } from 'vue-router';
 
-// Dentro de um método ou função, você pode usar o router para redirecionar
-const router = useRouter();
-const fala = () => {
-    speakText('qual a escrita correta da imagem abaixo?');
-}
-speakText('Nesta atividade você terá que descobrir qual a escrita e pronúncia correta de algumas imagens');
-setTimeout(()=>{
-    speakText('qual a escrita correta da imagem abaixo?');
-},1000)
 let itemArray = ref(0);
 
 let att = ref(exercise[itemArray.value]);
@@ -33,8 +22,7 @@ onMounted(() => {
 function nextAtt () {
     itemArray.value++;
     if (itemArray.value >= exercise.length) {
-        itemArray.value = 0;
-        router.push('/home');
+        itemArray.value = 0; 
     } 
 } 
 </script>
@@ -48,7 +36,6 @@ function nextAtt () {
             />
         </div>
         <div>
-            
             <AttEscrita 
                 :title="att.title"
                 :image="att.image"

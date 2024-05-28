@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IonHeader, IonTitle, IonToolbar, IonContent } from '@ionic/vue';
 import { computed } from 'vue';
-
+import { useRoute } from 'vue-router';
 const props = defineProps({
     color: {
         type: String,
@@ -9,10 +9,18 @@ const props = defineProps({
     }
 });
 
+const route = useRoute();
+
+// Acessa o parâmetro de consulta 'q'
+
 const styleObject = computed(() => ({
   '--background': props.color,
   '--color': '#fff'  
 }));
+
+
+
+
 </script>
 
 <template>
@@ -25,7 +33,7 @@ const styleObject = computed(() => ({
             <p>60% concluído</p>
           </div>
           <div id="image" class="w-16 right-0">
-            <img class="rounded-2xl" src="../../public/img/idoso.png" alt="Motagem01">
+            <img class="rounded-2xl" src="../../public/img/idoso.png" alt="Motagem01"  >
           </div>
         </ion-toolbar>
     </ion-header>
