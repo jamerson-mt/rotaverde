@@ -51,7 +51,7 @@ export function speakText(text: string) {
     function getVoiceAndSpeak() {
         let voicesList = speechSynthesis.getVoices();
         if (voicesList.length > 0) {
-            let portugueseVoice = voicesList.find(voice => voice.lang.startsWith('pt'));
+            let portugueseVoice: SpeechSynthesisVoice | null = voicesList.find(voice => voice.lang.startsWith('pt')) ?? null;
             let utterance = new SpeechSynthesisUtterance(text);
             utterance.voice = portugueseVoice;
             speechSynthesis.speak(utterance);
