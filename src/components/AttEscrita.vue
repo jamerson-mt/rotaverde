@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Options from "@/components/Options.vue";
-import { speakText , speek } from '/public/ts/fala';
+import { speakText , speek } from '../../public/ts/fala';
 const fala = () => {
     speakText('qual a escrita correta da imagem abaixo?');
 }
