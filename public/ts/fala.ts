@@ -45,10 +45,6 @@ export const speek: Speek[] = [
 
 // ------------------------ IMPLEMENTAÇÃO -----------------------//
 
-let voice: SpeechSynthesisVoice | null | undefined;
-
-export declare function speakText(text: string): void;
-
 export function speakText(text: string) {
     function getVoiceAndSpeak() {
         let voicesList = speechSynthesis.getVoices();
