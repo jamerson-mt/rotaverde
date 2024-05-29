@@ -6,7 +6,7 @@ import { exercise } from "../../../../public/ts/attEscrita.ts";
 import NavBotton from '@/components/NavBotton.vue';
 import Header from '@/components/Header.vue';
 import AttEscrita from "@/components/AttEscrita.vue";
-import { speakText , speek } from '/public/ts/fala.ts';
+import { speakText , speek } from '../../../../public/ts/fala';
 import { useRouter } from 'vue-router';
 
 // Dentro de um método ou função, você pode usar o router para redirecionar
