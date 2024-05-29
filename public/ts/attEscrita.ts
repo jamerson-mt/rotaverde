@@ -11,6 +11,7 @@ export interface Exercise {
         option3: string;
         option4: string;
         response: string;
+        [key: string]: string;
     }
 }
 

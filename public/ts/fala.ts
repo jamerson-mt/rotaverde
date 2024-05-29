@@ -45,6 +45,8 @@ export const speek: Speek[] = [
 
 // ------------------------ IMPLEMENTAÇÃO -----------------------//
 
+let voice: SpeechSynthesisVoice | null | undefined;
+
 export function speakText(text: string) {
     function getVoiceAndSpeak() {
         let voicesList = speechSynthesis.getVoices();
@@ -65,5 +67,7 @@ export function speakText(text: string) {
         return getVoiceAndSpeak();
     }
 };
+
+
 
 
