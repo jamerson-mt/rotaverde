@@ -23,32 +23,36 @@ import { ref } from 'vue';
 #azul {
     --background: #0000FF;
     color: white;
-    width: 100px;
+    width: 150px;
     height: 50px;
     margin: 10px;
+    --border-radius: 20px;
 }
 
 #vermelho {
     --background: #FF0000;
     color: white;
-    width: 100px;
+    width: 150px;
     height: 50px;
     margin: 10px;
+    --border-radius: 20px;
 }
 
 #verde {
     --background: #008000;
     color: white;
-    width: 100px;
+    width: 150px;
     height: 50px;
     margin: 10px;
+    --border-radius: 20px;
 }
 
 #laranja {
     --background: #FFA500;
     color: white;
-    width: 100px;
+    width: 150px;
     height: 50px;
     margin: 10px;
+    --border-radius: 20px;
 }
 </style>

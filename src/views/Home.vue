@@ -28,8 +28,6 @@ const handleClick = () => {
 };
 
 
-
-
 </script>
 
 <template>
@@ -68,7 +66,7 @@ const handleClick = () => {
           />
       </div>
     </ion-content>
-    <div class="bottom-0">
+    <div id="navButton">
         <NavBotton />
     </div>
   </ion-page>
@@ -81,6 +79,12 @@ const handleClick = () => {
     margin-top: 20px;
     margin-bottom: 20px;
     flex-wrap: wrap;
+}
+
+#navButton {
+    position: fixed;
+    bottom: 0rem;
+    width: 100%;
 }
 
 </style>
