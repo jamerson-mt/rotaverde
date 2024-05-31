@@ -32,7 +32,7 @@ export class GameMemoria {
 
     verificarResposta(resposta: Resposta[]) {
         const respostaCorreta = this.sequencia[this.rodada].resposta;
-        if (resposta.length === respostaCorreta.length && resposta.every((val, index) => val.id === respostaCorreta[index].id)) {
+        if (resposta.length === respostaCorreta.length && resposta.every((val, index) => val.cor === respostaCorreta[index].cor)) {
             this.pontos += 100;
         }
         this.rodada++;
