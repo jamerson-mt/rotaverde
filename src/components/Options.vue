@@ -64,9 +64,11 @@ function handleResponse(item: string, option: 'options1' | 'options2' | 'options
 
 <style scoped>
 #content {
+    display: inline-block;
     margin-top: 1rem;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 #button {

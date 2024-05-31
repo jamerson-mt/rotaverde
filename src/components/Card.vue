@@ -15,10 +15,6 @@ export default defineComponent({
             type: String,
             required: true
         },
-        content: {
-            type: String,
-            required: true
-        },
         image: {
             type: String,
             required: true
@@ -35,7 +31,6 @@ export default defineComponent({
     setup(props) {
         return {
             title: props.title,
-            content: props.content,
             image: props.image,
             link: props.link,
             link2: props.link2
@@ -51,10 +46,6 @@ export default defineComponent({
             <ion-card-header>
                 <ion-card-title>{{ title }}</ion-card-title>
             </ion-card-header>
-
-            <ion-card-content>
-                {{ content }}
-            </ion-card-content>
             <RouterLink class="button" :to="link2">
                 Prosseguir
             </RouterLink>
@@ -63,16 +54,22 @@ export default defineComponent({
 </template>
 
 <style scoped>
+
 #card {
-    margin: 0 auto;
+    display: flex;
+    width: 45%;
+    margin: 10px auto ;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
     background-color: #fff;
     padding: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
 }
-.button{
-    background-color: gray;
+
+.button {
+    background-color: #249B9B;
     padding: 10px;
     color: white;
     border-radius: 5px;

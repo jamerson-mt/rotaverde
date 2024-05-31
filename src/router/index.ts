@@ -6,6 +6,7 @@ import Loading from '../views/Loading.vue';
 import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
 import AttTec from '../views/Atividades/Tecnologia/Att.vue';
 import Null from '../views/Atividades/Null.vue';
+import Memoria from '../views/Atividades/Raciocinio/Memoria.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -44,6 +45,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'atividade de raciocinio logico',
     component: Null
   },
+  {
+    path: '/att/rl/memoria',
+    name: 'atividade memória',
+    component: Memoria
+  }
  
 ]
 

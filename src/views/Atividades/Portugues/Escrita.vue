@@ -47,8 +47,7 @@ function nextAtt () {
                 color="#6D4D2F"
             />
         </div>
-        <div>
-            
+        <div id="options">
             <AttEscrita 
                 :title="att.title"
                 :image="att.image"
@@ -66,6 +65,7 @@ function nextAtt () {
 </template>
 
 <style scoped>
+
 #button {
     display: flex;
     justify-content: center;
