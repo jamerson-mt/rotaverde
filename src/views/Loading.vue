@@ -2,7 +2,7 @@
 import { IonContent, IonPage } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue';
-import Progress from '@/components/Progress.vue';
+import Progress from '@/components/progressBar/Progress.vue';
 import { speakText , speek } from '../../public/ts/fala';
 
 const router = useRouter();

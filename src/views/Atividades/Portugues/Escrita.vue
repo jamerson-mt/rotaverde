@@ -4,12 +4,11 @@ import { ref, watch } from 'vue';
 import { onMounted } from 'vue';
 import { exercise } from "../../../../public/ts/attEscrita.ts";
 import NavBotton from '@/components/NavBotton.vue';
-import Header from '@/components/Header.vue';
+import Header from '@/components/header/Header.vue';
 import AttEscrita from "@/components/AttEscrita.vue";
 import { speakText , speek } from '../../../../public/ts/fala';
 import { useRouter } from 'vue-router';
 
-// Dentro de um método ou função, você pode usar o router para redirecionar
 const router = useRouter();
 const fala = () => {
     speakText('qual a escrita correta da imagem abaixo?');

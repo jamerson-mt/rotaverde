@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 import { onMounted } from 'vue';
 import { exercise } from "../../../../public/ts/attEscrita.ts";
 import NavBotton from '@/components/NavBotton.vue';
-import Header from '@/components/Header.vue';
+import Header from '@/components/header/Header.vue';
 import AttEscrita from "@/components/AttEscrita.vue";
 
 let itemArray = ref(0);

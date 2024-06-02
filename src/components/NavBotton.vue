@@ -33,6 +33,10 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
 
 <style scoped>
 
+.nav-botton {
+    bottom: 0;
+}
+
 .home-icon {
     width: 50px;
     height: 50px;

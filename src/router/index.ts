@@ -3,10 +3,11 @@ import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/Home.vue';
 import Start from '../views/Start.vue';
 import Loading from '../views/Loading.vue';
-import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
-import AttTec from '../views/Atividades/Tecnologia/Att.vue';
+import EscritaPort from '../views/Atividades/portugues/Escrita.vue';
+import AttTec from '../views/Atividades/tecnologia/Att.vue';
 import Null from '../views/Atividades/Null.vue';
-import Memoria from '../views/Atividades/Raciocinio/Memoria.vue';
+import Memoria from '../views/Atividades/raciocinio/Memoria.vue';
+import Modulo from '../views/Atividades/Modulo.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -49,6 +50,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/att/rl/memoria',
     name: 'atividade memória',
     component: Memoria
+  },
+  {
+    path: '/att/modulo',
+    name: 'Modulo de atividade',
+    component: Modulo
   }
  
 ]

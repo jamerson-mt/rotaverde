@@ -1,61 +1,99 @@
-// ---------------------------- LÓGICA JOGO DA MEMÓRIA -------------------------- //
-
 interface Resposta {
-    cor: string;
+    index: number;
 }
 
 interface Sequencia {
     round: number;
-    azul: number;
-    vermelho: number;
-    verde: number;
-    laranja: number;
-    resposta: Resposta[]; 
+    indices: number[];
+    resposta: Resposta[];
 }
 
-export class GameMemoria {
-    rodada: number;
-    pontos: number;
-    sequencia: Sequencia[];
-
-    constructor() {
-        this.rodada = 0; 
-        this.pontos = 0;
-        this.sequencia = [];
-    }
-
-    iniciarGame(novaSequencia: Sequencia[]) {
-        this.rodada = 0;
-        this.pontos = 0;
-        this.sequencia = novaSequencia;
-    }
-
-    verificarResposta(resposta: Resposta[]) {
-        const respostaCorreta = this.sequencia[this.rodada].resposta;
-        if (resposta.length === respostaCorreta.length && resposta.every((val, index) => val.cor === respostaCorreta[index].cor)) {
-            this.pontos += 100;
-        }
-        this.rodada++;
-    }
-}
 
 // ---------------------------- INÍCIO DO JOGO -------------------------- //
 
-const novoJogo = new GameMemoria();
-const novaSequencia: Sequencia[] = [
+export const novaSequencia: Sequencia[] = [
     {
         round: 1,
-        azul: 100,
-        vermelho: 0,
-        verde: 0,
-        laranja: 0,
+        indices: [0], 
         resposta: [
-        { 
-            cor: 'azul'
-        }]
+            { index: 0 } 
+        ]
     },
+    {
+        round: 2,
+        indices: [1, 2], 
+        resposta: [
+            { index: 1 }, 
+            { index: 2 }  
+        ]
+    },
+    {
+        round: 3,
+        indices: [3, 0, 1], 
+        resposta: [
+            { index: 3 }, 
+            { index: 0 }, 
+            { index: 1 }  
+        ]
+    },
+    {
+        round: 4,
+        indices: [2, 3, 1, 0], 
+        resposta: [
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 1 }, 
+            { index: 0 }  
+        ]
+    },
+    {
+        round: 5,
+        indices: [2, 0, 3, 1, 2], 
+        resposta: [
+            { index: 2 }, 
+            { index: 0 }, 
+            { index: 3 }, 
+            { index: 1 }, 
+            { index: 2 }  
+        ]
+    },
+    {
+        round: 6,
+        indices: [2, 3, 0, 1, 2, 3], 
+        resposta: [
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 0 }, 
+            { index: 1 }, 
+            { index: 2 }, 
+            { index: 3 }  
+        ]
+    },
+    {
+        round: 7,
+        indices: [2, 0, 3, 1, 2, 3, 0], 
+        resposta: [
+            { index: 2 }, 
+            { index: 0 }, 
+            { index: 3 }, 
+            { index: 1 }, 
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 0 }  
+        ]
+    },
+    {
+        round: 8,
+        indices: [2, 3, 0, 1, 2, 3, 0, 1], 
+        resposta: [
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 0 }, 
+            { index: 1 }, 
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 0 }, 
+            { index: 1 }  
+        ]
+    }
 ];
-
-
-
-

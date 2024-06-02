@@ -1,25 +1,50 @@
 <script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { ref, watch, computed } from 'vue';
-import Header from '@/components/Header.vue';
-import NavBotton from '@/components/NavBotton.vue';
-import AttHeader from  "@/components/AttHeader.vue";
-import ButtonMemoria from "@/components/ButtonMemoria.vue";
-import GameCircle from "@/components/GameCircle.vue";
-import { GameMemoria } from "../../../../public/ts/Raciocinio/GameMemoria.ts";
+import { IonPage, IonContent } from '@ionic/vue';
+import { ref } from 'vue';
+import { novaSequencia } from "../../../../public/ts/raciocinio/GameMemoria.ts";
+import Header from '../../../components/header/Header.vue';
+import AttHeader from '../../../components/header/AttHeader.vue';
+import GameCircle from '../../../components/GameCircle.vue';
+import ButtonMemoria from '../../../components/buttons/ButtonMemoria.vue';
+import NavBotton from '../../../components/NavBotton.vue';
 
-const gameInstance = new GameMemoria();
-const sequenciaAtual = ref<Resposta[]>([]);
+let sequenciaUsuario = ref([]);
+let roundAtual = ref(0);
 
-const rodada = computed(() => gameInstance.rodada);
-const pontos = computed(() => gameInstance.pontos);
-
-watch(rodada, (newValue) => {
-    const seq = gameInstance.sequencia[newValue - 1];
-    if (seq) {
-        sequenciaAtual.value = seq.resposta;
+function verificarResposta(index: number) {
+    if (roundAtual.value >= novaSequencia.length) {
+        console.log("Você já completou todas as sequências.");
+        return;
     }
-});
+    
+    sequenciaUsuario.value.push(index);
+    
+    if (sequenciaUsuario.value.length === novaSequencia[roundAtual.value].resposta.length) {
+        const respostaCorreta = sequenciaUsuario.value.every((resposta, i) => resposta === novaSequencia[roundAtual.value].resposta[i].index);
+        
+        if (respostaCorreta) {
+            console.log("Sequência correta");
+            roundAtual.value++;
+            sequenciaUsuario.value = [];
+        } else {
+            console.log("Sequência incorreta");
+            console.log("Sequência correta:");
+            console.log(novaSequencia[roundAtual.value].resposta.map(resposta => resposta.index));
+            roundAtual.value = 0;
+            sequenciaUsuario.value = [];
+        }
+    }
+}
+
+function sequenciaCores() {
+    if (roundAtual.value < novaSequencia.length) {
+        return novaSequencia[roundAtual.value].resposta.map(resposta => resposta.index);
+    } else {
+        return [];
+    }
+}
+
+
 </script>
 
 <template>
@@ -32,7 +57,7 @@ watch(rodada, (newValue) => {
                 <AttHeader />
             </div>
             <div id="content">
-                <GameCircle :sequencia="sequenciaAtual" />
+                <GameCircle :cores="sequenciaCores()" />
             </div>
             <div>
                 <ButtonMemoria @submit="verificarResposta" />

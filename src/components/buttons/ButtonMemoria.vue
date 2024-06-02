@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
+
+const emit = defineEmits(['submit']);
+const selectedColor = ref('');
+
+function resposta(index: number) {
+    selectedColor.value = index;
+    emit('submit', index);
+}
+
 </script>
 
 <template>
     <div id="content">
-        <ion-button id="azul">Azul</ion-button>
-        <ion-button id="vermelho">Vermelho</ion-button>
-        <ion-button id="verde">Verde</ion-button>
-        <ion-button id="laranja">Laranja</ion-button>
-    </div>
+        <ion-button @click="resposta(0)" id="azul">Azul</ion-button>
+        <ion-button @click="resposta(1)" id="vermelho">Vermelho</ion-button>
+        <ion-button @click="resposta(2)" id="verde">Verde</ion-button>
+        <ion-button @click="resposta(3)" id="laranja">Laranja</ion-button>
+    </div> 
 </template>
 
 <style scoped>
-
 #content {
     display: flex;
     justify-content: center;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { IonContent, IonHeader, IonPage } from '@ionic/vue';
-import Button from '@/components/Button.vue';
+import Button from '@/components/buttons/Button.vue';
 import { speakText } from '../../public/ts/fala';
 import { speek } from '../../public/ts/fala';
 
