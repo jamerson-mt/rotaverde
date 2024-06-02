@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref, onMounted } from 'vue';
+import { defineProps, ref, onMounted, watch } from 'vue';
 
 const props = defineProps({
     cores: {
@@ -8,13 +8,14 @@ const props = defineProps({
     }
 });
 
+const styleObject0 = ref({ opacity: 0.3 });
 const styleObject1 = ref({ opacity: 0.3 });
 const styleObject2 = ref({ opacity: 0.3 });
 const styleObject3 = ref({ opacity: 0.3 });
-const styleObject4 = ref({ opacity: 0.3 });
 
-const styleObjects = [styleObject1, styleObject2, styleObject3, styleObject4];
-let previousCores = [];
+const styleObjects = [styleObject0, styleObject1, styleObject2, styleObject3];
+
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const resetOpacity = () => {
     styleObjects.forEach(obj => {
@@ -22,33 +23,33 @@ const resetOpacity = () => {
     });
 };
 
-function applyStyleFunction(newCores: Array<any>) {
-    return new Promise((resolve) => {
-        const coresToApply = newCores.filter(cor => !previousCores.includes(cor));
-        coresToApply.forEach((corIndex, i) => {
-            setTimeout(() => {
-                styleObjects[i].value.opacity = 1;
-                console.log("Aplicando estilo:", styleObjects[i].value.id);
-                if (i === coresToApply.length - 1) {
-                    setTimeout(() => {
-                        resetOpacity();
-                        resolve();
-                    }, 1000);
-                }
-            }, i * 1000);
-        });
+async function applyStyleFunction(newCores) {
+    console.log(newCores);
 
-        
-        if (previousCores.length > 0) {
-            previousCores = [...newCores]; 
+    for (let i = 0; i < newCores.length; i++) {
+        const cor = newCores[i];
+        const index = props.cores.indexOf(cor);
+        if (index !== -1) {
+            styleObjects[cor].value.opacity = 1;
         }
-    });
+        await delay(1000); 
+        resetOpacity();
+    }
+
+    await delay(1000); 
+    resetOpacity();
 }
 
-onMounted(async () => {
-    while (true) {
-        await applyStyleFunction(props.cores);
-    }
+onMounted(() => {
+    watch(
+        () => props.cores,
+        async (newCores, oldCores) => {
+            if (JSON.stringify(newCores) !== JSON.stringify(oldCores)) {
+                await applyStyleFunction(newCores);
+            }
+        },
+        { immediate: true }
+    );
 });
 
 </script>
@@ -57,10 +58,10 @@ onMounted(async () => {
    <div id="circle">
         <div id="circleCenter"></div>
         <div>
-            <div id="circle1" :style="styleObject1"></div>
-            <div id="circle2" :style="styleObject2"></div>
-            <div id="circle3" :style="styleObject3"></div>
-            <div id="circle4" :style="styleObject4"></div>
+            <div id="circle1" :style="styleObject0"></div>
+            <div id="circle2" :style="styleObject1"></div>
+            <div id="circle3" :style="styleObject2"></div>
+            <div id="circle4" :style="styleObject3"></div>
         </div>
     </div> 
 </template>

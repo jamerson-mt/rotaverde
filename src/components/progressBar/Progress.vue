@@ -18,9 +18,9 @@ export default defineComponent({
         if (this.progress > 1) {
         setTimeout(() => {
             this.progress = 0;
-        }, 1000);
+        }, 1500);
         }
-    }, 50);
+    }, 70);
     },
 });
 </script>

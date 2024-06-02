@@ -34,9 +34,6 @@ speakText(speek[0].text);
             <div id="img"  class="w-5/12 mt-3.5 absolute right-0">
                 <img src="../../public/img/mont2.png" alt="Motagem01">
             </div>
-            <div id="img"  class="w-3/12 absolute bottom-4 left-0">
-                <img src="../../public/img/pec1.png" alt="Motagem01">
-            </div>
         </ion-content>
     </ion-page>
 </template>

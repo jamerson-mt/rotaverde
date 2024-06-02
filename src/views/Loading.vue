@@ -10,7 +10,7 @@ const router = useRouter();
 onMounted(() => {
   setTimeout(() => {
     router.push('/home?q=i');
-  }, 5500);
+  }, 8000);
 });
 
 speakText(speek[1].text);
@@ -30,3 +30,12 @@ speakText(speek[1].text);
         </ion-content>
     </ion-page>
 </template>
+
+<style scoped>
+#container {
+    position: relative;
+    top: -2rem;
+    height: 100vh;
+}
+   
+</style>
