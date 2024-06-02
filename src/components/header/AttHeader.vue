@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { IonHeader, IonToolbar, IonTitle } from '@ionic/vue';
 
+// const props = defineProps({
+//     level: {
+//         type: number,
+//         required: false
+//     }
+// });
+
+// const level = ref(0);
+
 </script>
 
 <template>
@@ -11,7 +20,7 @@ import { IonHeader, IonToolbar, IonTitle } from '@ionic/vue';
                 <content class="ml-5">Decore a sequência das cores</content>
             </div>
             <div id="level">
-                <p>0/30 Nível</p>
+                <p>0/10 Nível</p>
             </div>
         </ion-toolbar>
     </ion-header>

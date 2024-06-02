@@ -95,5 +95,36 @@ export const novaSequencia: Sequencia[] = [
             { index: 0 }, 
             { index: 1 }  
         ]
+    },
+    {
+        round: 9,
+        indices: [2, 0, 3, 1, 2, 3, 0, 1, 2], 
+        resposta: [
+            { index: 2 }, 
+            { index: 0 }, 
+            { index: 3 }, 
+            { index: 1 }, 
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 0 }, 
+            { index: 1 }, 
+            { index: 2 }  
+        ]
+    },
+    {
+        round: 10,
+        indices: [2, 3, 0, 1, 2, 3, 0, 1, 2, 3], 
+        resposta: [
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 0 }, 
+            { index: 1 }, 
+            { index: 2 }, 
+            { index: 3 }, 
+            { index: 0 }, 
+            { index: 1 }, 
+            { index: 2 }, 
+            { index: 3 }  
+        ]
     }
 ];
