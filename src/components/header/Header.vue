@@ -38,6 +38,7 @@ const styleObject = computed(() => ({
 <style scoped>
 #title {
   margin-left: -5px;
+  font-size: 20px;
 }
 
 #image {

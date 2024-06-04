@@ -40,7 +40,7 @@ const handleClick = () => {
             title="Português"
             image="../../public/img/curuja.png"
             link="/home?q=pt"
-            link2="/att/modulo"
+            link2="/att/port/escrita"
           />
           <Card @click="handleClick" 
             title="Raciocínio Lógico"

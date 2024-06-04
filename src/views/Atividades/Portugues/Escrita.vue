@@ -36,6 +36,12 @@ function nextAtt () {
         router.push('/home');
     } 
 } 
+
+// receber next através do emit()
+// function attNext () {
+//     let next = true
+//     emit('nextAtt', next);
+// }
 </script>
 
 <template>

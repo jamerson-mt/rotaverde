@@ -28,7 +28,7 @@ function verificarResposta(index: number) {
             sequenciaUsuario.value = [];
         } else {
             console.log("Sequência incorreta");
-            console.log("Sequência correta:");
+            console.log("Sequência é:");
             console.log(novaSequencia[roundAtual.value].resposta.map(resposta => resposta.index));
             roundAtual.value = 0;
             sequenciaUsuario.value = [];
@@ -51,7 +51,7 @@ function sequenciaCores() {
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-                <Header color="#fff202" />
+                <Header color="#249B9B" />
             </div>
             <div>
                 <AttHeader />

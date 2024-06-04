@@ -56,9 +56,9 @@ export const exercise: Exercise[] = [
         options: {
             option1: "idoso",
             option2: "idosa",
-            option3: "idosaa",
-            option4: "idosa",
-            response: "idoso",
+            option3: "idosoo",
+            option4: "idosso",
+            response: "idooso",
         }
     },
     {
@@ -70,6 +70,17 @@ export const exercise: Exercise[] = [
             option3: "trofeuu",
             option4: "troféuu",
             response: "troféu",
+        }
+    },
+    {
+        title: "Qual a escrita correta para a imagem abaixo?",
+        image: "../img/carro.jpg",
+        options: {
+            option1: "caro",
+            option2: "carro",
+            option3: "corra",
+            option4: "corre",
+            response: "carro",
         }
     }
 ];

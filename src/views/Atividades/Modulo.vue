@@ -17,7 +17,7 @@ import NavBotton from '@/components/NavBotton.vue';
                 <div id="level">
                     <p>05/30</p>
                 </div>
-                <RouterLink class="route" to="/att/port/escrita">Contunuar</RouterLink>
+                <RouterLink class="route" to="/att/port/escrita">Continuar</RouterLink>
             </div>
             <div class="NavBotton">
                 <NavBotton />

@@ -2,7 +2,7 @@
 import { ref, defineEmits } from 'vue';
 
 const emit = defineEmits(['submit']);
-const selectedColor = ref('');
+const selectedColor = ref();
 
 function resposta(index: number) {
     selectedColor.value = index;
@@ -16,7 +16,7 @@ function resposta(index: number) {
         <ion-button @click="resposta(0)" id="azul">Azul</ion-button>
         <ion-button @click="resposta(1)" id="vermelho">Vermelho</ion-button>
         <ion-button @click="resposta(2)" id="verde">Verde</ion-button>
-        <ion-button @click="resposta(3)" id="laranja">Laranja</ion-button>
+        <ion-button @click="resposta(3)" id="laranja">Amarelo</ion-button>
     </div> 
 </template>
 

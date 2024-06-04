@@ -15,7 +15,7 @@ const styleObject3 = ref({ opacity: 0.3 });
 
 const styleObjects = [styleObject0, styleObject1, styleObject2, styleObject3];
 
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const resetOpacity = () => {
     styleObjects.forEach(obj => {
@@ -23,7 +23,7 @@ const resetOpacity = () => {
     });
 };
 
-async function applyStyleFunction(newCores) {
+async function applyStyleFunction(newCores: number[]) {
     console.log(newCores);
 
     for (let i = 0; i < newCores.length; i++) {

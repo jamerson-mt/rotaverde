@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref } from 'vue';
+import { defineProps, ref, defineEmits } from 'vue';
 
 const props = defineProps<{
   options1: string;
@@ -16,17 +16,35 @@ const buttonColors = ref({
   options4: '#abaaa8'
 });
 
+const emit = defineEmits(['submit']);
+
+function response(value: boolean) {
+    emit('submit', value);
+}
+
 function handleResponse(item: string, option: 'options1' | 'options2' | 'options3' | 'options4') {
   if (item === props.response) {
-    buttonColors.value[option] = '#65D430'; 
+    buttonColors.value[option] = '#65D430';
+    let value = true;
+    setTimeout(() => {
+      response(value);
+    }, 100);
+    
+
   } else {
     buttonColors.value[option] = 'red';
+    let value = false;
+    
+    setTimeout(() => {
+      response(value);
+    }, 100);
   }
 
   setTimeout(() => {
     buttonColors.value[option] = '#abaaa8'; 
   }, 1000);
 }
+
 </script>
 
 <template>
