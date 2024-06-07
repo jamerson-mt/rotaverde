@@ -58,7 +58,7 @@ export const exercise: Exercise[] = [
             option2: "idosa",
             option3: "idosoo",
             option4: "idosso",
-            response: "idooso",
+            response: "idoso",
         }
     },
     {
