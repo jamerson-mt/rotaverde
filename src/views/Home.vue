@@ -41,24 +41,28 @@ const handleClick = () => {
             image="../../public/img/curuja.png"
             link="/home?q=pt"
             link2="/att/modulo"
+            bgc="#66FF7E"
           />
           <Card @click="handleClick" 
             title="Raciocínio Lógico"
             image="../../public/img/curuja.png"
             link="/home?q=rl"
             link2="/att/rl/memoria"
+            bgc="#F6A9CB"
           />
           <Card  @click="handleClick"
             title="Matemática"
             image="../../public/img/curuja.png"
             link="/home?q=mat"
             link2="/att/mat"
+            bgc="#59CAFC"
           />
           <Card  @click="handleClick"
             title="Tecnologia"
             image="../../public/img/curuja.png"
             link="/home?q=tec"
             link2="/att/tec"
+            bgc="#F07979"
           />
       </div>
     </ion-content>
@@ -72,7 +76,7 @@ const handleClick = () => {
 #container {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-bottom: 20px;
     flex-wrap: wrap;
 }

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/Home.vue';
+import PerfilPage from '../views/Perfil.vue';
 import Start from '../views/Start.vue';
 import Loading from '../views/Loading.vue';
 import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
@@ -20,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/loading',
     name: 'Loading',
     component: Loading
+  },
+  {
+    path: '/perfil',
+    name: 'Perfil',
+    component: PerfilPage
   },
   {
     path: '/home',

@@ -1,76 +1,77 @@
 <script setup lang="ts">
-import { IonHeader, IonTitle, IonToolbar, IonContent } from '@ionic/vue';
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { IonHeader, IonTitle, IonToolbar, IonContent } from "@ionic/vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 const props = defineProps({
-    color: {
-        type: String,
-        required: true 
-    }
+  color: {
+    type: String,
+    required: true,
+  },
 });
 
 const route = useRoute();
 
 const styleObject = computed(() => ({
-  '--background': props.color,
-  '--color': '#fff'  
+  "--background": props.color,
+  "--color": "#fff",
 }));
-
-
 </script>
 
 <template>
-    <ion-header class="rounded-b-3xl border-solid border-black">
-        <ion-toolbar :style="styleObject" id="toolbar" class="h-28 rounded-b-3xl flex">
-          <ion-title id="title" class="w-2/4 flex">Seus Estudos</ion-title>
-          <div id="bar1"></div>
-          <div id="bar2"></div>
-          <div id="p">
-            <p>60% concluído</p>
-          </div>
-          <div id="image" class="w-16 right-0">
-            <img class="rounded-2xl" src="../../../public/img/idoso.png" alt="Motagem01"  >
-          </div>
-        </ion-toolbar>
-    </ion-header>
+  <ion-header class="rounded-b-3xl border-solid border-black">
+    <div class="toolbar">
+      <h3 id="title">Seus Estudos</h3>
+      <div class="barra-progresso">
+        <svg
+          width="146"
+          height="7"
+          viewBox="0 0 146 7"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="146" height="7" rx="3.5" fill="#DADBDD" />
+          <rect width="26" height="7" rx="3.5" fill="#65D530" />
+        </svg>
+      </div>
+      <p class="p">20% concluído</p>
+      <div id="image" class="w-16 left-5">
+        <img src="/src/img/iconperson.png" alt="pessoa">
+      </div>
+    </div>
+  </ion-header>
 </template>
 
 <style scoped>
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 124px;
+  background-color: #249b9b;
+}
 #title {
-  margin-left: -5px;
-  font-size: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+}
+.barra-progresso {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  color: #2d2d2d;
 }
 
 #image {
-  width: 5rem;
+  border-radius: 50px;
+  background-color: #D9D9D9;
+  width: 4rem;
   position: absolute;
-  right: 20px;
-  top: 20px;
 }
 
-#bar1 {
-  display: flex;
-  margin-top: 10px;
-  margin-left: 10px;
-  width: 15rem;
-  height: 5px;
-  background-color: #c1bebe;
-  border-radius: 20px;
-}
-
-#bar2 {
-  position: relative;
-  margin-left: 10px;
-  top: -5px;
-  width: 9rem;
-  height: 5px;
-  background-color: #616a6a;
-  border-radius: 20px;
-}
-
-#p {
-  position: relative;
+.p {
   margin-top: 5px;
-  margin-left: 15px;
+  font-size: 14px;
 }
 </style>
