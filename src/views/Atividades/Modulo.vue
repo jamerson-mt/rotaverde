@@ -13,8 +13,8 @@ import CardLevels from '@/components/cards/CardLevels.vue';
             <div>
                 <HeaderLevels />
             </div>
-            <div class="card">
-                <CardLevels
+            <div class="container">
+                <CardLevels class="card"
                 title="Conhecendo as letras"
                 image="../../../public/img/abc.png"
                 link="/home"
@@ -38,9 +38,17 @@ import CardLevels from '@/components/cards/CardLevels.vue';
 </template>
 
 <style scoped>
-.card {
-    margin: 10px 5px;
-    justify-content: center;
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 190px;
+    gap: 30px;
+    align-items: center;
+
+}
+.card{
+
 }
 
 .NavBotton {

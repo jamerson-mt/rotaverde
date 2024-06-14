@@ -36,7 +36,7 @@ import { speakText, speek } from "../../public/ts/fala";
 #container {
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  margin-top: 130px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }

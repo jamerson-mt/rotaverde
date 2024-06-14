@@ -24,12 +24,14 @@
 
 <style scoped>
     .header {
+        position: fixed;
         display: flex;
         background-color: #249B9B;
         color: #fff;
         padding: 10px;
-        border-radius: 0 0 15px 15px;
-        height: 15vh;
+        border-radius: 0 0 0px 0px;
+        padding: 20px;
+        height: 125px;
         align-items: center;
     }
 
@@ -37,8 +39,9 @@
         display: inline-block;
         justify-content: center;
         margin-top: 10px;
+        margin-right: 10px;
         border-radius: 50%;
-        background-color: #fff;
+        background-color: #D9D9D9;
         width: 4rem;
         height: 4rem;
         align-items: center;
@@ -52,13 +55,13 @@
     }
 
     h1 {
-        font-size: 1.25rem;
+        font-size: 24px;
     }
 
     #bar1 {
         display: flex;
         margin-top: -4px;
-        width: 9rem;
+        width: 7rem;
         height: 7px;
         background-color: #dbdbdb;
         border-radius: 20px;

@@ -18,7 +18,7 @@ const styleObject = computed(() => ({
 </script>
 
 <template>
-  <ion-header class="rounded-b-3xl border-solid border-black">
+  <ion-header class="rounded-b-3xl border-solid border-black" id="container">
     <div class="toolbar">
       <h3 id="title">Seus Estudos</h3>
       <div class="barra-progresso">
@@ -35,7 +35,7 @@ const styleObject = computed(() => ({
       </div>
       <p class="p">20% concluído</p>
       <div id="image" class="w-16 left-5">
-        <img src="/src/img/iconperson.png" alt="pessoa">
+        <img src="/src/img/iconperson.png" alt="pessoa" />
       </div>
     </div>
   </ion-header>
@@ -44,10 +44,13 @@ const styleObject = computed(() => ({
 <style scoped>
 .toolbar {
   display: flex;
+  position: fixed;
+  top: 0px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 124px;
+  width: 100%;
   background-color: #249b9b;
 }
 #title {
@@ -65,7 +68,7 @@ const styleObject = computed(() => ({
 
 #image {
   border-radius: 50px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   width: 4rem;
   position: absolute;
 }

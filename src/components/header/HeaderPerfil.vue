@@ -13,19 +13,20 @@ import { IonHeader, IonTitle, IonToolbar, IonContent } from "@ionic/vue";
 
 .container{
     display: flex;
+    position: fixed;
     justify-content: center;
-    height: 90px;
-    background-color: #249B9B;
+    height: 100px;
+    background-image: url('../../../public/img/capas/capa2.jpeg');
 }
 
 .imagem {
 
     position: relative;
   background-color: #D9D9D9;
-  width: 150px;
+  width: 130px;
   border-radius: 50%;
   position: absolute;
-  top: 40px;
+  top: 30px;
 
 }
 img{
