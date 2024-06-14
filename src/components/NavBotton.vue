@@ -4,29 +4,24 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
 
 <template>
     <ion-tab-bar class="nav-botton" slot="bottom">
-        <ion-tab-button tab="profile" href="/home">
-          <img class="person-icon" 
-            src="../../public/img/pessoa.png" />
+        <ion-tab-button class="person-icon" tab="profile" href="/home">
+          <img src="../../public/img/nav_button/profle.svg" />
         </ion-tab-button>
 
-        <ion-tab-button tab="listen" href="/home">
-          <img class="listen-icon" 
-            src="../../public/img/ouvir.png" />
+        <ion-tab-button class="listen-icon" tab="listen" href="/home">
+          <img src="../../public/img/nav_button/task.svg" />
         </ion-tab-button>
 
-        <ion-tab-button tab="home" href="/home">
-          <img class="home-icon" 
-            src="../../public/img/casa.png" />
+        <ion-tab-button class="home-icon"  tab="home" href="/home">
+          <img src="../../public/img/nav_button/home.svg" />
         </ion-tab-button>
 
-        <ion-tab-button tab="wins" href="/home">
-          <img class="win-icon" 
-            src="../../public/img/trofeu.png" />
+        <ion-tab-button  class="win-icon" tab="wins" href="/home">
+          <img class="iconimg" src="../../public/img/nav_button/trofeu1.svg" />
         </ion-tab-button>
 
-        <ion-tab-button tab="conf" href="/home">
-          <img class="conf-icon" 
-            src="../../public/img/conf.png" />
+        <ion-tab-button class="conf-icon" tab="conf" href="/home">
+          <img src="../../public/img/nav_button/configura.svg" />
         </ion-tab-button>
     </ion-tab-bar>
 </template>
@@ -35,31 +30,51 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
 
 .nav-botton {
     bottom: 0;
+    height: 10vh;
+    align-items: center;
+    border-top: solid rgb(254, 254, 254) 1px;
+    --background: #249B9B;
 }
 
-.home-icon {
-    width: 50px;
-    height: 50px;
-}
-
-.listen-icon {
-    width: 35px;
-    height: 35px;
-}
-
-.person-icon {
+.person-icon img {
     width: 45px;
     height: 45px;
+    background-color: #ffffff;
+    padding: 9px;
+    border-radius: 50%;
 }
 
-.win-icon {
-    width: 35px;
-    height: 35px;
+.listen-icon img {
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    padding: 9px;
+    border-radius: 50%;
 }
 
-.conf-icon {
-    width: 40px;
-    height: 40px;
+.home-icon img {
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    padding: 6px;
+    border-radius: 50%;
+}
+
+.win-icon img {
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+
+.conf-icon img {
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    padding: 9px;
+    border-radius: 50%;
 }
 
 </style>
