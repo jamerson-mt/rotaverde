@@ -81,10 +81,4 @@ const handleClick = () => {
     flex-wrap: wrap;
 }
 
-#navButton {
-    position: fixed;
-    bottom: 0rem;
-    width: 100%;
-}
-
 </style>

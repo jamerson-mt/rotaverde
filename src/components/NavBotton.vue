@@ -31,8 +31,14 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
 
 <style scoped>
 
+/* CONSIDERAR O TAMANHO DA TELA ATÉ A POSIÇÃO DO NAVBUTTON 
+    * Adaptado para dispositivo de tela maior e para os celulares menores!
+*/
+
 .nav-botton {
-    bottom: 0;
+    position: relative;
+    bottom: 3.55rem;
+    width: 100%;
     height: 72px;
     align-items: center;
     border-top: solid rgb(254, 254, 254) 1px;
