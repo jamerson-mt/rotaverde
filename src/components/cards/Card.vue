@@ -202,8 +202,8 @@ export default defineComponent({
 }
 
 p {
-    position: relative;
-    top: 20px;
+  position: relative;
+  top: 20px;
   color: #4d4d4d;
   font-family: "DM Sans", sans-serif;
   font-weight: 600;

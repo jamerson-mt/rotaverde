@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { IonPage } from '@ionic/vue';
 import HeaderLevels from '@/components/header/HeaderLevels.vue';
-import { RouterLink } from 'vue-router';
 import NavBotton from '@/components/NavBotton.vue';
 import CardLevels from '@/components/cards/CardLevels.vue';
 
@@ -14,7 +13,7 @@ import CardLevels from '@/components/cards/CardLevels.vue';
                 <HeaderLevels />
             </div>
             <div class="container">
-                <CardLevels class="card"
+                <CardLevels 
                 title="Conhecendo as letras"
                 image="../../../public/img/abc.png"
                 link="/home"
@@ -42,13 +41,9 @@ import CardLevels from '@/components/cards/CardLevels.vue';
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 190px;
+    margin-top: 20px;
     gap: 30px;
     align-items: center;
-
-}
-.card{
-
 }
 
 .NavBotton {

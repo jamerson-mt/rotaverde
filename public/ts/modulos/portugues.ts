@@ -9,14 +9,14 @@ export interface Portugues {
 
 export const portugues: Portugues[] = [
     {
-        title: "Escrita",
+        title: "Escrita correta",
         description: "Exercícios de escrita",
-        route: "/escrita"
+        route: "/att/port/escrita"
     },
     {
-        title: "Leitura",
+        title: "Caça palavras",
         description: "Exercícios de leitura",
-        route: "/leitura"
+        route: "/cacapalavaras"
     }
 
 ];

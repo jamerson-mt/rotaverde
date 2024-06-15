@@ -7,10 +7,6 @@ import FormPerfil from "@/components/forms/FormPerfil.vue";
 
 import { speakText, speek } from "../../public/ts/fala";
 
-
-
-
-
 </script>
 
 <template>

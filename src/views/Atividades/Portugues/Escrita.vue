@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 import { onMounted } from 'vue';
 import { exercise } from "../../../../public/ts/attEscrita.ts";
 import NavBotton from '@/components/NavBotton.vue';
-import Header from '@/components/header/Header.vue';
+import HeaderLevels from '@/components/header/HeaderLevels.vue';    
 import AttEscrita from "@/components/AttEscrita.vue";
 import { speakText , speek } from '../../../../public/ts/fala';
 import { useRouter } from 'vue-router';
@@ -48,9 +48,7 @@ function nextAtt () {
     <ion-page>
         <ion-content :fullscreen="true">
         <div>
-            <Header 
-                color="#6D4D2F"
-            />
+            <HeaderLevels />
         </div>
         <div id="options">
             <AttEscrita 

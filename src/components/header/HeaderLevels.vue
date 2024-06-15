@@ -24,7 +24,8 @@
 
 <style scoped>
     .header {
-        position: fixed;
+        position: relative;
+        top: 0;
         display: flex;
         background-color: #249B9B;
         color: #fff;

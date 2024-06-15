@@ -9,6 +9,7 @@ import AttTec from '../views/Atividades/Tecnologia/Att.vue';
 import Null from '../views/Atividades/Null.vue';
 import Memoria from '../views/Atividades/Raciocinio/Memoria.vue';
 import Modulo from '../views/Atividades/Modulo.vue';
+import CacaPalavras from '../views/Atividades/Portugues/CacaPalavras.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -61,6 +62,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/att/modulo',
     name: 'Modulo de atividade',
     component: Modulo
+  },
+  {
+    path: '/cacapalavaras',
+    name: 'Atividade Caça Palavras',
+    component: CacaPalavras
   }
  
 ]
