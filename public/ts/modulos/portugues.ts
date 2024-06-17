@@ -16,7 +16,7 @@ export const portugues: Portugues[] = [
     {
         title: "Caça palavras",
         description: "Exercícios de leitura",
-        route: "/cacapalavaras"
+        route: "/cacapalavras"
     }
 
 ];

@@ -6,17 +6,17 @@ import { IonHeader, IonTitle, IonToolbar, IonContent } from "@ionic/vue";
   <div class="container">
     <div class="div">
       <p>Nome</p>
-      <input class="campo" placeholder="João Carlos"></input>
+      <input disabled class="campo" placeholder="João Carlos"></input>
     </div>
     <div class="div">
       <p>Data Nascimento</p>
-      <input class="campo" placeholder="01/01/1980"></input>
+      <input disabled class="campo" placeholder="01/01/1980"></input>
     </div>
     <div class="div">
       <p>E-mail</p>
-      <input class="campo" placeholder="Jcarlos@gmail.com"></input>
+      <input disabled class="campo" placeholder="Jcarlos@gmail.com"></input>
     </div>
-    <button disabled="disabled">Editar</button>
+    <button disabled>Editar</button>
   </div>
   
 </template>

@@ -64,7 +64,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Modulo
   },
   {
-    path: '/cacapalavaras',
+    path: '/cacapalavras',
     name: 'Atividade Caça Palavras',
     component: CacaPalavras
   }

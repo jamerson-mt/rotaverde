@@ -76,7 +76,7 @@ const handleClick = () => {
 #container {
     display: flex;
     justify-content: space-around;
-    margin-top: 90px;
+    margin-top: 60px;
     margin-bottom: 20px;
     flex-wrap: wrap;
 }

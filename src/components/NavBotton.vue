@@ -37,7 +37,7 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
 
 .nav-botton {
     position: relative;
-    bottom: 3.55rem;
+    bottom: 0px;
     width: 100%;
     height: 72px;
     align-items: center;
