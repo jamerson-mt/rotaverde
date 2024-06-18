@@ -1,39 +1,83 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from "@ionic/vue";
 import Painel from "../../../components/painels/Painel.vue";
+import { speakText, speek } from "../../../../public/ts/fala";
+import { reactive, ref } from "vue";
+import router from "@/router";
 
-const falar = () => {
-  console.log("falando");
+speakText(
+  "Nesta atividade você irá selecionar a sílaba adequada para a imagem abaixo. clicando nela você poderá ouvir sua pronúncia"
+);
+
+const falar = (n, s) => {
+  speakText(
+    n + ". Consegue encontrar a sílaba " + s + "? clique em responder para prosseguir!"
+  );
 };
 let verificar = "";
+let cont = ref(0);
 const pintar = (v) => {
-  if(verificar !="" && v==verificar){
+
+
+  if (verificar != "" && v == verificar) {
     document.querySelectorAll("." + verificar).forEach(function (op) {
       op.setAttribute("style", "background-color:#efefef;");
     });
-    verificar="";
-  }else if(verificar !="" && v!=verificar){
+    verificar = "";
+  } else if (verificar != "" && v != verificar) {
     document.querySelectorAll("." + verificar).forEach(function (op) {
       op.setAttribute("style", "background-color:#efefef;");
     });
     document.querySelectorAll("." + v).forEach(function (op) {
       op.setAttribute("style", "background-color:yellow;");
     });
-    verificar=v;
-  }else if (verificar == v) {
+    if(v=='dra'){
+      speakText('drá');
+    }else{
+      speakText(v);
+    }
+    verificar = v;
+  } else if (verificar == v) {
     console.log("validando e proxima fase se certo se errado pinta de vermelho");
   } else {
     document.querySelectorAll("." + v).forEach(function (op) {
       op.setAttribute("style", "background-color:yellow;");
     });
-    console.log(v);
-    verificar=v;
+    if(v=='dra'){
+      speakText('drá');
+    }else{
+      speakText(v);
+    }
+    verificar = v;
+  }
+
+  if (v == silabaAtual) {
+    speakText("sílaba correta!");
+    cont.value ++;
+    document.querySelectorAll("." + silabaAtual).forEach(function (op) {
+      op.setAttribute("style", "background-color:gray;");
+    });
+    if (cont.value >=5) {
+      document.querySelectorAll(".aviso").forEach(function (op) {
+        op.setAttribute("style", "opacity:1;top:130px;z-index:1; position:fixed;");
+      });
+      console.log(cont.value);
+    } else {
+      document.querySelectorAll(".form").forEach(function (op) {
+        op.setAttribute("style", "opacity:1;top:130px;z-index:1;");
+      });
+    }
+  } else {
+    speakText("sílaba incorreta!");
   }
 };
-const responder = () => {
+
+let silabaAtual = ref("");
+const responder = (s) => {
   document.querySelectorAll(".form").forEach(function (op) {
     op.setAttribute("style", "opacity:0;top:1200px;z-index:0;");
   });
+  silabaAtual = s;
 };
 </script>
 
@@ -221,14 +265,86 @@ const responder = () => {
         </div>
       </div>
       <div class="form">
-        <div class="img">
-          <img
-            @click="falar"
-            src="../../../../public/img/items/aquario2.jpg"
-            alt="aquario"
-          />
+        <div class="forms form-qua">
+          <div class="img">
+            <img
+              class="aquario"
+              @click="falar('aquário', 'qua')"
+              src="../../../../public/img/items/aquario2.jpg"
+              alt="aquario"
+            />
+          </div>
+          <button class="button qua" @click="responder('qua')"><p>responder</p></button>
         </div>
-        <button id="button" @click="responder"><p>responder</p></button>
+        <div class="forms form-lho">
+          <div class="img">
+            <img
+              class="milho"
+              @click="falar('milho', 'lho')"
+              src="../../../../public/img/items/milho.jpg"
+              alt="milho"
+            />
+          </div>
+          <button class="button lho" @click="responder('lho')"><p>responder</p></button>
+        </div>
+        <div class="forms form-lha">
+          <div class="img">
+            <img
+              class="palha"
+              @click="falar('palha', 'lha')"
+              src="../../../../public/img/items/palha.jpg"
+              alt="palha"
+            />
+          </div>
+          <button class="button lha" @click="responder('lha')"><p>responder</p></button>
+        </div>
+        <div class="forms form-tra">
+          <div class="img">
+            <img
+              class="ostra"
+              @click="falar('ostra', 'tra')"
+              src="../../../../public/img/items/ostra.jpg"
+              alt="ostra"
+            />
+          </div>
+          <button class="button tra" @click="responder('tra')"><p>responder</p></button>
+        </div>
+        <div class="forms form-dra">
+          <div class="img">
+            <img
+              class="pedra"
+              @click="falar('pedra', 'dra')"
+              src="../../../../public/img/items/pedra.jpg"
+              alt="pedra"
+            />
+          </div>
+          <button class="button dra" @click="responder('dra')"><p>responder</p></button>
+        </div>
+      </div>
+      <div class="aviso">
+        <p class="sucesso">realizado com sucesso!</p>
+
+        <div class="refresh" @click="router.push('/home')">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="42"
+            height="42"
+            viewBox="0 0 21 21"
+          >
+            <g
+              fill="none"
+              fill-rule="evenodd"
+              stroke="white"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M6.5 3.5c-2.412 1.378-4 4.024-4 7a8 8 0 0 0 8 8m4-1c2.287-1.408 4-4.118 4-7a8 8 0 0 0-8-8"
+              />
+              <path d="M6.5 7.5v-4h-4m12 10v4h4" />
+            </g>
+          </svg>
+        </div>
       </div>
     </ion-content>
   </ion-page>
@@ -275,15 +391,27 @@ p {
   margin-left: 5%;
   display: flex;
   position: absolute;
-
-  top: 200px;
-  flex-direction: column;
+  top: 130px;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   background-color: #353030e0;
   border-radius: 5px;
-  height: 250px;
   width: 90%;
+  gap: 10px;
+}
+.forms {
+  display: flex;
+  margin-top: 10px;
+  position: relative;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+
+  gap: 5px;
+  border-radius: 5px;
 }
 .img {
   position: relative;
@@ -309,5 +437,25 @@ button > p {
   font-weight: 400;
   font-family: "Poppins", sans-serif;
   font-style: bold;
+}
+.aviso {
+  display: flex;
+  flex-direction: column;
+  top: 1200px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: green;
+  opacity: 0;
+  z-index: 0;
+  text-align: center;
+}
+.sucesso {
+  position: relative;
+  font-size: 1em;
+  color: white;
 }
 </style>
