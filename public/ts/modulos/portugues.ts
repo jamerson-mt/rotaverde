@@ -17,6 +17,11 @@ export const portugues: Portugues[] = [
         title: "Caça palavras",
         description: "Exercícios de leitura",
         route: "/cacapalavras"
+    },
+    {
+        title: "Silabario ",
+        description: "Silabario das dificuldades ortográficas",
+        route: "/silabario"
     }
 
 ];

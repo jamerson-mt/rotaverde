@@ -10,6 +10,8 @@ import Null from '../views/Atividades/Null.vue';
 import Memoria from '../views/Atividades/Raciocinio/Memoria.vue';
 import Modulo from '../views/Atividades/Modulo.vue';
 import CacaPalavras from '../views/Atividades/Portugues/CacaPalavras.vue';
+import Silabario from '../views/Atividades/Portugues/Silabario.vue';
+
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -67,6 +69,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/cacapalavras',
     name: 'Atividade Caça Palavras',
     component: CacaPalavras
+  },
+  {
+    path: '/silabario',
+    name: 'atividade das silabas',
+    component: Silabario
   }
  
 ]
