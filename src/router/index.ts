@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/Home.vue';
 import PerfilPage from '../views/Perfil.vue';
-import Start from '../views/Start.vue';
+import Welcome from '../views/Welcome.vue';
 import Loading from '../views/Loading.vue';
 import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
 import AttTec from '../views/Atividades/Tecnologia/Att.vue';
@@ -11,14 +11,15 @@ import Memoria from '../views/Atividades/Raciocinio/Memoria.vue';
 import Modulo from '../views/Atividades/Modulo.vue';
 import CacaPalavras from '../views/Atividades/Portugues/CacaPalavras.vue';
 import Silabario from '../views/Atividades/Portugues/Silabario.vue';
+import Login from '../views/Login.vue';
 
 
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Start',
-    component: Start
+    name: 'Welcome',
+    component: Welcome
   },
   {
     path: '/loading',
@@ -74,6 +75,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/silabario',
     name: 'atividade das silabas',
     component: Silabario
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
  
 ]

@@ -113,7 +113,7 @@ speakText(speek[0].text);
             </svg>
           </div>
           <div class="button">
-            <router-link to="/home">
+            <router-link to="/login">
               <p class="button-text">Iniciar aprendizado</p></router-link
             >
           </div>
