@@ -3,7 +3,6 @@ import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/Home.vue';
 import PerfilPage from '../views/Perfil.vue';
 import Welcome from '../views/Welcome.vue';
-import Loading from '../views/Loading.vue';
 import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
 import AttTec from '../views/Atividades/Tecnologia/Att.vue';
 import Null from '../views/Atividades/Null.vue';
@@ -12,6 +11,7 @@ import Modulo from '../views/Atividades/Modulo.vue';
 import CacaPalavras from '../views/Atividades/Portugues/CacaPalavras.vue';
 import Silabario from '../views/Atividades/Portugues/Silabario.vue';
 import Login from '../views/Login.vue';
+import Register from '../views/Register.vue';
 
 
 
@@ -22,14 +22,14 @@ const routes: Array<RouteRecordRaw> = [
     component: Welcome
   },
   {
-    path: '/loading',
-    name: 'Loading',
-    component: Loading
-  },
-  {
     path: '/perfil',
     name: 'Perfil',
     component: PerfilPage
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/home',

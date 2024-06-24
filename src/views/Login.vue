@@ -71,7 +71,7 @@ onAuthStateChanged(auth, async (user) => {
         <ion-grid>
             <ion-row class="buttons">
                 <div class="submit">
-                    <RouterLink class="route" to="/home">Inscreva-se gratuitamente</RouterLink>
+                    <RouterLink class="route" to="/register">Inscreva-se gratuitamente</RouterLink>
                 </div>
                 <div class="google">
                     <img src="../../public/img/googlecor.svg">
