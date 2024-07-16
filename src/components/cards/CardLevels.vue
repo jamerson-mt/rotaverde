@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import ListAtt from "@/components/lists/ListAtt.vue";
-import { Portugues, portugues } from "../../../public/ts/modulos/portugues";
 
 const props = defineProps ({
     title: {
@@ -15,19 +14,31 @@ const props = defineProps ({
     link: {
         type: String,
         required: true
+    },
+    atividade: {
+        type: String,
+        required: true
     }
+
 });
 
 const showList = ref(false);
+const atividadeList = ref([]);
 
-function openList() {
+async function openList() {
     showList.value = !showList.value; 
     if (showList.value) {
-        portugues.forEach((item) => {
-            console.log(item);
-        });
+        try {
+            const modulo = await import('../../../public/ts/modulos/portugues');
+            atividadeList.value = modulo[props.atividade] || [];
+            atividadeList.value.forEach((item) => {
+            });
+        } catch (error) {
+            console.error('Erro ao importar o módulo:', error);
+        }
     }
 }
+
 </script>
 
 <template>
@@ -39,7 +50,7 @@ function openList() {
             <img :alt="title" :src="image" />
         </div>
     </div>
-    <ListAtt v-if="showList" v-for="(item, index) in portugues" :key="index" :item="item" />
+    <ListAtt v-if="showList" v-for="(item, index) in atividadeList" :key="index" :item="item" />
 </template>
 
 <style scoped>

@@ -17,18 +17,14 @@ import CardLevels from '@/components/cards/CardLevels.vue';
                 title="Conhecendo as letras"
                 image="../../../public/img/abc.png"
                 link="/home"
+                atividade="letras"
                 />
                 
                 <CardLevels
                 title="Sílabas e junções"
                 image="../../../public/img/alfabeto.png"
                 link="/home"
-                />
-
-                <CardLevels
-                title="Conhecendo os números"
-                image="../../../public/img/numeros.png"
-                link="/home"
+                atividade="silabas"
                 />
             </div>
         </ion-content>

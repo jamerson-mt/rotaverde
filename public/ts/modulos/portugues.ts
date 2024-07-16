@@ -7,7 +7,26 @@ export interface Portugues {
     route: string
 }
 
-export const portugues: Portugues[] = [
+export const letras: Portugues[] = [
+    {
+        title: "Conhecendo as vogais",
+        description: "Exercícios de escrita",
+        route: "#"
+    },
+    {
+        title: "Conhecendo as consoantes",
+        description: "Exercícios de leitura",
+        route: "#"
+    },
+    {
+        title: "Alfabeto",
+        description: "Silabário das dificuldades ortográficas",
+        route: "#"
+    }
+
+];
+
+export const silabas: Portugues[] = [
     {
         title: "Escrita correta",
         description: "Exercícios de escrita",
@@ -19,8 +38,8 @@ export const portugues: Portugues[] = [
         route: "/cacapalavras"
     },
     {
-        title: "Silabario ",
-        description: "Silabario das dificuldades ortográficas",
+        title: "Silabário ",
+        description: "Silabário das dificuldades ortográficas",
         route: "/silabario"
     }
 

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { IonContent, IonPage, IonGrid, IonRow, IonCol, IonInput, IonButton } from '@ionic/vue';
 import { ref } from 'vue';
+import { routeLocationKey, useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const username = ref('');
 const email = ref('');
@@ -33,8 +36,12 @@ const sendUserToAPI = async (user) => {
         });
         const data = await response.json();
         console.log(data);
+        // router.push({ name: 'Login', params: { user: data } });
+        router.push("/login")
+
     } catch (error) {
         console.error(error);
+        router.push("/login")
     }
 };
 
