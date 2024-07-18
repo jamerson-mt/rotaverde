@@ -2,7 +2,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/vue';
 import { ref, watch } from 'vue';
 import { onMounted } from 'vue';
-import { exercise } from "../../../../public/ts/attEscrita.ts";
+import { exercise } from "../../../../public/ts/attEscrita.js";
 import NavBotton from '@/components/NavBotton.vue';
 import Header from '@/components/header/Header.vue';
 import AttEscrita from "@/components/AttEscrita.vue";
