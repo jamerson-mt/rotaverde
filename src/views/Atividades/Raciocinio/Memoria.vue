@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IonPage, IonContent } from '@ionic/vue';
 import { ref } from 'vue';
-import { novaSequencia } from "../../../../public/ts/Raciocinio/GameMemoria.ts";
+import { novaSequencia } from "../../../../public/ts/Raciocinio/GameMemoria.js";
 import Header from '../../../components/header/Header.vue';
 import AttHeader from '../../../components/header/AttHeader.vue';
 import GameCircle from '../../../components/GameCircle.vue';

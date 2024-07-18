@@ -6,7 +6,7 @@ import { exercise } from "../../../../public/ts/attEscrita.js";
 import NavBotton from '@/components/NavBotton.vue';
 import HeaderLevels from '@/components/header/HeaderLevels.vue';    
 import AttEscrita from "@/components/AttEscrita.vue";
-import { speakText , speek } from '../../../../public/ts/fala';
+import { speakText , speek } from '../../../../public/ts/fala.js';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
