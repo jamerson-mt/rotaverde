@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import ListAtt from "@/components/lists/ListAtt.vue";
 
 const props = defineProps ({
     title: {
@@ -20,17 +22,35 @@ const props = defineProps ({
 
 });
 
+const showList = ref(false);
+const atividadeList = ref([]);
+
+async function openList() {
+    showList.value = !showList.value; 
+    if (showList.value) {
+        try {
+            const modulo = await import('../../../public/ts/modulos/portugues');
+            atividadeList.value = modulo[props.atividade] || [];
+            atividadeList.value.forEach((item) => {
+            });
+        } catch (error) {
+            console.error('Erro ao importar o módulo:', error);
+        }
+    }
+}
+
 </script>
 
 <template>
-    <RouterLink class="card" :to="link">
-            <div class="content">
-                <p>{{ title }}</p>
-            </div>
-            <div class="img">
-                <img :alt="title" :src="image" />
-            </div>
-    </RouterLink>
+    <div class="card" @click="openList">
+        <div class="img">
+            <img :alt="title" :src="image" />
+        </div>
+        <div class="content">
+            <p>{{ title }}</p>
+        </div>
+    </div>
+    <ListAtt v-if="showList" v-for="(item, index) in atividadeList" :key="index" :item="item" />
 </template>
 
 <style scoped>
@@ -49,7 +69,7 @@ const props = defineProps ({
 }
 
 .content {
-    width: 65%;
+    width: 60%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -66,8 +86,9 @@ p,.link{
 }
 
 p {
-    font-size: 18px;
+    font-size: 19px;
     margin-bottom: 10px;
+    margin-left: -5px;
 }
 
 .link {
@@ -82,8 +103,14 @@ p {
 }
 
 .img {
-    width: 4rem;
-    height: 4rem;
+    width: 4.5rem;
+    height: 4.5rem;
     margin: auto;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 </style>

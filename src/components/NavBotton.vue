@@ -31,58 +31,56 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
 
 <style scoped>
 
-/* CONSIDERAR O TAMANHO DA TELA ATÉ A POSIÇÃO DO NAVBUTTON 
-    * Adaptado para dispositivo de tela maior e para os celulares menores!
-*/
-
 .nav-botton {
-    position: relative;
-    bottom: 0px;
-    width: 100%;
-    height: 72px;
-    align-items: center;
-    border-top: solid rgb(254, 254, 254) 1px;
-    --background: #249B9B;
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  height: 72px;
+  align-items: center;
+  border-top: solid #737171 0.5px;
+  --background: #fdfdfd;
 }
 
 img{
-    width: 45px;
-    height: 45px;}
+  width: 45px;
+  height: 45px;
+}
 
 .person-icon img {
- 
-    background-color: #ffffff;
-    padding: 9px;
-    border-radius: 50%;
+  background-color: #ffffff;
+  padding: 9px;
+  border-radius: 50%;
+  border: solid #737171 1px;
 }
 
 .listen-icon img {
-   
-    background-color: #ffffff;
-    padding: 8px;
-    border-radius: 50%;
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 50%;
+  border: solid #737171 1px;
+
 }
 
 .home-icon img {
-    
-    background-color: #ffffff;
-    padding: 6px;
-    border-radius: 50%;
+  background-color: #ffffff;
+  padding: 6px;
+  border-radius: 50%;
+  border: solid #737171 1px;
 }
 
 .win-icon img {
-    
-    background-color: #ffffff;
-    padding: 5px;
-    border-radius: 50%;
+  border: solid #737171 1px;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 50%;
 }
 
 
 .conf-icon img {
-    
-    background-color: #ffffff;
-    padding: 9px;
-    border-radius: 50%;
+  border: solid #737171 1px;
+  background-color: #ffffff;
+  padding: 9px;
+  border-radius: 50%;
 }
 
 </style>

@@ -34,14 +34,14 @@ async function sendUserToAPI(user) {
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log('User info:', user);
-    await sendUserToAPI(user); // Envia as informações do usuário para a API
+    await sendUserToAPI(user);
     // router.push('/home');
   } else {
     try {
       const result = await getRedirectResult(auth);
       if (result) {
         console.log('User info:', result.user);
-        await sendUserToAPI(result.user); // Envia as informações do usuário para a API
+        await sendUserToAPI(result.user); 
         // router.push('/home');
       }
     } catch (error) {
@@ -63,7 +63,7 @@ onAuthStateChanged(auth, async (user) => {
                     <ion-col>
                         <div class="title">
                             <h1>Bem vindo!</h1>
-                            <p>Entre na sua conta ou registre-se</p>
+                            <p>Esolha qual o seu tipo de usuário</p>
                         </div>
                     </ion-col>
                 </ion-row>
@@ -71,14 +71,10 @@ onAuthStateChanged(auth, async (user) => {
         <ion-grid>
             <ion-row class="buttons">
                 <div class="submit">
-                    <RouterLink class="route" to="/register">Inscreva-se gratuitamente</RouterLink>
-                </div>
-                <div class="google">
-                    <img src="../../public/img/googlecor.svg">
-                    <button @click="signInWithGoogleRedirect">Continuar com o Google</button>
+                    <RouterLink class="route" to="/login">Professor</RouterLink>
                 </div>
                 <div class="login">
-                    <RouterLink class="route" to="/home/professor">Entrar</RouterLink>
+                    <RouterLink class="route" to="/avatar">Aluno</RouterLink>
                 </div>
             </ion-row>
             <ion-row>

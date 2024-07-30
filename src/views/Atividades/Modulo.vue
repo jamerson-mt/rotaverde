@@ -16,14 +16,14 @@ import CardLevels from '@/components/cards/CardLevels.vue';
                 <CardLevels 
                 title="Conhecendo as letras"
                 image="../../../public/img/abc.png"
-                link="/home"
+                link="/att/roadMap"
                 atividade="letras"
                 />
                 
                 <CardLevels
                 title="Sílabas e junções"
                 image="../../../public/img/alfabeto.png"
-                link="/home"
+                link="/att/roadMap"
                 atividade="silabas"
                 />
             </div>

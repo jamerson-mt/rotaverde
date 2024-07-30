@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import ListAtt from "@/components/lists/ListAtt.vue";
 
 const props = defineProps ({
     title: {
@@ -20,17 +22,35 @@ const props = defineProps ({
 
 });
 
+const showList = ref(false);
+const atividadeList = ref([]);
+
+async function openList() {
+    showList.value = !showList.value; 
+    if (showList.value) {
+        try {
+            const modulo = await import('../../../public/ts/modulos/portugues');
+            atividadeList.value = modulo[props.atividade] || [];
+            atividadeList.value.forEach((item) => {
+            });
+        } catch (error) {
+            console.error('Erro ao importar o módulo:', error);
+        }
+    }
+}
+
 </script>
 
 <template>
-    <RouterLink class="card" :to="link">
-            <div class="content">
-                <p>{{ title }}</p>
-            </div>
-            <div class="img">
-                <img :alt="title" :src="image" />
-            </div>
-    </RouterLink>
+    <div class="card" @click="openList">
+        <div class="content">
+            <p>{{ title }}</p>
+        </div>
+        <div class="img">
+            <img :alt="title" :src="image" />
+        </div>
+    </div>
+    <ListAtt v-if="showList" v-for="(item, index) in atividadeList" :key="index" :item="item" />
 </template>
 
 <style scoped>

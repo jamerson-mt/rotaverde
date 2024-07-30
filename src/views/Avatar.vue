@@ -1,22 +1,11 @@
 <script setup lang="ts">
 import { IonContent, IonPage, IonGrid, IonRow, IonCol } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-import { auth, provider } from '../../firebaseConfig';
-import { signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth';
+import Users from '@/components/cards/Users.vue';
 
 const router = useRouter();
 
-function signInWithGoogleRedirect() {
-  signInWithRedirect(auth, provider)
-    .then(() => {
-      console.log("Redirecionando para o Google Sign-In");
-    })
-    .catch(error => {
-      console.error("Erro na autenticação com o Google: ", error);
-    });
-}
-
-async function sendUserToAPI(user) {
+async function sendUserToAPI(user: any) {
     const response = await fetch('http://127.0.0.1:5245/api/user', {
       method: 'POST',
       headers: {
@@ -30,25 +19,6 @@ async function sendUserToAPI(user) {
       }),
     });
 }
-
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    console.log('User info:', user);
-    await sendUserToAPI(user); // Envia as informações do usuário para a API
-    // router.push('/home');
-  } else {
-    try {
-      const result = await getRedirectResult(auth);
-      if (result) {
-        console.log('User info:', result.user);
-        await sendUserToAPI(result.user); // Envia as informações do usuário para a API
-        // router.push('/home');
-      }
-    } catch (error) {
-      console.error("Erro ao obter o resultado de redirecionamento: ", error);
-    }
-  }
-});
 </script>
 
 <template>
@@ -58,32 +28,16 @@ onAuthStateChanged(auth, async (user) => {
                 <img src="../../public/img/capas/estudo.jpeg" alt="Capacita Digital">
             </div>
             <div class="back"></div>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <div class="title">
-                            <h1>Bem vindo!</h1>
-                            <p>Entre na sua conta ou registre-se</p>
-                        </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
         <ion-grid>
-            <ion-row class="buttons">
-                <div class="submit">
-                    <RouterLink class="route" to="/register">Inscreva-se gratuitamente</RouterLink>
-                </div>
-                <div class="google">
-                    <img src="../../public/img/googlecor.svg">
-                    <button @click="signInWithGoogleRedirect">Continuar com o Google</button>
-                </div>
-                <div class="login">
-                    <RouterLink class="route" to="/home/professor">Entrar</RouterLink>
-                </div>
-            </ion-row>
-            <ion-row>
-            <div class="input"></div>
-            </ion-row>
+            <div class="card">
+                <Users
+                    title="José Jamerson"
+                    image="../../public/img/idoso.png"
+                    link="/home"
+                    atividade="teste"
+                />
+            </div>
+            
         </ion-grid>
         </ion-content>
     </ion-page>
@@ -121,16 +75,15 @@ onAuthStateChanged(auth, async (user) => {
     color: white;
 }
 
-.title h1 {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.title p {
-    font-size: 1rem;
-    font-weight: 400;
-    text-align: center;
-    color: #d4d1d1;
+.card {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    color: azure;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 .buttons {

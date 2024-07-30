@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IonHeader, IonTitle, IonToolbar, IonContent } from "@ionic/vue";
+import { IonHeader } from "@ionic/vue";
 </script>
 
 <template>
