@@ -74,7 +74,7 @@ onAuthStateChanged(auth, async (user) => {
                     <RouterLink class="route" to="/login">Professor</RouterLink>
                 </div>
                 <div class="login">
-                    <RouterLink class="route" to="/avatar">Aluno</RouterLink>
+                    <RouterLink class="route" to="/home">Aluno</RouterLink>
                 </div>
             </ion-row>
             <ion-row>

@@ -17,30 +17,34 @@ import Exercise from '@/components/roadMap/Exercise.vue';
                 <div class="component1">
                     <Unid 
                         img="../../../public/img/roadMap/horse.png"
+                        
                     />
                 </div>
                 <div class="component2">
                     <Exercise 
                         img="../../../public/img/roadMap/pencil.png"
                         title="Escrita"    
+                        link="pt/escrita"
                     />
                 </div>
                 <div class="component3">
                     <Exercise 
                         img="../../../public/img/roadMap/book.png"
-                        title="Escrita"    
+                        title="Caça palavras"    
+                        link="pt/cacapalavras"
                     />
                 </div>
                 <div class="component4">
                     <Exercise 
                         img="../../../public/img/roadMap/bike.png"
-                        title="Escrita"    
+                        title="Silabário"    
+                        link="pt/silabario"
                     />
                 </div>
                 <div class="component5">
                     <Exercise 
                         img="../../../public/img/roadMap/block.png"
-                        title="Escrita"    
+                        title="bloqueado"    
                     />
                 </div>
             </div>

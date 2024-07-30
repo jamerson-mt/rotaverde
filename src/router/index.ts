@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage
   },
   {
-    path: '/att/port/escrita',
+    path: '/att/pt/escrita',
     name: 'Escrita Portugues',
     component: EscritaPort
   },
@@ -65,12 +65,12 @@ const routes: Array<RouteRecordRaw> = [
     component: RoadMap
   },
   {
-    path: '/cacapalavras',
+    path: '/att/pt/cacapalavras',
     name: 'Atividade Caça Palavras',
     component: CacaPalavras
   },
   {
-    path: '/silabario',
+    path: '/att/pt/silabario',
     name: 'atividade das silabas',
     component: Silabario
   },

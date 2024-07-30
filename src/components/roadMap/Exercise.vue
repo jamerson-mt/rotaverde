@@ -1,11 +1,15 @@
 <script setup lang="ts">
 
 const props = defineProps({
-  img: {
-    type: String,
-    required: true,
-  },
+    img: {
+        type: String,
+        required: true,
+    },
     title: {
+        type: String,
+        required: true,
+    },
+    link: {
         type: String,
         required: true,
     }
@@ -13,16 +17,17 @@ const props = defineProps({
 </script>
 
 <template>
-     <div class="content">
+    <div class="content">
         <div class="image">
-            <img class="img" :src="img">
+            <router-link :to="link">
+                <img class="img" :src="img">
+            </router-link>
         </div>
         <p>{{ title }}</p>
     </div>
 </template>
 
 <style scoped>
-
 .image {
     position: relative;
     top: 3.5rem;
@@ -37,7 +42,7 @@ const props = defineProps({
 }
 
 .img {
-    width: var(--exercise-img-width, 3rem); 
+    width: var(--exercise-img-width, 3rem);
     height: var(--exercise-img-height, auto)
 }
 
@@ -48,6 +53,4 @@ p {
     font-weight: bold;
     text-align: center;
 }
-
- 
 </style>
