@@ -3,6 +3,10 @@ import { IonPage } from '@ionic/vue';
 import HeaderLevels from '@/components/header/HeaderLevels.vue';
 import NavBotton from '@/components/NavBotton.vue';
 import CardLevels from '@/components/cards/CardLevels.vue';
+import { ref } from 'vue'
+import Buzina from '/src/components/header/Buzina.vue'
+
+const frase = ref('SeleçãoTema');
 
 </script>
 
@@ -10,7 +14,7 @@ import CardLevels from '@/components/cards/CardLevels.vue';
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-                <HeaderLevels />
+                <HeaderLevels :frase="frase" />
             </div>
             <div class="container">
                 <CardLevels 

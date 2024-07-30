@@ -4,6 +4,10 @@ import HeaderLevels from '@/components/header/HeaderLevels.vue';
 import NavBotton from '@/components/NavBotton.vue';
 import Unid from '@/components/roadMap/Unid.vue';
 import Exercise from '@/components/roadMap/Exercise.vue';
+import { ref } from 'vue'
+import Buzina from '/src/components/header/Buzina.vue'
+
+const frase = ref('SelecionarAtividade');
 
 </script>
 
@@ -11,7 +15,7 @@ import Exercise from '@/components/roadMap/Exercise.vue';
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-                <HeaderLevels />
+                <HeaderLevels :frase="frase" />
             </div>
             <div class="container">
                 <div class="component1">

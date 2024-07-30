@@ -4,6 +4,9 @@ import HeaderLevels from "@/components/header/HeaderLevels.vue";
 import NavBotton from "@/components/NavBotton.vue";
 import Quadro from "@/components/Quadro.vue";
 import { Portugues, portugues } from "../../../../public/ts/jogos/cacaPalavras";
+import { ref } from 'vue'
+
+const frase = ref('CaçaPalavras');
 
 const { frame, words } = portugues[0];
 
@@ -19,7 +22,7 @@ const refresh = () => {
   <ion-page>
     <ion-content :fullscreen="true">
       <div>
-        <HeaderLevels />
+        <HeaderLevels frase="CaçaPalavras" />
       </div>
       <div class="content">
         <div class="quadro">

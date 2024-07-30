@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
 import { useRouter } from 'vue-router';
+import Buzina from '/src/components/header/Buzina.vue'
+import { ref } from 'vue'
+
+const frase = ref('BoasVindas');
 
 const router = useRouter();
 
 function route() {
     router.push('/person');
 };
+
+
 </script>
 
 <template>
     <ion-page>
-        <ion-content >
+        <ion-content>
+            <Buzina :frase="frase" />
             <div class="img">
                 <img src="../../public/img/capas/livro.jpeg" alt="Capacita Digital" />
             </div>
@@ -26,7 +33,6 @@ function route() {
 </template>
 
 <style scoped>
-
 .content {
     display: flex;
     flex-direction: column;
@@ -52,7 +58,7 @@ function route() {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1),  rgba(0, 0, 0, 0.5),  rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
     z-index: -1;
 }
 

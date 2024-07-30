@@ -3,6 +3,10 @@ import { IonContent, IonPage, IonGrid, IonRow, IonCol } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { auth, provider } from '../../firebaseConfig';
 import { signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth';
+import { ref } from 'vue'
+import Buzina from '/src/components/header/Buzina.vue'
+
+const frase = ref('OpçãoDeUsuário');
 
 const router = useRouter();
 
@@ -54,6 +58,7 @@ onAuthStateChanged(auth, async (user) => {
 <template>
     <ion-page>
         <ion-content>
+            <Buzina :frase="frase" />
             <div class="img">
                 <img src="../../public/img/capas/estudo.jpeg" alt="Capacita Digital">
             </div>
