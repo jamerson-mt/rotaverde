@@ -12,9 +12,10 @@ import Silabario from '../views/Atividades/Portugues/Silabario.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Person from '@/views/Person.vue';
-import Avatar from '@/views/Avatar.vue';
+import UsersAll from '@/views/UsersAll.vue';
 import RoadMap from '@/views/Atividades/RoadMap.vue';
 import ProfHome from '@/views/Professor/ProfHome.vue';
+import ManagerUsers from '@/views/Professor/ManagerUsers.vue';
 
 
 
@@ -85,15 +86,21 @@ const routes: Array<RouteRecordRaw> = [
     component: Person
   },
   {
-    path: '/avatar',
-    name: 'Avatar',
-    component: Avatar
+    path: '/users/all',
+    name: 'Users',
+    component: UsersAll
   },
   {
-    path: '/home/professor',
+    path: "/professor",
     name: 'Home Professor',
     component: ProfHome
+  },
+  {
+    path: "/manager/users",
+    name: 'Manager Users',
+    component: ManagerUsers
   }
+
  
 ]
 

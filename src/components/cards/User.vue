@@ -1,45 +1,36 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import ListAtt from "@/components/lists/ListAtt.vue";
 
 
-const props = defineProps ({
-    title: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    },
-    link: {
-        type: String,
-        required: true
-    },
-    atividade: {
-        type: String,
-        required: true
-    },
-    user: {
-        type: Object
+const showList = ref(false);
+const atividadeList = ref([]);
+
+async function openList() {
+    showList.value = !showList.value; 
+    if (showList.value) {
+        try {
+            const modulo = await import('../../../public/ts/modulos/portugues');
+            atividadeList.value = modulo[props.atividade] || [];
+            atividadeList.value.forEach((item) => {
+            });
+        } catch (error) {
+            console.error('Erro ao importar o módulo:', error);
+        }
     }
-
-});
-
-
-// Enviar User para a home
+}
 
 </script>
 
 <template>
-    <RouterLink :to="link" class="card">
-        <div class="img">
-            <img :alt="title" :src="image" />
-        </div>
+    <div class="card" @click="openList">
         <div class="content">
             <p>{{ title }}</p>
         </div>
-    </RouterLink>
+        <div class="img">
+            <img :alt="title" :src="image" />
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -51,16 +42,14 @@ const props = defineProps ({
     display: flex;
     width: 90%;
     height: 120px;
-    background-color: rgb(36, 155, 155, 40%);
+    background-color: #249B9B;
     border-radius: 10px;
     align-items: center;
     margin-bottom: auto;
-    border: solid 1px white;
-    margin-top: 5px;
 }
 
 .content {
-    width: 60%;
+    width: 65%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -77,9 +66,8 @@ p,.link{
 }
 
 p {
-    font-size: 19px;
+    font-size: 18px;
     margin-bottom: 10px;
-    margin-left: -5px;
 }
 
 .link {
@@ -94,14 +82,8 @@ p {
 }
 
 .img {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 4rem;
+    height: 4rem;
     margin: auto;
-}
-
-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
 }
 </style>

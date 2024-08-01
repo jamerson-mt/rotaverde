@@ -1,54 +1,9 @@
 <script setup lang="ts">
 import { IonContent, IonPage, IonGrid, IonRow, IonCol } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-import { auth, provider } from '../../firebaseConfig';
-import { signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth';
 
 const router = useRouter();
 
-function signInWithGoogleRedirect() {
-  signInWithRedirect(auth, provider)
-    .then(() => {
-      console.log("Redirecionando para o Google Sign-In");
-    })
-    .catch(error => {
-      console.error("Erro na autenticação com o Google: ", error);
-    });
-}
-
-async function sendUserToAPI(user) {
-    const response = await fetch('http://127.0.0.1:5245/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: user.email,
-        username: user.displayName,
-        photoURL: user.photoURL,
-        password:"password"
-      }),
-    });
-}
-
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    console.log('User info:', user);
-    await sendUserToAPI(user);
-    // router.push('/home');
-  } else {
-    try {
-      const result = await getRedirectResult(auth);
-      if (result) {
-        console.log('User info:', result.user);
-        await sendUserToAPI(result.user); 
-        // router.push('/home');
-      }
-    } catch (error) {
-      console.error("Erro ao obter o resultado de redirecionamento: ", error);
-    }
-  }
-});
 </script>
 
 <template>
@@ -74,7 +29,7 @@ onAuthStateChanged(auth, async (user) => {
                     <RouterLink class="route" to="/login">Professor</RouterLink>
                 </div>
                 <div class="login">
-                    <RouterLink class="route" to="/avatar">Aluno</RouterLink>
+                    <RouterLink class="route" to="/users/all">Aluno</RouterLink>
                 </div>
             </ion-row>
             <ion-row>

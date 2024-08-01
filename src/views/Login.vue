@@ -31,24 +31,24 @@ async function sendUserToAPI(user) {
     });
 }
 
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    console.log('User info:', user);
-    await sendUserToAPI(user); // Envia as informações do usuário para a API
-    // router.push('/home');
-  } else {
-    try {
-      const result = await getRedirectResult(auth);
-      if (result) {
-        console.log('User info:', result.user);
-        await sendUserToAPI(result.user); // Envia as informações do usuário para a API
-        // router.push('/home');
-      }
-    } catch (error) {
-      console.error("Erro ao obter o resultado de redirecionamento: ", error);
-    }
-  }
-});
+// onAuthStateChanged(auth, async (user) => {
+//   if (user) {
+//     console.log('User info:', user);
+//     await sendUserToAPI(user); 
+//     // router.push('/home');
+//   } else {
+//     try {
+//       const result = await getRedirectResult(auth);
+//       if (result) {
+//         console.log('User info:', result.user);
+//         await sendUserToAPI(result.user); 
+//         // router.push('/home');
+//       }
+//     } catch (error) {
+//       console.error("Erro ao obter o resultado de redirecionamento: ", error);
+//     }
+//   }
+// });
 </script>
 
 <template>
@@ -78,7 +78,7 @@ onAuthStateChanged(auth, async (user) => {
                     <button @click="signInWithGoogleRedirect">Continuar com o Google</button>
                 </div>
                 <div class="login">
-                    <RouterLink class="route" to="/home/professor">Entrar</RouterLink>
+                    <RouterLink class="route" to="/professor">Entrar</RouterLink>
                 </div>
             </ion-row>
             <ion-row>

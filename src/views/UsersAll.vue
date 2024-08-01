@@ -2,23 +2,28 @@
 import { IonContent, IonPage, IonGrid, IonRow, IonCol } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import Users from '@/components/cards/Users.vue';
-
+import { defineComponent, ref,onMounted } from 'vue';
 const router = useRouter();
 
-async function sendUserToAPI(user: any) {
-    const response = await fetch('http://127.0.0.1:5245/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: user.email,
-        username: user.displayName,
-        photoURL: user.photoURL,
-        password:"password"
-      }),
-    });
-}
+    const users = ref([]);
+
+    const fetchUsers = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5245/api/user/all');
+            if (!response.ok) {
+                throw new Error('Erro')
+            }
+            const data = await response.json();
+            users.value = data;
+        } catch (error) {
+            console.error('hii')
+        }
+    }
+
+onMounted (() => {
+    fetchUsers()
+})
+
 </script>
 
 <template>
@@ -29,11 +34,12 @@ async function sendUserToAPI(user: any) {
             </div>
             <div class="back"></div>
         <ion-grid>
-            <div class="card">
+            <div v-for="user in users" :key="user.id" class="card">
                 <Users
-                    title="José Jamerson"
+                    :title="user.username"
                     image="../../public/img/idoso.png"
                     link="/home"
+                    :user="user"
                     atividade="teste"
                 />
             </div>
@@ -47,7 +53,7 @@ async function sendUserToAPI(user: any) {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 .img {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -56,7 +62,7 @@ async function sendUserToAPI(user: any) {
 }
 
 .back {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
