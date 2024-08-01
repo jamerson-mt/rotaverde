@@ -38,7 +38,7 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
   height: 72px;
   align-items: center;
   border-top: solid #737171 0.5px;
-  --background: #fdfdfd;
+  --background: #249B9B;
 }
 
 img{

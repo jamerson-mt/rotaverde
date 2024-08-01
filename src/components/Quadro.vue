@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import router from "@/router";
-import { getElement } from "ionicons/dist/types/stencil-public-runtime";
 import { defineProps, reactive } from "vue";
 
 

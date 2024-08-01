@@ -5,6 +5,10 @@ import Card from '@/components/cards/Card.vue';
 import Header from '@/components/header/Header.vue';
 import { speakText, speek } from '../../public/ts/fala';
 import { useRoute } from 'vue-router';
+import { ref } from 'vue'
+import Buzina from '/src/components/header/Buzina.vue'
+
+const frase = ref('ÁreaDoConhecimento');
 
 const route = useRoute();
 
@@ -33,6 +37,8 @@ const handleClick = () => {
           <Header
             color="#249B9B"
           />
+          <Buzina :frase="frase"/>
+          
       </div>
 
       <div id="container">
@@ -77,6 +83,7 @@ const handleClick = () => {
     display: flex;
     justify-content: space-around;
     margin-top: 60px;
+    padding: 0px 20px;
     margin-bottom: 20px;
     flex-wrap: wrap;
 }

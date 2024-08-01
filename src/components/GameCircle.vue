@@ -22,7 +22,6 @@ const resetOpacity = () => {
         obj.value.opacity = 0.3;
     });
 };
-
 async function applyStyleFunction(newCores: number[]) {
     console.log(newCores);
 

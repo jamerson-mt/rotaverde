@@ -28,8 +28,8 @@ export default defineComponent({
 
 .container {
   position: relative;
-  height: 42px;
-  width: 60px;
+  height: 100px;
+  padding: 30px;
   background-color: #efefef;
   border: 1px solid #343030;
  
