@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { IonContent, IonPage, IonGrid, IonRow, IonCol } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-<<<<<<< HEAD
-=======
 import { auth, provider } from '../../firebaseConfig';
 import { signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth';
 import { ref } from 'vue'
 import Buzina from '/src/components/header/Buzina.vue'
 
 const frase = ref('OpçãoDeUsuário');
->>>>>>> 184388a104d02501ede2341d6bb27eef77e263c3
+
 
 const router = useRouter();
 
@@ -39,11 +37,7 @@ const router = useRouter();
                     <RouterLink class="route" to="/login">Professor</RouterLink>
                 </div>
                 <div class="login">
-<<<<<<< HEAD
                     <RouterLink class="route" to="/users/all">Aluno</RouterLink>
-=======
-                    <RouterLink class="route" to="/home">Aluno</RouterLink>
->>>>>>> 184388a104d02501ede2341d6bb27eef77e263c3
                 </div>
             </ion-row>
             <ion-row>
