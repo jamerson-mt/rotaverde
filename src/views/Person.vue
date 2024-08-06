@@ -1,22 +1,21 @@
 <script setup lang="ts">
 import { IonContent, IonPage, IonGrid, IonRow, IonCol } from '@ionic/vue';
-import { useRouter } from 'vue-router';
-import { auth, provider } from '../../firebaseConfig';
-import { signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth';
 import { ref } from 'vue'
-import Buzina from '/src/components/header/Buzina.vue'
 
-const frase = ref('OpçãoDeUsuário');
+const frase = ref('ÁreaDoConhecimento');
 
-
-const router = useRouter();
+const falar = (frase: string) => {
+    const audio = new Audio(`/audio/${frase}.mp3`);
+    audio.play().catch(error => {
+        console.error('Erro ao reproduzir o áudio:', error);
+    });
+};
 
 </script>
 
 <template>
     <ion-page>
         <ion-content>
-            <Buzina :frase="frase" />
             <div class="img">
                 <img src="../../public/img/capas/estudo.jpeg" alt="Capacita Digital">
             </div>
@@ -31,19 +30,19 @@ const router = useRouter();
                     </ion-col>
                 </ion-row>
             </ion-grid>
-        <ion-grid>
-            <ion-row class="buttons">
-                <div class="submit">
-                    <RouterLink class="route" to="/login">Professor</RouterLink>
-                </div>
-                <div class="login">
-                    <RouterLink class="route" to="/users/all">Aluno</RouterLink>
-                </div>
-            </ion-row>
-            <ion-row>
-            <div class="input"></div>
-            </ion-row>
-        </ion-grid>
+            <ion-grid>
+                <ion-row class="buttons">
+                    <div class="submit">
+                        <RouterLink class="route" to="/login">Professor</RouterLink>
+                    </div>
+                    <div class="login">
+                        <RouterLink @click="falar(frase)" class="route" to="/users/all">Aluno</RouterLink>
+                    </div>
+                </ion-row>
+                <ion-row>
+                    <div class="input"></div>
+                </ion-row>
+            </ion-grid>
         </ion-content>
     </ion-page>
 </template>
@@ -66,7 +65,7 @@ const router = useRouter();
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6),  rgba(0, 0, 0, 1),  rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1), rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
     z-index: -1;
 }
 
@@ -114,7 +113,8 @@ const router = useRouter();
     border-radius: 5px;
 }
 
-.submit .route, .login .route {
+.submit .route,
+.login .route {
     color: azure;
     font-weight: bold;
 }
@@ -155,5 +155,4 @@ const router = useRouter();
     border-radius: 5px;
     border: solid 2px #1E1F24;
 }
-
 </style>

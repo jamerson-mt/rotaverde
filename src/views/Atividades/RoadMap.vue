@@ -5,10 +5,14 @@ import NavBotton from '@/components/NavBotton.vue';
 import Unid from '@/components/roadMap/Unid.vue';
 import Exercise from '@/components/roadMap/Exercise.vue';
 import { ref } from 'vue'
-import Buzina from '/src/components/header/Buzina.vue'
 
 const frase = ref('SelecionarAtividade');
-
+const falar = (frase: string) => {
+    const audio = new Audio(`/audio/${frase}.mp3`);
+    audio.play().catch(error => {
+        console.error('Erro ao reproduzir o áudio:', error);
+    });
+};
 </script>
 
 <template>
@@ -24,31 +28,32 @@ const frase = ref('SelecionarAtividade');
                         
                     />
                 </div>
-                <div class="component2">
+                <div class="component2" @click="falar('')">
                     <Exercise 
                         img="../../../public/img/roadMap/pencil.png"
                         title="Escrita"    
                         link="pt/escrita"
                     />
                 </div>
-                <div class="component3">
+                <div class="component3" @click="falar('CaçaPalavras')">
                     <Exercise 
                         img="../../../public/img/roadMap/book.png"
                         title="Caça palavras"    
                         link="pt/cacapalavras"
                     />
                 </div>
-                <div class="component4">
+                <div class="component4" @click="falar('')">
                     <Exercise 
                         img="../../../public/img/roadMap/bike.png"
                         title="Silabário"    
                         link="pt/silabario"
                     />
                 </div>
-                <div class="component5">
+                <div class="component5" @click="falar('Bloqueado')">
                     <Exercise 
                         img="../../../public/img/roadMap/block.png"
                         title="bloqueado"    
+                        link="/att/roadMap"
                     />
                 </div>
             </div>

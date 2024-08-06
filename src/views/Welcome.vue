@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-import Buzina from '/src/components/header/Buzina.vue'
 import { ref } from 'vue'
 
-const frase = ref('BoasVindas');
-
+const frase = ref('OpçãoDeUsuário');
 const router = useRouter();
-
-function route() {
+// Função para reproduzir o áudio com base no nome do arquivo
+const falar = (frase: string) => {
+    const audio = new Audio(`/audio/${frase}.mp3`);
+    audio.play().catch(error => {
+        console.error('Erro ao reproduzir o áudio:', error);
+    });
+};
+function route(frase: string) {
+    falar(frase);
     router.push('/person');
 };
 
@@ -18,7 +23,6 @@ function route() {
 <template>
     <ion-page>
         <ion-content>
-            <Buzina :frase="frase" />
             <div class="img">
                 <img src="../../public/img/capas/livro.jpeg" alt="Capacita Digital" />
             </div>
@@ -27,7 +31,7 @@ function route() {
                 <h1>Capacita Digital</h1>
                 <p>Criando pontes para o ensino e superando <br> as barreiras do saber</p>
             </div>
-            <IonButton class="route" @click="route">Vamos lá</IonButton>
+            <IonButton class="route" @click="route(frase)">Vamos lá</IonButton>
         </ion-content>
     </ion-page>
 </template>
