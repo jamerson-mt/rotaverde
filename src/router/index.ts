@@ -1,79 +1,26 @@
+// Imports default
+
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/Home.vue';
-import PerfilPage from '../views/Perfil.vue';
-import Welcome from '../views/Welcome.vue';
-import EscritaPort from '../views/Atividades/Portugues/Escrita.vue';
-import AttTec from '../views/Atividades/Tecnologia/Att.vue';
-import Memoria from '../views/Atividades/Raciocinio/Memoria.vue';
-import Modulo from '../views/Atividades/Modulo.vue';
-import CacaPalavras from '../views/Atividades/Portugues/CacaPalavras.vue';
-import Silabario from '../views/Atividades/Portugues/Silabario.vue';
-import Login from '../views/Login.vue';
-import Register from '../views/Register.vue';
-import Person from '@/views/Person.vue';
-import UsersAll from '@/views/UsersAll.vue';
-import RoadMap from '@/views/Atividades/RoadMap.vue';
-import ProfHome from '@/views/Professor/ProfHome.vue';
-import ManagerUsers from '@/views/Professor/ManagerUsers.vue';
+import Welcome from '@/domains/user/views/Welcome.vue';
+import Login from '../domains/auth/views/Login.vue';
+import Person from '@/domains/auth/views/Person.vue';
+import UsersAll from '@/domains/auth/views/UsersAll.vue';
+import ManagerUsers from '@/domains/teacher/views/ManagerUsers.vue';
 
+// Routes of domains
 
+import authRoutes from '@/domains/auth/router/auth';
+import teacherRoutes from '@/domains/teacher/router/teacherRoutes';
+import userRoutes from '@/domains/user/router/userRoutes';
+import technologyRoutes from '@/domains/technology/router/technologyRoutes';
+import portugueseRoutes from '@/domains/portuguese/router/portugueseRoutes';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Welcome',
     component: Welcome
-  },
-  {
-    path: '/perfil',
-    name: 'Perfil',
-    component: PerfilPage
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
-  },
-  {
-    path: '/att/pt/escrita',
-    name: 'Escrita Portugues',
-    component: EscritaPort
-  },
-  {
-    path: '/att/tec',
-    name: 'atividade de tecnologia',
-    component: AttTec
-  },
-  {
-    path: '/att/rl/memoria',
-    name: 'atividade memória',
-    component: Memoria
-  },
-  {
-    path: '/att/modulo',
-    name: 'Modulo de atividade',
-    component: Modulo
-  },
-  {
-    path: '/att/roadmap',
-    name: 'RoadMap',
-    component: RoadMap
-  },
-  {
-    path: '/att/pt/cacapalavras',
-    name: 'Atividade Caça Palavras',
-    component: CacaPalavras
-  },
-  {
-    path: '/att/pt/silabario',
-    name: 'atividade das silabas',
-    component: Silabario
   },
   {
     path: '/login',
@@ -91,17 +38,19 @@ const routes: Array<RouteRecordRaw> = [
     component: UsersAll
   },
   {
-    path: "/professor",
-    name: 'Home Professor',
-    component: ProfHome
-  },
-  {
     path: "/manager/users",
     name: 'Manager Users',
     component: ManagerUsers
-  }
+  },
 
- 
+  // Routes of domains
+
+  ...authRoutes,
+  ...teacherRoutes,
+  ...userRoutes,
+  ...technologyRoutes,
+  ...portugueseRoutes,
+
 ]
 
 const router = createRouter({
