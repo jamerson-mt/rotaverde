@@ -9,6 +9,7 @@ import AttEscrita from "@/domains/portuguese/components/AttEscrita.vue";
 import { speakText , speek } from '../services/fala.js';
 import { useRouter } from 'vue-router';
 import Buzina from '@/domains/auth/components/Buzina.vue'
+import HeaderLevels from '../components/HeaderLevels.vue';
 
 const frase = ref('null');
 const router = useRouter();
@@ -40,10 +41,10 @@ function nextAtt () {
 } 
 
 // receber next através do emit()
-// function attNext () {
-//     let next = true
-//     emit('nextAtt', next);
-// }
+function attNext () {
+    let next = true
+    emit('nextAtt', next);
+}
 
 </script>
 
@@ -51,7 +52,9 @@ function nextAtt () {
     <ion-page>
         <ion-content :fullscreen="true">
         <div>
-            <Buzina :frase="frase"/>
+            <HeaderLevels 
+                :frase="frase"
+            />
         </div>
         <div id="options">
             <AttEscrita 

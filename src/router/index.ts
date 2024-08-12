@@ -15,6 +15,7 @@ import teacherRoutes from '@/domains/teacher/router/teacherRoutes';
 import userRoutes from '@/domains/user/router/userRoutes';
 import technologyRoutes from '@/domains/technology/router/technologyRoutes';
 import portugueseRoutes from '@/domains/portuguese/router/portugueseRoutes';
+import Ass from '@/domains/assistant/views/Ass.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -41,6 +42,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/manager/users",
     name: 'Manager Users',
     component: ManagerUsers
+  },
+  {
+    path: "/ass",
+    name: 'Assistent',
+    component: Ass
   },
 
   // Routes of domains

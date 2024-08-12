@@ -1,15 +1,15 @@
 
-// ------------------------ ARMAZENAMENTO DAS MENSAGENS -----------------------//
+// ------------------------ ASSISTENTE CAPACITA DIGITAL ----------------------- //
 
-export interface Speek {
+export interface Responses {
     text: string;
     location: string;
 }
 
 
-export const speek: Speek[] = [
+export const speek: Responses[] = [
     {
-        text: "Clique no botão azul para iniciar o aprendizado",
+        text: "Olá",
         location: "start"
     },
     {
@@ -41,34 +41,5 @@ export const speek: Speek[] = [
         location: "Opções certas"
     },
 ];
-
-
-// ------------------------ IMPLEMENTAÇÃO -----------------------//
-
-export function speakText(text: string) {
-    function getVoiceAndSpeak() {
-        speechSynthesis.cancel();
-
-        let voicesList = speechSynthesis.getVoices();
-        if (voicesList.length > 0) {
-            let portugueseVoice: SpeechSynthesisVoice | null = voicesList.find(voice => voice.lang.startsWith('pt')) ?? null;
-            let utterance = new SpeechSynthesisUtterance(text);
-            utterance.voice = portugueseVoice;
-            speechSynthesis.speak(utterance);
-            return utterance;
-        } else {
-            console.error('No voices available');
-        }
-    }
-
-    if (speechSynthesis.getVoices().length === 0) {
-        speechSynthesis.addEventListener('voiceschanged', getVoiceAndSpeak);
-    } else {
-        return getVoiceAndSpeak();
-    }
-}
-
-
-
 
 

@@ -1,13 +1,14 @@
 import { RouteRecordRaw } from 'vue-router';
 import CacaPalavras from '../views/CacaPalavras.vue';
 import Silabario from '../views/Silabario.vue';
+import EscritaPort from '../views/Escrita.vue';
 
 const portugueseRoutes: Array<RouteRecordRaw> = [
-    // {
-    //     path: '/att/pt/escrita',
-    //     name: 'Escrita Portugues',
-    //     component: EscritaPort
-    // },
+    {
+        path: '/att/pt/escrita',
+        name: 'Escrita Portugues',
+        component: EscritaPort
+    },
     {
         path: '/att/pt/cacapalavras',
         name: 'Atividade Caça Palavras',

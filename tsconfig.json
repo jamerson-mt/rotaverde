@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowImportingTsExtensions": true,
+    "typeRoots": ["./node_modules/@types", "@/domains/assistant/services/speech-recognition"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
