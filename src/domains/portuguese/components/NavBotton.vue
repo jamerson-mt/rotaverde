@@ -35,17 +35,32 @@ import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouter
   position: relative;
   bottom: 0px;
   width: 100%;
-  height: 72px;
+  height: 85px;
   align-items: center;
   border-top: solid #737171 0.5px;
-  --background: #249B9B;
+  --background: #fff;
 }
 
-img{
+img {
   width: 45px;
   height: 45px;
+  border: solid #737171 1px;
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 50%;
 }
 
+
+.home-icon img {
+  background-color: #ffffff;
+  padding: 14px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: solid #737171 1px;
+}
+
+/*
 .person-icon img {
   background-color: #ffffff;
   padding: 9px;
@@ -60,14 +75,6 @@ img{
   border: solid #737171 1px;
 
 }
-
-.home-icon img {
-  background-color: #ffffff;
-  padding: 6px;
-  border-radius: 50%;
-  border: solid #737171 1px;
-}
-
 .win-icon img {
   border: solid #737171 1px;
   background-color: #ffffff;
@@ -75,12 +82,11 @@ img{
   border-radius: 50%;
 }
 
-
 .conf-icon img {
   border: solid #737171 1px;
   background-color: #ffffff;
-  padding: 9px;
+  padding: 5px;
   border-radius: 50%;
-}
+} */
 
 </style>
