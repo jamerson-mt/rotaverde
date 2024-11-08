@@ -15,7 +15,8 @@ import teacherRoutes from '@/domains/teacher/router/teacherRoutes';
 import userRoutes from '@/domains/user/router/userRoutes';
 import technologyRoutes from '@/domains/technology/router/technologyRoutes';
 import portugueseRoutes from '@/domains/portuguese/router/portugueseRoutes';
-import Ass from '@/domains/assistant/views/Ass.vue';
+import managerRoutes from '@/domains/active/manager/router/index';
+import UsersRoutes from '@/domains/active/user/router/index';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,11 +44,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Manager Users',
     component: ManagerUsers
   },
-  {
-    path: "/ass",
-    name: 'Assistent',
-    component: Ass
-  },
 
   // Routes of domains
 
@@ -56,7 +52,8 @@ const routes: Array<RouteRecordRaw> = [
   ...userRoutes,
   ...technologyRoutes,
   ...portugueseRoutes,
-
+  ...managerRoutes,
+  ...UsersRoutes,
 ]
 
 const router = createRouter({

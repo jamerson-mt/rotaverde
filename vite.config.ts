@@ -14,10 +14,25 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       'public': path.resolve(__dirname, './public'),
       'img': path.resolve(__dirname, './public/img'),
+      'manager': path.resolve(__dirname, './src/domains/active/manager'),
+      'auth': path.resolve(__dirname, './src/domains/auth'),
+      'portuguese': path.resolve(__dirname, './src/domains/portuguese'),
+      'reasoning': path.resolve(__dirname, './src/domains/reasoning'),
+      'teacher': path.resolve(__dirname, './src/domains/teacher'),
+      'technology': path.resolve(__dirname, './src/domains/technology'),
+      'user': path.resolve(__dirname, './src/domains/active/user'),
     },
   },
-  test: {
-    globals: true,
-    environment: 'jsdom'
-  }
+
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://idipibex.online/api/',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })
+

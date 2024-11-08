@@ -42,22 +42,22 @@ const falar = (frase: string) => {
           <Card @click="falar(frase)" 
             title="Raciocínio Lógico"
             image="img/curuja.png"
-            link="/home?q=rl"
+            link="#"
             link2="/att/rl/memoria"
             bgc="#F6A9CB"
           />
           <Card  @click="falar(frase)"
             title="Matemática"
             image="img/curuja.png"
-            link="/home?q=mat"
-            link2="/att/mat"
+            link="#"
+            link2="#"
             bgc="#59CAFC"
           />
           <Card  @click="falar(frase)"
             title="Tecnologia"
             image="img/curuja.png"
-            link="/home?q=tec"
-            link2="/att/tec"
+            link="#"
+            link2="#"
             bgc="#F07979"
           />
       </div>

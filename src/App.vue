@@ -66,7 +66,7 @@ function connectWebSocket() {
 
   ws.value.onmessage = (event: MessageEvent) => {
     console.log('Mensagem do servidor:', event.data);
-    speakText(event.data); // Chamando a função speakText
+    speakText(event.data); 
   };
 
   ws.value.onclose = () => {
@@ -79,7 +79,7 @@ function connectWebSocket() {
 }
 
 onMounted(() => {
-  startRecognition(); // Iniciar reconhecimento de fala ao montar o componente
+  startRecognition(); 
 });
 
 onBeforeUnmount(() => {

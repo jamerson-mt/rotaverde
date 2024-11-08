@@ -30,13 +30,6 @@ const falar = (frase: string) => {
                 link="/att/roadMap"
                 atividade="letras"
                 />
-                
-                <CardLevels
-                title="Sílabas e junções"
-                image="img/alfabeto.png"
-                link="/att/roadMap"
-                atividade="silabas"
-                />
             </div>
         </ion-content>
         <NavBotton />

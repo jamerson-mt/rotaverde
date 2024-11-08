@@ -3,6 +3,7 @@ import HomePage from '../views/Home.vue';
 import PerfilPage from '../views/Perfil.vue';
 import Modulo from '../views/Modulo.vue';
 import RoadMap from '../views/RoadMap.vue';
+import ShowContents from '@/domains/active/user/views/contents/ShowContents.vue';
 
 const userRoutes: Array<RouteRecordRaw> = [
     {
@@ -24,7 +25,9 @@ const userRoutes: Array<RouteRecordRaw> = [
       path: '/att/roadmap',
       name: 'RoadMap',
       component: RoadMap
-    }
+    },
+
+    { path: "/user/contents/m/:id", component: ShowContents }
 ]
 
 export default userRoutes;

@@ -12,8 +12,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@capacitor/android": "^6.1.2",
     "@capacitor/app": "6.0.0",
-    "@capacitor/core": "6.0.0",
+    "@capacitor/core": "^6.0.0",
     "@capacitor/haptics": "6.0.0",
     "@capacitor/keyboard": "6.0.0",
     "@capacitor/status-bar": "6.0.0",
@@ -26,7 +27,7 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@capacitor/cli": "6.0.0",
+    "@capacitor/cli": "^6.0.0",
     "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",

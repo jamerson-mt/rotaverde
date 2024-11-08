@@ -52,9 +52,9 @@ const falar = (frase: string) => {
                 </div>
                 <div class="component5" @click="falar('Bloqueado')">
                     <Exercise 
-                        img="img/roadMap/block.png"
-                        title="bloqueado"    
-                        link="/att/roadMap"
+                        img="img/icons/letras.png"
+                        title="Letras"    
+                        link="/user/contents/m/4"
                     />
                 </div>
             </div>

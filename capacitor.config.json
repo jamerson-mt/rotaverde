@@ -1,0 +1,6 @@
+{
+  "appId": "com.capacitadigital.app",
+  "appName": "CapacitaDigitalApp",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
