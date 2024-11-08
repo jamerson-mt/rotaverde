@@ -5,7 +5,7 @@ import { signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'fireb
 import { ref } from 'vue'
 import Buzina from '@/domains/auth/components/Buzina.vue'
 
-const frase = ref('ÁreaDoConhecimento');
+const frase = ref('escolha um usuario para testar');
 
 const falar = (frase: string) => {
     const audio = new Audio(`/audio/${frase}.mp3`);
@@ -19,6 +19,7 @@ const falar = (frase: string) => {
 <template>
     <ion-page>
         <ion-content>
+        <Buzina :frase="frase" />
             <div class="img">
                 <img src="img/capas/estudo.jpeg" alt="Capacita Digital">
             </div>
@@ -36,10 +37,10 @@ const falar = (frase: string) => {
             <ion-grid>
                 <ion-row class="buttons">
                     <div class="submit">
-                        <RouterLink class="route" to="/login">Professor</RouterLink>
+                        <RouterLink class="route" to="/manager/categories">Professor</RouterLink>
                     </div>
                     <div class="login">
-                        <RouterLink @click="falar(frase)" class="route" to="/users/all">Aluno</RouterLink>
+                        <RouterLink @click="falar(frase)" class="route" to="/home">Aluno</RouterLink>
                     </div>
                 </ion-row>
                 <ion-row>

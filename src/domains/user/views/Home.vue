@@ -7,15 +7,10 @@ import { speakText, speek } from '@/domains/portuguese/services/fala';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue'
 import Buzina from '@/domains/auth/components/Buzina.vue'
+import { falar } from '@/utils/utils';
+const frase = ref('selecione português');
 
-const frase = ref('SeleçãoTema');
 
-const falar = (frase: string) => {
-    const audio = new Audio(`/audio/${frase}.mp3`);
-    audio.play().catch(error => {
-        console.error('Erro ao reproduzir o áudio:', error);
-    });
-};
 
 
 </script>
@@ -32,28 +27,28 @@ const falar = (frase: string) => {
       </div>
 
       <div id="container">
-          <Card @click="falar(frase)" 
+          <Card @click="falar('português selecionado')" 
             title="Português"
             image="img/curuja.png"
             link="/home?q=pt"
             link2="/att/modulo"
             bgc="#66FF7E"
           />
-          <Card @click="falar(frase)" 
+          <Card  @click="falar('raciocinio lóogico em manutenção')"  
             title="Raciocínio Lógico"
             image="img/curuja.png"
             link="#"
-            link2="/att/rl/memoria"
+            link2="#"
             bgc="#F6A9CB"
           />
-          <Card  @click="falar(frase)"
+          <Card  @click="falar('matemática em manutenção')"  
             title="Matemática"
             image="img/curuja.png"
             link="#"
             link2="#"
             bgc="#59CAFC"
           />
-          <Card  @click="falar(frase)"
+          <Card  @click="falar('tecnologia em manutenção')"  
             title="Tecnologia"
             image="img/curuja.png"
             link="#"

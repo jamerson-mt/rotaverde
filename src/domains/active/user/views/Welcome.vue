@@ -2,11 +2,12 @@
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
-import Buzina from 'auth/components/Buzina.vue';
 import { falar } from '@/utils/utils';
-
-const frase = ref('OpçãoDeUsuário');
+import Buzina from '@/domains/auth/components/Buzina.vue'
+const frase = ref('ola');
 const router = useRouter();
+
+
 
 function route(frase: string) {
     falar(frase);
@@ -18,7 +19,6 @@ function route(frase: string) {
 <template>
     <ion-page>
         <ion-content>
-            <Buzina :frase="frase" />
             <div class="img">
                 <img src="img/capas/BG.png" alt="Capacita Digital" />
             </div>
@@ -30,7 +30,7 @@ function route(frase: string) {
                 <h1>Capacita Digital</h1>
                 <p>Criando pontes para o ensino e superando <br> as barreiras do saber</p>
             </div>
-            <IonButton class="route" @click="route('OpçãoDeUsuário')">Vamos lá</IonButton>
+            <IonButton class="route"  >Vamos lá</IonButton>
         </ion-content>
     </ion-page>
 </template>

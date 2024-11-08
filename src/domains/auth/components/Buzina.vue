@@ -1,18 +1,13 @@
 <script setup lang="ts">
 
 import { defineProps, toRefs } from 'vue';
-
+import { falar } from '@/utils/utils';
 const props = defineProps<{
     frase: string;
 }>();
 
 // Função para reproduzir o áudio com base no nome do arquivo
-const falar = (frase: string) => {
-    const audio = new Audio(`/audio/${frase}.mp3`);
-    audio.play().catch(error => {
-        console.error('Erro ao reproduzir o áudio:', error);
-    });
-};
+
 
 // Se precisar fazer algo com a prop, pode acessar diretamente em props
 const { frase } = props;

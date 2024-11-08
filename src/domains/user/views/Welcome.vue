@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import Buzina from '@/domains/auth/components/Buzina.vue';
 import { ref } from 'vue'
 
-const frase = ref('OpçãoDeUsuário');
+const frase = ref('seja bem vindo ao capacita digital');
 const router = useRouter();
 // Função para reproduzir o áudio com base no nome do arquivo
 const falar = (frase: string) => {

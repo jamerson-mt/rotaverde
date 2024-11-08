@@ -6,14 +6,7 @@ import CardLevels from '@/domains/user/components/CardLevels.vue';
 import { ref } from 'vue'
 import Buzina from "@/domains/auth/components/Buzina.vue"
 
-const frase = ref('SelecionarAtividade');
-
-const falar = (frase: string) => {
-    const audio = new Audio(`/audio/${frase}.mp3`);
-    audio.play().catch(error => {
-        console.error('Erro ao reproduzir o áudio:', error);
-    });
-};
+const frase = ref('selecione o módulo'); 
 
 </script>
 
@@ -21,8 +14,11 @@ const falar = (frase: string) => {
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-                <HeaderLevels :frase="frase" />
+            <Buzina frase="selecione o módulo"/>
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
             <div class="container">
                 <CardLevels 
                 title="Conhecendo as letras"

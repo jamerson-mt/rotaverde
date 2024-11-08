@@ -6,13 +6,8 @@ import Unid from '@/domains/user/views/Unid.vue';
 import Exercise from '@/domains/portuguese/components/Exercise.vue';
 import { ref } from 'vue'
 
-const frase = ref('SelecionarAtividade');
-const falar = (frase: string) => {
-    const audio = new Audio(`/audio/${frase}.mp3`);
-    audio.play().catch(error => {
-        console.error('Erro ao reproduzir o áudio:', error);
-    });
-};
+const frase = ref('selecione uma atividade');
+
 
 </script>
 
@@ -20,7 +15,7 @@ const falar = (frase: string) => {
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-                <HeaderLevels :frase="frase" />
+                <HeaderLevels frase="selecione uma das atividades" />
             </div>
             <div class="container">
                 <div class="component1">
@@ -29,7 +24,7 @@ const falar = (frase: string) => {
                         
                     />
                 </div>
-                <div class="component2" @click="falar('')">
+                <div class="component2" >
                     <Exercise 
                         img="img/roadMap/pencil.png"
                         title="Escrita"    
@@ -43,18 +38,18 @@ const falar = (frase: string) => {
                         link="pt/cacapalavras"
                     />
                 </div>
-                <div class="component4" @click="falar('')">
+                <div class="component4" >
                     <Exercise 
                         img="img/roadMap/bike.png"
                         title="Silabário"    
                         link="pt/silabario"
                     />
                 </div>
-                <div class="component5" @click="falar('Bloqueado')">
+                <div class="component5" >
                     <Exercise 
                         img="img/icons/letras.png"
                         title="Letras"    
-                        link="/user/contents/m/4"
+                        link="/user/contents/m/2"
                     />
                 </div>
             </div>
