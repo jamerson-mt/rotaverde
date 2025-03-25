@@ -175,7 +175,7 @@ export default defineComponent({
       </div>
       <div>
         <p>{{ title }}</p>
-        <p>02/40</p>
+        <p></p>
       </div>
     </RouterLink>
   </div>
@@ -205,8 +205,9 @@ p {
   position: relative;
   top: 20px;
   color: #4d4d4d;
+  
   font-family: "DM Sans", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-style: medium;
   font-size: 14px;
   margin-left: 10px;

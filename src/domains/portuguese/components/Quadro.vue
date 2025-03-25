@@ -21,8 +21,17 @@ const props = defineProps<{
 }>();
 
 const contador = 0;
+
+// Inicializa letraAcendida com base no tamanho do quadro
 let letraAcendida = reactive(
-  new Array(6).fill(false).map(() => new Array(props.quadro.line1.length).fill(false))
+  [
+    props.quadro.line1,
+    props.quadro.line2,
+    props.quadro.line3,
+    props.quadro.line4,
+    props.quadro.line5,
+    props.quadro.line6,
+  ].map((linha) => linha.map(() => false))
 );
 
 const confirme = (() =>{
@@ -40,28 +49,28 @@ const confirme = (() =>{
 });
 const check = (option: number) => {
   if (option == 1) {
-    document.querySelectorAll(".casa").forEach(function (valor) {
+    document.querySelectorAll(".rede").forEach(function (valor) {
       valor.setAttribute("style", "background-color:gray; color:white;");
  
     });
     o1 = true;
         confirme();
   } else if (option == 2) {
-    document.querySelectorAll(".mala").forEach(function (valor) {
+    document.querySelectorAll(".peixe").forEach(function (valor) {
  valor.setAttribute("style", "background-color:gray; color:white;");
     
     });
     o2 = true;
         confirme();
   } else if (option == 3) {
-    document.querySelectorAll(".copo").forEach(function (valor) {
+    document.querySelectorAll(".rio").forEach(function (valor) {
  valor.setAttribute("style", "background-color:gray; color:white;");
     
     });
     o3 = true;
         confirme();
   } else if (option == 4) {
-    document.querySelectorAll(".bola").forEach(function (valor) {
+    document.querySelectorAll(".canoa").forEach(function (valor) {
  valor.setAttribute("style", "background-color:gray; color:white;");
     
     });
@@ -83,26 +92,27 @@ const verificaCombinacao = () => {
     check(1); // casa
    
   } else if (
-    letraAcendida[0][4] == true &&
-    letraAcendida[1][4] == true &&
-    letraAcendida[2][4] == true &&
-    letraAcendida[3][4] == true && o2 == false
+    letraAcendida[1][0] == true &&
+    letraAcendida[1][1] == true &&
+    letraAcendida[1][2] == true &&
+    letraAcendida[1][3] == true && 
+    letraAcendida[1][4] == true && o2 == false
   ) {
     check(2); //mala
    
   } else if (
-    letraAcendida[4][0] == true &&
-    letraAcendida[3][1] == true &&
-    letraAcendida[2][2] == true &&
-    letraAcendida[1][3] == true && o3 == false
+    letraAcendida[2][0] == true &&
+    letraAcendida[2][1] == true &&
+    letraAcendida[2][2] == true  && o3 == false
   ) {
     check(3); //copo
    
   } else if (
-    letraAcendida[5][3] == true &&
-    letraAcendida[5][2] == true &&
-    letraAcendida[5][1] == true &&
-    letraAcendida[5][0] == true && o4 == false
+    letraAcendida[3][0] == true &&
+    letraAcendida[3][1] == true &&
+    letraAcendida[3][2] == true &&
+    letraAcendida[3][3] == true &&
+    letraAcendida[3][4] == true && o4 == false
   ) {
    
     check(4); //bola
@@ -110,12 +120,9 @@ const verificaCombinacao = () => {
 };
 
 const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
-  if (letraAcendida[linhaIndex][celulaIndex] == true) {
-    letraAcendida[linhaIndex][celulaIndex] = false;
-  } else {
-    letraAcendida[linhaIndex][celulaIndex] = true;
-    verificaCombinacao();
-  }
+  // Alterna o estado da letra correspondente
+  letraAcendida[linhaIndex][celulaIndex] = !letraAcendida[linhaIndex][celulaIndex];
+  verificaCombinacao();
 };
 </script>
 
@@ -135,23 +142,19 @@ const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
         :key="linhaIndex"
         class="linha"
       >
-        <div v-for="(celula, celulaIndex) in linha" :key="celulaIndex" class="celula">
-          <div
-            v-for="(letra, letraIndex) in celula"
-            :key="letraIndex"
-            class="letra"
-            :class="{ 'letra-acendida': letraAcendida[linhaIndex][celulaIndex] }"
-            @mouseenter="acenderLetra(linhaIndex, celulaIndex)"
-          >
-            {{ letra }}
-          </div>
+        <div
+          v-for="(letra, celulaIndex) in linha"
+          :key="celulaIndex"
+          class="celula"
+          :class="{ 'letra-acendida': letraAcendida[linhaIndex][celulaIndex] }"
+          @click="acenderLetra(linhaIndex, celulaIndex)"
+        >
+          {{ letra }}
         </div>
       </div>
     </div>
   </div>
 </template>
-// @touchstart.prevent="acenderLetra(linhaIndex, celulaIndex)" //
-@touchend.prevent="apagarLetra(linhaIndex, celulaIndex)"
 
 <style scoped>
 .content {

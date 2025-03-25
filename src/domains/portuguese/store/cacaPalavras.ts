@@ -1,4 +1,3 @@
-
 // ---------------------------- CAÇA PALAVRAS ----------------------------------//
 
 export interface Portugues {
@@ -21,19 +20,18 @@ export interface Portugues {
 export const portugues: Portugues[] = [
     {
         frame: {
-            line1: ["C","A","S","A","A"],
-            line2: ["F","G","H","O","L"],
-            line3: ["K","L","P","N","A"],
-            line4: ["P","O","R","S","M"],
-            line5: ["C","V","W","X","Y"],
-            line6: ["A","L","O","B","D"]
+            line1: ["R","E","D","E","A"],
+            line2: ["P","E","I","X","E"],
+            line3: ["R","I","O","I","S"],
+            line4: ["C","A","N","O","A"],
+            line5: ["A","V","E","R","N"],
+            line6: ["S","O","L","T","A"]
         },
         words: {
-            word1: ["C","A","S","A"],
-            word2: ["B","O","L","A"],
-            word3: ["C","O","P","O"],
-            word4: ["M","A","L","A"],
+            word1: ["R","E","D","E"],
+            word2: ["P","E","I","X","E"],
+            word3: ["R","i","o"],
+            word4: ["C","A","N","O","A"],
         }
     }
-
 ];

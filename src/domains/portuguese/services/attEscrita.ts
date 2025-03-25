@@ -18,69 +18,58 @@ export interface Exercise {
 export const exercise: Exercise[] = [
     {
         title:"Qual a escrita correta para a imagem abaixo?",
-        image: "../img/casa.png",
+        image: "../img/peixe.jpg",
         options: {
-            option1: "casa",
-            option2: "caza",
-            option3: "casaa",
-            option4: "cazaa",
-            response: "casa",
+            option1: "peixe",
+            option2: "peixi",
+            option3: "pexe",
+            option4: "peiche",
+            response: "peixe",
         }
     },
     {
         title: "Qual a escrita correta para a imagem abaixo?",
-        image: "../img/curuja.png",
+        image: "../img/marisco.jpg",
         options: {
-            option1: "coruja",
-            option2: "curuja",
-            option3: "corujaa",
-            option4: "curujaa",
-            response: "coruja",
+            option1: "marisco",
+            option2: "marrisco",
+            option3: "mariscu",
+            option4: "marissco",
+            response: "marisco",
         }
     },
     {
         title: "Qual a escrita correta para a imagem abaixo?",
-        image: "../img/girafa.png",
+        image: "../img/canoapesca.jpg",
         options: {
-            option1: "girafa",
-            option2: "girrafa",
-            option3: "giraffa",
-            option4: "girraffa",
-            response: "girafa",
+            option1: "canoa",
+            option2: "canoua",
+            option3: "camoa",
+            option4: "kanoa",
+            response: "canoa",
         }
 
     },
     {
         title: "Qual a escrita correta para a imagem abaixo?",
-        image: "../img/idoso.png",
+        image: "../img/anzol.jpg",
         options: {
-            option1: "idoso",
-            option2: "idosa",
-            option3: "idosoo",
-            option4: "idosso",
-            response: "idoso",
+            option1: "anzol",
+            option2: "ansol",
+            option3: "anzou",
+            option4: "azoul",
+            response: "anzol",
         }
     },
     {
         title: "Qual a escrita correta para a imagem abaixo?",
-        image: "../img/trofeu.png",
+        image: "../img/rio.jpg",
         options: {
-            option1: "trofeu",
-            option2: "troféu",
-            option3: "trofeuu",
-            option4: "troféuu",
-            response: "troféu",
-        }
-    },
-    {
-        title: "Qual a escrita correta para a imagem abaixo?",
-        image: "../img/carro.jpg",
-        options: {
-            option1: "caro",
-            option2: "carro",
-            option3: "corra",
-            option4: "corre",
-            response: "carro",
+            option1: "rio",
+            option2: "riu",
+            option3: "rrio",
+            option4: "ril",
+            response: "rio",
         }
     }
 ];

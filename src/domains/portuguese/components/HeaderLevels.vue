@@ -21,11 +21,11 @@ const { frase } = props;
             <img src="img/iconperson.png" alt="person">
         </div>
         <div class="content">
-            <h1>Português</h1>
+            <h1>Meio Ambiente</h1>
             <div id="bar1"></div>
             <div id="bar2"></div>
             <div id="p">
-                <p>20% concluído</p>
+                <p>Em progresso</p>
             </div>
         </div>
         <div class="prata">

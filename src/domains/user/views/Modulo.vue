@@ -14,14 +14,14 @@ const frase = ref('selecione o módulo');
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-            <Buzina frase="selecione o módulo"/>
+            <Buzina frase="selecione o módulo Descobrindo palavras"/>
             </div>
             <br></br>
             <br></br>
             <br></br>
             <div class="container">
                 <CardLevels 
-                title="Conhecendo as letras"
+                title="Descobrindo palavras"
                 image="img/abc.png"
                 link="/att/roadMap"
                 atividade="letras"

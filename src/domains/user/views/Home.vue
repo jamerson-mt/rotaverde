@@ -8,7 +8,7 @@ import { useRoute } from 'vue-router';
 import { ref } from 'vue'
 import Buzina from '@/domains/auth/components/Buzina.vue'
 import { falar } from '@/utils/utils';
-const frase = ref('selecione português');
+const frase = ref('selecione Educação Ambiental');
 
 
 
@@ -27,14 +27,14 @@ const frase = ref('selecione português');
       </div>
 
       <div id="container">
-          <Card @click="falar('português selecionado')" 
-            title="Português"
+          <Card @click="falar('Educação Ambiental')" 
+            title="Educação Ambiental"
             image="img/curuja.png"
             link="/home?q=pt"
             link2="/att/modulo"
             bgc="#66FF7E"
           />
-          <Card  @click="falar('raciocinio lóogico em manutenção')"  
+          <!-- <Card  @click="falar('raciocinio lóogico em manutenção')"  
             title="Raciocínio Lógico"
             image="img/curuja.png"
             link="#"
@@ -54,7 +54,7 @@ const frase = ref('selecione português');
             link="#"
             link2="#"
             bgc="#F07979"
-          />
+          /> -->
       </div>
     </ion-content>
     <div id="navButton">

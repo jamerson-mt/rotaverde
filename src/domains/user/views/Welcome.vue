@@ -4,33 +4,33 @@ import { useRouter } from 'vue-router';
 import Buzina from '@/domains/auth/components/Buzina.vue';
 import { ref } from 'vue'
 
-const frase = ref('seja bem vindo ao capacita digital');
+const frase = ref('seja bem vindo ao Róta Verde, este é o caminho certo para a sustentabilidade');
 const router = useRouter();
 // Função para reproduzir o áudio com base no nome do arquivo
 const falar = (frase: string) => {
-    const audio = new Audio(`/audio/${frase}.mp3`);
-    audio.play().catch(error => {
-        console.error('Erro ao reproduzir o áudio:', error);
-    });
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(frase);
+    utterance.lang = 'pt-BR'; // Define o idioma para português do Brasil
+    synth.speak(utterance);
 };
 function route(frase: string) {
-    falar(frase);
-    router.push('/person');
-}; 
+   
+    router.push('/home');
+};
 
 </script>
 
 <template>
     <ion-page>
-        <ion-content>
+        <ion-content class="content">
             <Buzina :frase="frase" />
             <div class="img">
-                <img src="img/capas/livro.jpeg" alt="Capacita Digital" />
+                <img src="/public/img/rotaverde.jpg" alt="Capacita Digital" />
             </div>
             <div class="back"></div>
             <div class="title">
-                <h1>Capacita Digital</h1>
-                <p>Criando pontes para o ensino e superando <br> as barreiras do saber</p>
+                <h1>Rota Verde</h1>
+                <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
             </div>
             <IonButton class="route" @click="route">Vamos lá</IonButton>
         </ion-content>
