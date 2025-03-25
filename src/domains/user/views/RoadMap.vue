@@ -38,7 +38,7 @@ const frase = ref('selecione uma atividade');
                         link="pt/cacapalavras"
                     />
                 </div>
-                <div class="component4" >
+                <!-- <div class="component4" >
                     <Exercise 
                         img="img/roadMap/bike.png"
                         title="Silabário"    
@@ -51,7 +51,7 @@ const frase = ref('selecione uma atividade');
                         title="Letras"    
                         link="/user/contents/m/2"
                     />
-                </div>
+                </div> -->
             </div>
         </ion-content>
         <NavBotton />
