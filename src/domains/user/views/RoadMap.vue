@@ -4,10 +4,12 @@ import HeaderLevels from '@/domains/portuguese/components/HeaderLevels.vue';
 import NavBotton from '@/domains/portuguese/components/NavBotton.vue';
 import Unid from '@/domains/user/views/Unid.vue';
 import Exercise from '@/domains/portuguese/components/Exercise.vue';
-import { ref } from 'vue'
 
-const frase = ref('selecione uma atividade');
 
+
+function falar(message: string) {
+    console.log(message);
+}
 
 </script>
 
@@ -19,24 +21,13 @@ const frase = ref('selecione uma atividade');
             </div>
             <div class="container">
                 <div class="component1">
-                    <Unid 
-                        img="img/roadMap/horse.png"
-                        
-                    />
+                    <Unid img="img/roadMap/horse.png" />
                 </div>
-                <div class="component2" >
-                    <Exercise 
-                        img="img/roadMap/pencil.png"
-                        title="Escrita"    
-                        link="pt/escrita"
-                    />
+                <div class="component2">
+                    <Exercise img="img/roadMap/pencil.png" title="Escrita" link="pt/escrita" />
                 </div>
                 <div class="component3" @click="falar('CaçaPalavras')">
-                    <Exercise 
-                        img="img/roadMap/book.png"
-                        title="Caça palavras"    
-                        link="pt/cacapalavras"
-                    />
+                    <Exercise img="img/roadMap/book.png" title="Caça palavras" link="pt/cacapalavras" />
                 </div>
                 <!-- <div class="component4" >
                     <Exercise 
@@ -90,5 +81,4 @@ const frase = ref('selecione uma atividade');
     top: -9rem;
     --exercise-img-width: 1.5rem;
 }
- 
 </style>

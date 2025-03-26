@@ -3,12 +3,11 @@ import { adjusteUrlFiles } from "@/utils/adjusteUrlFiles";
 import { deserializecontent } from "@/utils/deserialize";
 import { falar } from "@/utils/utils";
 import { verifica, start } from "@/utils/verifica";
-import { defineComponent, onMounted, ref } from "vue";
-import VideoAula from "../../components/contents/Video.vue";
+import { defineComponent, onMounted, Ref, ref } from "vue";
 import { useRoute } from "vue-router";
 
 
-function rodarVideo(videoRef) {
+function rodarVideo(videoRef: Ref<HTMLElement | null>) {
   videoRef.value?.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -31,7 +30,7 @@ export default defineComponent({
     const showVideo = ref(false);
     const videoRef = ref(null);
 
-    const fetchData = async (id) => {
+    const fetchData = async (id: string) => {
       try {
         const response = await fetch(`https://idipibex.online/api/contents/${id}`, {
           method: "GET",
@@ -121,10 +120,9 @@ export default defineComponent({
       >
         <ul v-for="(prop, type) in content.activityData" :key="type">
           <label v-if="type != 'urlSounds'" :for="type"> {{ type }}</label>
-          <div :class="'container-' + type">
+          <div v-if="type != 'urlSounds'" :class="'container-' + type">
             <button
               @click="() => falar(String(letra))"
-              v-if="type != 'urlSounds'"
               :class="[type, { 'active-video': showVideo }]"
               v-for="(letra, index) in prop"
               :key="index"
@@ -140,10 +138,9 @@ export default defineComponent({
           <button v-if="type != 'urlSounds'" @click="() => start(prop)" class="start">
             iniciar atividade
           </button>
-          <div :class="'container-' + type">
+          <div v-if="type != 'urlSounds'" :class="'container-' + type">
             <button
               @click="() => verifica(String(letra), content.moduleId)"
-              v-if="type != 'urlSounds'"
               :class="[type, { 'active-video': showVideo }]"
               v-for="(letra, index) in prop"
               :key="index"

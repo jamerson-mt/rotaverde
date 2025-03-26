@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from "@ionic/vue";
 import { ref } from "vue";
-import CardIonic from "manager/components/CardIonic.vue";
+import CardIonic from "@/domains/active/manager/components/CardIonic.vue";
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 
-const modules = ref([]);
+interface Module {
+  id: number;
+  title: string;
+  status: string;
+}
+
+const modules = ref<Module[]>([]);
 
 const $route = useRoute();
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from '@ionic/vue';
-import NavBotton from 'portuguese/components/NavBotton.vue';
+
 import router from '@/router';
 import { ref } from 'vue';
 
@@ -25,7 +25,6 @@ const deletarModulo = async (id: number) => {
             throw new Error(`HTTP error! status: ${response.status}, message: ${errorMessage}`);
         }
 
-        const data = await response.json();
         router.push({ name: 'Portugues' });
     } catch (error) {
         console.error('Erro ao enviar usuário para a API:', error);
@@ -62,7 +61,6 @@ const sendModuleToApi = async (module: {
             throw new Error(`HTTP error! status: ${response.status}, message: ${errorMessage}`);
         }
 
-        const data = await response.json();
         router.push({ name: 'Portugues' });
     } catch (error) {
         console.error('Erro ao enviar usuário para a API:', error);

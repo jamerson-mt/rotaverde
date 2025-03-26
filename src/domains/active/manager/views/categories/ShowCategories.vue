@@ -2,9 +2,15 @@
 import { IonContent, IonPage } from "@ionic/vue";
 import { ref } from "vue";
 import { onMounted } from "vue";
-import CardIonic from "manager/components/CardIonic.vue";
+import CardIonic from "@/domains/active/manager/components/CardIonic.vue";
 
-const categorias = ref([]);
+interface Categoria {
+  id: number;
+  name: string;
+  status: string;
+}
+
+const categorias = ref<Categoria[]>([]);
 
 onMounted(async () => {
   try {

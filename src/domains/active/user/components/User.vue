@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { ref, defineProps } from 'vue';
-import ListAtt from "technology/components/ListAtt.vue";
 
 
 const showList = ref(false);
@@ -15,17 +14,17 @@ async function openList() {
     showList.value = !showList.value; 
     if (showList.value) {
         try {
-            const modulo = await import('../../portuguese/services/portugues');
+            const modulo = await import('@/domains/portuguese/services/portugues');
             if (props.atividade ?? '' in modulo) {
             if (props.atividade !== undefined) {
-              atividadeList.value = (modulo as Record<string, any>)[props.atividade];
+              atividadeList.value = modulo[props.atividade];
             } else {
               atividadeList.value = [];
             }
             } else {
               atividadeList.value = [];
             }
-            atividadeList.value.forEach((item) => {
+            atividadeList.value.forEach(() => {
             });
         } catch (error) {
             console.error('Erro ao importar o módulo:', error);

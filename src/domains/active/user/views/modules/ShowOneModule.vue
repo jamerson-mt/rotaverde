@@ -2,10 +2,21 @@
 import { IonContent, IonPage } from '@ionic/vue';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import EditCategoryModal from '../../components/EditCategoryModal.vue';
 
 const route = useRoute();
-const module = ref({});
+interface Module {
+    title: string;
+    status: string;
+    nivel: string;
+    description: string;
+}
+
+const module = ref<Module>({
+    title: '',
+    status: '',
+    nivel: '',
+    description: '',
+});
 const showModal = ref(false);
 
 onMounted(async () => {
@@ -30,9 +41,7 @@ const emitShowModal = () => {
     showModal.value = true;
 };
 
-const closeModal = () => {
-    showModal.value = false;
-};
+
 
 </script>
 

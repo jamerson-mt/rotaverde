@@ -3,7 +3,6 @@ import { IonContent, IonPage } from '@ionic/vue';
 import CardContent from '../../components/CardContent.vue';
 import { ref } from 'vue';
 import { onMounted } from 'vue';
-import CardNewContent from '../../components/CardNewContent.vue';
 
 interface Content {
     id: number;
@@ -44,7 +43,7 @@ onMounted(async () => {
                     <div class="cards">
                         <CardContent v-for="content in contents" :key="content.id" :id="content.id"
                             :title="content.title" />
-                        <CardNewContent />
+                     
                     </div>
                 </div>
             </div>

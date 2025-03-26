@@ -5,6 +5,7 @@ const props = defineProps({
     isOpen: Boolean,
     category: Object,
 });
+// eslint-disable-next-line vue/valid-define-emits
 const emit = defineEmits();
 
 const closeModal = () => {
@@ -13,6 +14,9 @@ const closeModal = () => {
 
 const saveChanges = async () => {
     try {
+        if (!props.category) {
+            throw new Error('Categoria não definida');
+        }
         const response = await fetch(`http://localhost:8080/api/categories/${props.category.id}`, {
             method: 'PUT',
             headers: {
