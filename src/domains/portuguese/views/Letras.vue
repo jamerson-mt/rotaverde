@@ -11,7 +11,7 @@ const emit = defineEmits<{
   (e: 'nextAtt', payload: boolean): void; 
 }>();
 
-const frase = ref('null');
+const frase = ref('Descubra a inicial correta da imagem abaixo');
 const router = useRouter();
 const fala = () => {
     speakText('Descubra as iniciais das imagens?');
