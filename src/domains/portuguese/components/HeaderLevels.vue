@@ -24,9 +24,6 @@ const { frase } = props;
             <h1>Meio Ambiente</h1>
             <div id="bar1"></div>
             <div id="bar2"></div>
-            <div id="p">
-                <p>Em progresso</p>
-            </div>
         </div>
         <div class="prata">
             <img src="img/prata.png" alt="prata">
