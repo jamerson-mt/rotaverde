@@ -11,12 +11,12 @@ const emit = defineEmits<{
   (e: 'nextAtt', payload: boolean): void; 
 }>();
 
+const frase = ref('null');
 const router = useRouter();
 const fala = () => {
     speakText('Descubra as iniciais das imagens?');
 }
 
-speakText('Nesta atividade você terá que descobrir qual a inicial correta de algumas imagens');
 setTimeout(() => {
     speakText('qual a inicial correta da imagem abaixo?');
 }, 1000);
