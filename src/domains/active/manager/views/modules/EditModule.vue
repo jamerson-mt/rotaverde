@@ -103,7 +103,7 @@ const sendModuleToApi = async (module: {
             </div>
         </ion-content>
         <div id="navButton">
-            <NavBotton />
+             
         </div>
     </ion-page>
 </template>

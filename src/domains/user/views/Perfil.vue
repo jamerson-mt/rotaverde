@@ -23,7 +23,7 @@ import { speakText, speek } from "@/domains/portuguese/services/fala";
       </div>
     </ion-content>
     <div id="navButton">
-      <NavBotton />
+       
     </div>
   </ion-page>
 </template>

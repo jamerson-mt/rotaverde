@@ -61,7 +61,7 @@ const refresh = () => {
       </div>
     </ion-content>
     <div id="navButton">
-      <NavBotton />
+       
     </div>
   </ion-page>
 </template>

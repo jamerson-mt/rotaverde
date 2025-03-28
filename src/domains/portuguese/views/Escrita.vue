@@ -2,7 +2,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { ref, watch, onMounted } from 'vue';
 import { exercise } from "../services/attEscrita.js";
-import NavBotton from '@/domains/portuguese/components/NavBotton.vue';
+  
 import AttEscrita from "@/domains/portuguese/components/AttEscrita.vue";
 import { speakText } from '../services/fala.js';
 import { useRouter } from 'vue-router';
@@ -69,7 +69,7 @@ function attNext() {
             </div>
         </ion-content>
         <div class="bottom-0">
-            <NavBotton />
+             
         </div>
     </ion-page>
 </template>

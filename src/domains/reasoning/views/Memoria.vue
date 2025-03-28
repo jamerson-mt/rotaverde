@@ -64,7 +64,7 @@ function sequenciaCores() {
             </div>
         </ion-content>
         <div class="bottom-0">
-            <NavBotton />
+             
         </div>
     </ion-page>
 </template>

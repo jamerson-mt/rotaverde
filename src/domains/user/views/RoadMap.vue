@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IonPage, IonContent } from '@ionic/vue';
 import HeaderLevels from '@/domains/portuguese/components/HeaderLevels.vue';
-import NavBotton from '@/domains/portuguese/components/NavBotton.vue';
+  
 import Unid from '@/domains/user/views/Unid.vue';
 import Exercise from '@/domains/portuguese/components/Exercise.vue';
 
@@ -45,7 +45,6 @@ function falar(message: string) {
                 </div> -->
             </div>
         </ion-content>
-        <NavBotton />
     </ion-page>
 </template>
 
