@@ -35,4 +35,24 @@ export const exercise: Exercise[] = [
             response: "P",
         }
     },
+    {
+        image: "../img/attLetras/sururu.jpg",
+        title: "Sururu",
+        options: {
+            option1: "S",
+            option2: "N",
+            option3: "T",
+            response: "S",
+        }
+    },
+    {
+        image: "../img/attLetras/caranguejo.jpg",
+        title: "Caranguejo",
+        options: {
+            option1: "L",
+            option2: "C",
+            option3: "V",
+            response: "C",
+        }
+    },
 ]
