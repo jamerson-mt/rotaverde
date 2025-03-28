@@ -5,12 +5,13 @@ import Modal from "@/domains/technology/components/Modal.vue";
 import { defineProps, ref } from 'vue';
 import { defineEmits } from 'vue';
 
-const fala = () => {
-    speakText('qual a inicial correta da imagem abaixo?');
-}
 
 const props = defineProps({
     image: {
+        type: String,
+        required: true
+    },
+    title: {
         type: String,
         required: true
     },
@@ -20,6 +21,7 @@ const props = defineProps({
     }
 });
 
+const fala = () => { speakText(props.title); }
 const isModalOpen = ref(false);
 const modalMessage = ref('');
 
@@ -67,7 +69,7 @@ function closeModal() {
     </header>
         <div class="flex flex-col items-center justify-center">
            <div class="div-fone"> <i class="fone"><img src="img/fala.png" alt="" @click="fala"></i></div>
-            <img  class="w-48" :src="image">
+            <img id="img" class="w-48" :src="image">
             <div class="w-full">
                 <Options @submit="responseValue"
                     :options1="options.option1" 
@@ -94,6 +96,16 @@ header {
     font-weight: bold;
     margin: 1rem;
 }
+
+#img {
+    margin-top: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    width: 100%;
+    max-width: 270px;
+}
+
 .fone{
     height: 50px;
     width: 50px;

@@ -57,6 +57,7 @@ function attNext() {
             <div id="options">
                 <AttEscrita 
                     :image="att.image"
+                    :title="att.title"
                     :options="att.options"
                 />
                 <div id="button">

@@ -3,6 +3,7 @@
 
 export interface Exercise {
     image: string;
+    title: string;
     options: 
     { 
         option1: string;
@@ -15,7 +16,18 @@ export interface Exercise {
 
 export const exercise: Exercise[] = [
     {
+        image: "../img/attLetras/camarao.png",
+        title: "Camarão",
+        options: {
+            option1: "Z",
+            option2: "M",
+            option3: "C",
+            response: "C",
+        }
+    },
+    {
         image: "../img/peixe.jpg",
+        title: "Peixe",
         options: {
             option1: "B",
             option2: "P",
