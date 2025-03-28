@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IonPage } from '@ionic/vue';
 import HeaderLevels from '@/domains/portuguese/components/HeaderLevels.vue';
-import NavBotton from '@/domains/portuguese/components/NavBotton.vue';
+  
 import CardLevels from '@/domains/user/components/CardLevels.vue';
 import { ref } from 'vue'
 import Buzina from "@/domains/auth/components/Buzina.vue"
@@ -28,7 +28,7 @@ const frase = ref('selecione o módulo');
                 />
             </div>
         </ion-content>
-        <NavBotton />
+         
     </ion-page>
 </template>
 

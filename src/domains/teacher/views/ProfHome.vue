@@ -2,7 +2,7 @@
 import { IonContent, IonPage, IonGrid, IonRow, IonCol, IonInput, IonButton } from '@ionic/vue';
 import { ref } from 'vue';
 import { routeLocationKey, useRouter } from 'vue-router';
-import NavBotton from '@/domains/portuguese/components/NavBotton.vue';
+  
 import CardIonic from '@/domains/teacher/components/CardIonic.vue';
 import CardAluno from '@/domains/teacher/components/CardAluno.vue';
 
@@ -67,7 +67,7 @@ import CardAluno from '@/domains/teacher/components/CardAluno.vue';
             </div>
         </ion-content>
         <div id="navButton">
-            <NavBotton />
+             
         </div>
     </ion-page>
 </div>

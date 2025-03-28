@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import NavBotton from '@/domains/portuguese/components/NavBotton.vue';
+  
 import Card from '@/domains/user/components/Card.vue';
 import Header from '@/domains/reasoning/components/Header.vue';
 import { speakText, speek } from '@/domains/portuguese/services/fala';
@@ -31,7 +31,7 @@ const frase = ref('selecione Educação Ambiental');
             title="Educação Ambiental"
             image="img/curuja.png"
             link="/home?q=pt"
-            link2="/att/modulo"
+            link2="/att/roadMap"
             bgc="#66FF7E"
           />
           <!-- <Card  @click="falar('raciocinio lóogico em manutenção')"  
@@ -58,7 +58,7 @@ const frase = ref('selecione Educação Ambiental');
       </div>
     </ion-content>
     <div id="navButton">
-        <NavBotton />
+         
     </div>
   </ion-page>
 </template>
