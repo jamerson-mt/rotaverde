@@ -24,10 +24,13 @@ function falar(message: string) {
                     <Unid img="img/roadMap/horse.png" />
                 </div>
                 <div class="component2">
-                    <Exercise img="img/roadMap/pencil.png" title="Escrita" link="pt/escrita" />
+                    <Exercise img="img/icons/letras.png" title="Iniciais palavras" link="" />
                 </div>
                 <div class="component3" @click="falar('CaçaPalavras')">
                     <Exercise img="img/roadMap/book.png" title="Caça palavras" link="pt/cacapalavras" />
+                </div>
+                <div class="component4" @click="falar('Iniciais da palavras')">
+                    <Exercise img="img/roadMap/pencil.png" title="Escrita" link="pt/escrita" />
                 </div>
                 <!-- <div class="component4" >
                     <Exercise 
