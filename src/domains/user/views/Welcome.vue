@@ -1,6 +1,6 @@
 <script setup>
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
-import { nextPage } from '@/utils/nextPage'; // Corrigida a importação
+import { falar } from '@/utils/falar'; // Corrigida a importação
 </script>
 
 <template>
