@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { defineProps } from 'vue';
-import { useRoute } from 'vue-router';
-
 
 const props = defineProps({
     img: {
@@ -23,7 +21,7 @@ const props = defineProps({
 <template>
     <div class="content">
         <div class="image">
-            <router-link :to="link || ''"><img class="img" :src="img"></router-link>
+            <div ><img class="img" :src="img"></div>
                 
           
         </div>

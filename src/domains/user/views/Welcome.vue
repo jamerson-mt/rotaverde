@@ -13,7 +13,7 @@ import { falar } from '@/utils/falar'; // Corrigida a importação
             <div class="title">
                 <h1>Rota Verde</h1>
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
-                <IonButton class="route" @click="falar('essaesuaarea', 'essaesuaarea','/home')">Vamos lá</IonButton>
+                <IonButton class="route" @click="falar('boasvindas', 'essaesuaarea','/home')">Vamos lá</IonButton>
             </div>
 
         </ion-content>

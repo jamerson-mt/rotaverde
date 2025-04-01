@@ -16,7 +16,7 @@ import { falar } from '@/utils/falar';
 
       <div id="container">
         <Card
-          @click="falar('cliqueparaprosseguir', 'cliqueparaprosseguir', '/att/roadMap')"
+          @click="falar('cliqueparaprosseguir', 'essassaosuasatividades', '/att/roadMap')"
           title="Educação Ambiental" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#66FF7E" />
         <!-- <Card  @click="falar('raciocinio lóogico em manutenção')"  
             title="Raciocínio Lógico"
