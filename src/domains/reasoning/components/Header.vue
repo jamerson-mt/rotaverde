@@ -6,7 +6,7 @@
   <div class="toolbar">
     <h3 id="title">Rota verde</h3>
     <div id="image" class="w-16 left-5">
-      <img src="img/person.jpg" alt="pessoa" />
+      <img src="img/homen.jpg" alt="pessoa" />
     </div>
   </div>
   <!-- </ion-header> -->

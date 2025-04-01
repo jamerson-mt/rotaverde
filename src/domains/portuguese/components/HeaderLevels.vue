@@ -4,7 +4,7 @@
 <template>
     <div class="header">
         <div class="img">
-            <img src="img/person.jpg" alt="person">
+            <img src="img/homen.jpg" alt="person">
         </div>
         <div class="content">
             <h1>Meio Ambiente</h1>

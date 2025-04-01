@@ -9,7 +9,7 @@
   font-style: normal;
 }
 ion-content {
-  --background: #c8f5cb; /* Tom verde escuro, remetendo ao meio ambiente */
+  --background: #fafafa; /* Tom verde escuro, remetendo ao meio ambiente */
   overflow: hidden;
 }
 

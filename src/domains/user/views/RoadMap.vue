@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { IonPage, IonContent } from '@ionic/vue';
 import HeaderLevels from '@/domains/portuguese/components/HeaderLevels.vue';
-  
-import Unid from '@/domains/user/views/Unid.vue';
 import Exercise from '@/domains/portuguese/components/Exercise.vue';
 
+import { falar } from '@/utils/falar';
 
 
-function falar(message: string) {
-    console.log(message);
-}
 
 </script>
 
@@ -20,17 +16,18 @@ function falar(message: string) {
                 <HeaderLevels frase="selecione uma das atividades" />
             </div>
             <div class="container">
-                <div class="component1">
+                <!-- <div class="component1">
                     <Unid img="img/roadMap/horse.png" />
+                </div> -->
+                <div class="component1" @click="falar('descobrirprimeiraletra', 'descobrirprimeiraletra2', 'pt/letras')">
+                    <Exercise img="img/icons/letras.png" title="palavras Iniciais" link="pt/letras" />
                 </div>
-                <div class="component2">
-                    <Exercise img="img/icons/letras.png" title="Iniciais palavras" link="pt/letras" />
-                </div>
-                <div class="component3" @click="falar('CaçaPalavras')">
-                    <Exercise img="img/roadMap/book.png" title="Caça palavras" link="pt/cacapalavras" />
-                </div>
-                <div class="component4" @click="falar('Iniciais da palavras')">
+
+                <div class="component2" @click="falar('descobrirpalavra', 'descobrirpalavra2', 'pt/escrita')">
                     <Exercise img="img/roadMap/pencil.png" title="Escrita" link="pt/escrita" />
+                </div>
+                <div class="component3" @click="falar('cacapalavras', 'cacapalavras2', 'pt/cacapalavras')">
+                    <Exercise img="img/roadMap/book.png" title="Caça palavras" link="pt/cacapalavras" />
                 </div>
                 <!-- <div class="component4" >
                     <Exercise 
