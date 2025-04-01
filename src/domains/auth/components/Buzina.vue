@@ -8,13 +8,16 @@ const props = defineProps<{
 
 // Função para reproduzir o áudio com base no nome do arquivo
 
+function reproduzirAudio() {
+    falar(frase, 'audio2', 'rota');
+}
 
 // Se precisar fazer algo com a prop, pode acessar diretamente em props
 const { frase } = props;
 </script>
 
 <template>
-    <div class="buzina" @click="falar(frase, 'audio2', 'rota')">
+    <div class="buzina" @click="reproduzirAudio">
         <img src="img/buzina.png" alt="buzina">
     </div>
 </template>
