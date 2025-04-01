@@ -2,7 +2,7 @@
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
-import { falar } from '@/utils/utils';
+import { falar } from '@/utils/falar';
 import Buzina from '@/domains/auth/components/Buzina.vue'
 const frase = ref('ola');
 const router = useRouter();

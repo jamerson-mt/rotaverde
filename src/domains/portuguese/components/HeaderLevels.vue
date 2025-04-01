@@ -1,63 +1,53 @@
 <script setup lang="ts">
-
-import { onMounted } from 'vue';
-import { defineProps, toRefs } from 'vue';
-import { falar } from '@/utils/utils';
-const props = defineProps<{
-    frase: string;
-    
-}>();
-
-// Função para reproduzir o áudio com base no nome do arquivo
-
-
-// Se precisar fazer algo com a prop, pode acessar diretamente em props
-const { frase } = props;
 </script>
 
 <template>
     <div class="header">
         <div class="img">
-            <img src="img/iconperson.png" alt="person">
+            <img src="img/person.jpg" alt="person">
         </div>
         <div class="content">
             <h1>Meio Ambiente</h1>
-            <div id="bar1"></div>
-            <div id="bar2"></div>
+
         </div>
-        <div class="prata">
-            <img src="img/prata.png" alt="prata">
-        </div>
-        <div class="buzina" @click="falar(frase)">
-            <img src="img/buzina.png" alt="buzina">
-        </div>
+
     </div>
 </template>
 
 <style scoped>
 .header {
     position: relative;
+    background-image: url("img/banner2.jpg");
+    background-size: cover; /* Ajuste para cobrir toda a largura */
+    background-repeat: no-repeat;
+    background-position:  0px -40px; /* Ajuste para subir a imagem */
     top: 0;
     display: flex;
-    background-color: #249B9B;
+    background-color: #249b4c;
     color: #fff;
     padding: 10px;
     border-radius: 0 0 0px 0px;
     padding: 20px;
-    height: 125px;
+    height: 100px;
     align-items: center;
 }
 
 .img {
     display: inline-block;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-right: 10px;
     border-radius: 50%;
     background-color: #D9D9D9;
     width: 4rem;
     height: 4rem;
     align-items: center;
+}
+
+img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
 }
 
 .content {
@@ -69,6 +59,7 @@ const { frase } = props;
 
 h1 {
     font-size: 24px;
+    color: #e6e6e6;
 }
 
 #bar1 {

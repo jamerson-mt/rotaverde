@@ -1,7 +1,7 @@
 <script lang="ts">
 import { adjusteUrlFiles } from "@/utils/adjusteUrlFiles";
 import { deserializecontent } from "@/utils/deserialize";
-import { falar } from "@/utils/utils";
+import { falar } from "@/utils/falar";
 import { verifica, start } from "@/utils/verifica";
 import { defineComponent, onMounted, Ref, ref } from "vue";
 import { useRoute } from "vue-router";

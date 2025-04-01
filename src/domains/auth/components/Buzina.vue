@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { defineProps, toRefs } from 'vue';
-import { falar } from '@/utils/utils';
+import { falar } from '@/utils/falar';
 const props = defineProps<{
     frase: string;
 }>();

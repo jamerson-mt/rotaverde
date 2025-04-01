@@ -47,7 +47,7 @@ export default defineComponent({
 
 <template>
   <div class="container" :style="{ backgroundColor: bgc }">
-    <RouterLink class="button" :to="link2">
+    <div class="button" :to="link2">
       <div id="figura">
         <svg
           width="72"
@@ -177,12 +177,24 @@ export default defineComponent({
         <p>{{ title }}</p>
         <p></p>
       </div>
-    </RouterLink>
+    </div>
   </div>
 </template>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 .container {
   display: flex;
@@ -193,6 +205,7 @@ export default defineComponent({
   padding: 4px;
   flex-wrap: wrap;
   border-radius: 10px;
+  animation: pulse 2s infinite;
 }
 
 #figura {

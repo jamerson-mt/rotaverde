@@ -1,38 +1,21 @@
-<script setup lang="ts">
+<script setup>
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
-import { useRouter } from 'vue-router';
-import Buzina from '@/domains/auth/components/Buzina.vue';
-import { ref } from 'vue'
-
-const frase = ref('seja bem vindo ao Róta Verde, este é o caminho certo para a sustentabilidade');
-const router = useRouter();
-// Função para reproduzir o áudio com base no nome do arquivo
-const falar = (frase: string) => {
-    const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(frase);
-    utterance.lang = 'pt-BR'; // Define o idioma para português do Brasil
-    synth.speak(utterance);
-};
-function route(frase: string) {
-   
-    router.push('/home');
-};
-
+import { nextPage } from '@/utils/nextPage'; // Corrigida a importação
 </script>
 
 <template>
     <ion-page>
         <ion-content class="content">
-            <Buzina :frase="frase" />
             <div class="img">
-                <img src="/public/img/rotaverde.jpg" alt="Capacita Digital" />
+                <img src="/public/img/fundoarvore.jpg" alt="Rota Verde" />
             </div>
             <div class="back"></div>
             <div class="title">
                 <h1>Rota Verde</h1>
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
+                <IonButton class="route" @click="nextPage('/home','essaesuaarea')">Vamos lá</IonButton>
             </div>
-            <IonButton class="route" @click="route">Vamos lá</IonButton>
+
         </ion-content>
     </ion-page>
 </template>
@@ -44,8 +27,9 @@ function route(frase: string) {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #000;
+    background-color: black;
     color: white;
+    overflow: hidden;
 }
 
 .img {
@@ -58,12 +42,15 @@ function route(frase: string) {
 }
 
 .back {
+    overflow-y: hidden;
     position: absolute;
-    top: 0;
+    bottom: 0px;
     left: 0;
+    padding: 0px;
+    margin: 0px;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+    height: 60%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(24, 24, 24, 0.5), rgb(15, 15, 15), rgb(15, 15, 15));
     z-index: -1;
 }
 
@@ -74,6 +61,7 @@ function route(frase: string) {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    overflow: hidden;
     color: white;
     flex-direction: column;
     justify-content: center;
@@ -82,24 +70,24 @@ function route(frase: string) {
 }
 
 .title h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 800;
 }
 
 .title p {
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: normal;
     text-align: center;
     justify-content: center;
     color: #d4d1d1;
 }
 
 .route {
-    position: absolute;
-    bottom: 22%;
-    --background: blueviolet;
+    position: relative;
+    --background: rgb(16, 190, 45);
     color: azure;
-    width: 100%;
+    width: 90%;
     height: 4.3rem;
     margin: 0 auto;
     font-weight: bold;
