@@ -10,7 +10,7 @@ const router = useRouter();
 
 
 function route(frase: string) {
-    falar(frase);
+   
     router.push('/person');
 };
 

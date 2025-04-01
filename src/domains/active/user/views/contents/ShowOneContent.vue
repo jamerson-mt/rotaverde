@@ -122,7 +122,7 @@ export default defineComponent({
           <label v-if="type != 'urlSounds'" :for="type"> {{ type }}</label>
           <div v-if="type != 'urlSounds'" :class="'container-' + type">
             <button
-              @click="() => falar(String(letra))"
+              @click="() => falar(String(letra), 'defaultAudio', 'defaultRoute')"
               :class="[type, { 'active-video': showVideo }]"
               v-for="(letra, index) in prop"
               :key="index"

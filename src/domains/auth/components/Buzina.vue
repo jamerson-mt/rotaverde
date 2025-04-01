@@ -14,7 +14,7 @@ const { frase } = props;
 </script>
 
 <template>
-    <div class="buzina" @click="falar(frase)">
+    <div class="buzina" @click="falar(frase, 'audio2', 'rota')">
         <img src="img/buzina.png" alt="buzina">
     </div>
 </template>
