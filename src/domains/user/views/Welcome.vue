@@ -13,7 +13,7 @@ import { nextPage } from '@/utils/nextPage'; // Corrigida a importação
             <div class="title">
                 <h1>Rota Verde</h1>
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
-                <IonButton class="route" @click="() => nextPage('/home', 'essaesuaarea')">Vamos lá</IonButton>
+                <IonButton class="route" @click="nextPage('/home', 'essaesuaarea')">Vamos lá</IonButton>
             </div>
 
         </ion-content>

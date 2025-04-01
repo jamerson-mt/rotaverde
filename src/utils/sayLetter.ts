@@ -28,25 +28,5 @@ export function falar(frase: string) {
     console.log('falado');
 
   }
-//   if (cont.value >= 1 ) {
-//     cont.value--;
 
-//     console.log(cont.value);
-//   }
-
-//   if ( cont.value == 0) {
-//     // se null, pode prosseguir para a execucao do audio
-
-//     //executo o audio e trato caso algum erro na reproducao
-   
-//     cont.value++;
-
-//     // setando localStorage para nao ser executado o audio novamente durante um periodo estipulado
-//     const tempoExpiracaoEmSegundos = 2; // 5 segundos de intervalo para execucao dos audios
-//     const agora = new Date().getTime();
-//     const expiracao = agora + tempoExpiracaoEmSegundos * 1000; // Tempo em milissegundos
-//     const valor = "falando";
-//     const dadoComExpiracao = JSON.stringify({ valor, expiracao });
-//     localStorage.setItem("fala", dadoComExpiracao);
-//   }
 }
