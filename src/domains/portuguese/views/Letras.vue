@@ -58,10 +58,11 @@ function attNext() {
                     :image="att.image"
                     :title="att.title"
                     :options="att.options"
+                    @nextAtt="nextAtt"
                 />
-                <div id="button">
+                <!-- <div id="button">
                     <button @click="nextAtt()" id="router" class="text-white font-bold py-2 px-4 rounded-3xl mt-5 w-3/5 text-center mt-10">Próximo</button>
-                </div>
+                </div> -->
             </div>
         </ion-content>
         <div class="bottom-0">

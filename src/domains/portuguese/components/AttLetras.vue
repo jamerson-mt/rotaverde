@@ -24,6 +24,7 @@ const props = defineProps({
 const fala = () => { speakText(props.title); }
 const isModalOpen = ref(false);
 const modalMessage = ref('');
+const attIsCorrect = ref(false);
 
 const emit = defineEmits(['nextAtt']);
 
@@ -31,30 +32,33 @@ const nextAtt = ref();
 
 function attNext () {
     let next = true
+    console.log('nextAtt =' + next);
     emit('nextAtt', next);
 }
 
-function responseValue(value: boolean){
-    if (value == true) {
-        speakText('Parabéns, você acertou');
-        modalMessage.value = 'Parabéns, você acertou ';
+function responseValue(value: boolean) {
+    if (value) {
+        speakText('Parabéns, quer seguir para a próxima atividade?');
+        modalMessage.value = 'Seguir para a próxima atividade?';
+        attIsCorrect.value = true;
         isModalOpen.value = true;
 
-        setTimeout(() => {
-            closeModal();
-            attNext(); 
-        }, 3000);
-
+        // setTimeout(() => {
+        //     attNext();
+        //     closeModal();
+        // }, 15000);
+        
     } else {
-        speakText('Você errou, tente novamente');
-        modalMessage.value = 'Você errou, tente novamente';
+        speakText('Você errou. Quer tentar novamente?');
+        modalMessage.value = 'Vamos novamente?';
         isModalOpen.value = true;
 
-        setTimeout(() => {
-            closeModal();
-        }, 3000);
+        // setTimeout(() => {
+        //     closeModal();
+        // }, 15000);
     }
 }
+
 
 function closeModal() {
     isModalOpen.value = false;
@@ -79,7 +83,13 @@ function closeModal() {
                 />
             </div>
 
-            <Modal :isOpen="isModalOpen" @close="closeModal" :modalMessage = "modalMessage" />
+            <Modal 
+                :isOpen="isModalOpen" 
+                @close="closeModal" 
+                :modalMessage="modalMessage" 
+                @nextAtt="attNext" 
+                :correct="attIsCorrect"
+            />
         </div>
 </template>
 
