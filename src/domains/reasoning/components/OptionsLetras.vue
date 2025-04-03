@@ -82,13 +82,14 @@ function handleResponse(item: string, option: 'options1' | 'options2' | 'options
 }
 
 #button {
-    height: 3rem;
-    width: 6.5rem;
-    margin: 5px;
+    height: 5rem;
+    width: 5rem;
+    margin: 15px;
     font-weight: bold;
     background-color: #abaaa8;
     color: #000;
     font-size: 1.5rem;
+    border-radius: 50%;
 }
 
 </style>

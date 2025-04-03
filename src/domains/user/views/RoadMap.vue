@@ -16,9 +16,6 @@ import { falar } from '@/utils/falar';
                 <HeaderLevels frase="selecione uma das atividades" />
             </div>
             <div class="container">
-                <!-- <div class="component1">
-                    <Unid img="img/roadMap/horse.png" />
-                </div> -->
                 <div class="component1" @click="falar('descobrirprimeiraletra', 'descobrirprimeiraletra2', 'pt/letras')">
                     <Exercise img="img/icons/letras.png" title="palavras Iniciais" link="pt/letras" />
                 </div>
@@ -62,22 +59,5 @@ import { falar } from '@/utils/falar';
     position: fixed;
     bottom: 0;
     width: 100%;
-}
-
-.component3 {
-    position: relative;
-    left: -5rem;
-}
-
-.component4 {
-    position: relative;
-    right: -5rem;
-    top: -8.7rem
-}
-
-.component5 {
-    position: relative;
-    top: -9rem;
-    --exercise-img-width: 1.5rem;
 }
 </style>

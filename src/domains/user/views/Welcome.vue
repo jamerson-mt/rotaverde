@@ -33,11 +33,19 @@ import { falar } from '@/utils/falar'; // Corrigida a importação
 }
 
 .img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.img img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
     z-index: -1;
 }
 
@@ -50,7 +58,7 @@ import { falar } from '@/utils/falar'; // Corrigida a importação
     margin: 0px;
     width: 100%;
     height: 60%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(24, 24, 24, 0.5), rgb(15, 15, 15), rgb(15, 15, 15));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(24, 24, 24, 0.5), rgb(15, 15, 15, 0.7), rgb(15, 15, 15));
     z-index: -1;
 }
 
