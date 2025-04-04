@@ -22,7 +22,6 @@ const props = defineProps<{
 
 const contador = 0;
 
-// Inicializa letraAcendida com base no tamanho do quadro
 let letraAcendida = reactive(
   [
     props.quadro.line1,
@@ -43,8 +42,6 @@ const confirme = (() =>{
       router.push('/home');
     },2000);
     
-    
-
   }
 });
 const check = (option: number) => {
@@ -120,7 +117,6 @@ const verificaCombinacao = () => {
 };
 
 const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
-  // Alterna o estado da letra correspondente
   letraAcendida[linhaIndex][celulaIndex] = !letraAcendida[linhaIndex][celulaIndex];
   verificaCombinacao();
 };

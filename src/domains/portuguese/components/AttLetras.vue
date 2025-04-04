@@ -4,6 +4,8 @@ import { speakText , speek } from '@/domains/portuguese/services/fala';
 import Modal from "@/domains/technology/components/Modal.vue";
 import { defineProps, ref } from 'vue';
 import { defineEmits } from 'vue';
+import { defineExpose } from 'vue';
+import { watch } from 'vue';
 
 
 const props = defineProps({
@@ -18,6 +20,9 @@ const props = defineProps({
     options: {
         type: Object,
         required: true
+    },
+    closeModalProps: {
+        type: Boolean,
     }
 });
 
@@ -36,26 +41,27 @@ function attNext () {
     emit('nextAtt', next);
 }
 
+
 function responseValue(value: boolean) {
     if (value) {
         speakText('Parabéns, quer seguir para a próxima atividade?');
         modalMessage.value = 'Seguir para a próxima atividade?';
         attIsCorrect.value = true;
         isModalOpen.value = true;
-
-        // setTimeout(() => {
-        //     attNext();
-        //     closeModal();
-        // }, 15000);
+        
+        setTimeout(() => {
+            closeModal();
+            attNext();
+        }, 15000);
         
     } else {
         speakText('Você errou. Quer tentar novamente?');
         modalMessage.value = 'Vamos novamente?';
         isModalOpen.value = true;
 
-        // setTimeout(() => {
-        //     closeModal();
-        // }, 15000);
+        setTimeout(() => {
+            closeModal();
+        }, 15000);
     }
 }
 
@@ -64,7 +70,16 @@ function closeModal() {
     isModalOpen.value = false;
 }
 
+defineExpose({
+    isModalOpen,
+    closeModal
+});
 
+watch(() => props.closeModalProps, (newValue) => {
+    if (newValue) {
+        closeModal();
+    }
+});
 </script>
 
 <template>
