@@ -50,7 +50,7 @@ import { falar } from '@/utils/falar';
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: -10rem;
     gap: 30px;
     align-items: center;
 }
