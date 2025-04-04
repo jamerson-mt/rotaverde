@@ -41,22 +41,18 @@ import { falar } from '@/utils/falar';
           /> -->
       </div>
     </ion-content>
-    <div id="navButton">
-
-    </div>
   </ion-page>
 </template>
 
 <style scoped>
 #container {
   display: flex;
-
-  justify-content: space-around;
   margin-top: 100px;
+  justify-content: space-around;
   padding: 0px 20px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 
-  overflow: hidden;
+  /* overflow: hidden;  */
 }
 </style>
