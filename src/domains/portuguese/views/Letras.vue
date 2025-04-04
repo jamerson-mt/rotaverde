@@ -6,9 +6,10 @@ import AttEscrita from "@/domains/portuguese/components/AttLetras.vue";
 import HeaderLevels from '../components/HeaderLevels.vue';
 import { speakText } from '../services/fala.js';
 import { useRouter } from 'vue-router';
+import { defineEmits } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'nextAtt', payload: boolean): void; 
+  (e: 'nextAtt' | 'closeModal', payload: boolean): void; 
 }>();
 
 const frase = ref('Descubra a inicial correta da imagem abaixo');
@@ -32,12 +33,18 @@ onMounted(() => {
     console.log(att.value);
 });
 
+const attEscritaRef = ref<InstanceType<typeof AttEscrita> | null>(null);
+
 function nextAtt() {
+    console.log("Fechando modal...");
+    attEscritaRef.value?.closeModal(); 
+    
     itemArray.value++;
     if (itemArray.value >= exercise.length) {
         itemArray.value = 0;
         router.push('/home');
     }
+
 }
 
 function attNext() {
@@ -54,7 +61,8 @@ function attNext() {
                 <HeaderLevels :frase="frase" />
             </div>
             <div id="options">
-                <AttEscrita 
+                <AttEscrita
+                    ref="attEscritaRef"
                     :image="att.image"
                     :title="att.title"
                     :options="att.options"
