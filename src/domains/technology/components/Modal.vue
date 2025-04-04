@@ -96,7 +96,7 @@ watch(() => props.isOpen, (newVal) => {
         <ion-button @click="closeModal">Sim</ion-button>
         <ion-button @click="nextAtt">Não</ion-button>
       </div>
-      <div v-else class="options">
+      <div v-if="correct == true" class="options">
         <ion-button @click="nextAtt">Sim</ion-button>
         <ion-button @click="closeModal">Não</ion-button>
       </div>
