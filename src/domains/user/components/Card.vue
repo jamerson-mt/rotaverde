@@ -4,33 +4,14 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from "@ionic/vue
 import { RouterLink } from "vue-router";
 
 export default defineComponent({
-  components: {
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-  },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: String,
-      required: true,
-    },
-    link: {
-      type: String,
-      required: true,
-    },
-    link2: {
-      type: String,
-      required: true,
-    },
-    bgc: {
-      type: String,
-      required: true,
-    },
+  components: { IonCard, IonCardContent, IonCardHeader, IonCardTitle },
+  props: 
+  { 
+    title: { type: String, required: true },
+    image: { type: String, required: true },
+    link:  { type: String, required: true },
+    link2: { type: String, required: true },
+    bgc:   { type: String, required: true },
 
   },
   setup(props) {
@@ -44,23 +25,16 @@ export default defineComponent({
         confettiContainer.classList.add("active");
         const confettiElements = confettiContainer.querySelectorAll(".confetti");
         confettiElements.forEach((confetti) => {
-          const randomX = Math.random() * 100 - 50; // Random horizontal position
-          const randomY = Math.random() * 100 + 50; // Random vertical position
-          const randomRotation = Math.random() * 360; // Random rotation
+          const randomX = Math.random() * 100 - 50; 
+          const randomY = Math.random() * 100 + 50;
+          const randomRotation = Math.random() * 360; 
           (confetti as HTMLElement).style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotation}deg)`;
         });
         setTimeout(() => confettiContainer.classList.remove("active"), 1000);
       }
     };
 
-    return {
-      title: props.title,
-      image: props.image,
-      link: props.link,
-      link2: props.link2,
-      bgc: props.bgc,
-      handleClick
-    };
+    return { title: props.title, image: props.image, link: props.link, link2: props.link2, bgc: props.bgc, handleClick};
   },
 });
 </script>
@@ -73,7 +47,6 @@ export default defineComponent({
     <div class="button" :to="link2">
       <div>
         <p>{{ title }}</p>
-        <p></p>
       </div>
     </div>
   </div>
@@ -105,8 +78,9 @@ export default defineComponent({
   border-radius: 10px;
   animation: pulse 2s infinite;
   background-image: url('public/img/fundo1.jpg');
-  background-size: cover;
-  background-position: center;
+  background-size: cover;       
+  background-position: center;   
+  background-repeat: no-repeat;  
 }
 
 #figura {
@@ -117,7 +91,7 @@ export default defineComponent({
 
 p {
   position: relative;
-  top: 90px;
+  top: 3rem;
   color: #2e2e2e;
   font-family: "DM Sans", sans-serif;
   font-weight: bold;
