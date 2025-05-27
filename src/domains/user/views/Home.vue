@@ -9,16 +9,15 @@ import { falar } from '@/utils/falar';
   <ion-page>
     <ion-content :fullscreen="true">
       <div>
-        <Header color="#249B9B" />
-
-
+        <Header />
       </div>
 
       <div id="container">
         <Card
-          @click="falar('cliqueparaprosseguir', 'essassaosuasatividades', '/att/roadMap')"
-          title="Educação Ambiental" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#66FF7E" />
-        <!-- <Card  @click="falar('raciocinio lóogico em manutenção')"  
+          @click="falar('cliqueparaprosseguir', 'essassaosuasatividades', '/categorias')"
+          title="Educação Ambiental" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
+        
+          <!-- <Card  @click="falar('raciocinio lóogico em manutenção')"  
             title="Raciocínio Lógico"
             image="img/curuja.png"
             link="#"
