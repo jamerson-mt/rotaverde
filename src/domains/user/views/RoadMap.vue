@@ -24,8 +24,8 @@ const mostrarStatus = ref(false);
 
         
             <div class="container">
-                <div class="component component1" @click="falar('descobrirprimeiraletra', 'descobrirprimeiraletra2', 'pt/letras'), mostrarStatus = true">
-                    <Exercise img="img/icons/letras.png" title="palavras Iniciais" link="pt/letras" />
+                <!-- <div class="component component1" @click="falar('descobrirprimeiraletra', 'descobrirprimeiraletra2', 'pt/letras'), mostrarStatus = true">
+                    <Exercise img="img/icons/letras.png" title="palavras Iniciais" link="pt/letras" /> -->
                    
                     <!-- <StatusAtt v-if="mostrarStatus"
                         image="img/roadMap/book.png"
@@ -41,7 +41,7 @@ const mostrarStatus = ref(false);
                         aproveitamento="80%"
                         link="pt/letras"
                     /> -->
-                </div>
+                <!-- </div> -->
 
                 <div class="component component2" @click="falar('descobrirpalavra', 'descobrirpalavra2', 'pt/escrita')">
                     <Exercise img="img/roadMap/pencil.png" title="Escrita" link="pt/escrita" />
