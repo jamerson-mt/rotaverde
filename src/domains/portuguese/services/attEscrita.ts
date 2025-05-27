@@ -17,7 +17,7 @@ export interface Exercise {
 
 export const exercise: Exercise[] = [
     {
-        title:"Qual a escrita correta para a imagem abaixo?",
+        title:"Selecione a palavra correspondente a imagem",
         image: "../img/peixe.jpg",
         options: {
             option1: "peixe",
@@ -28,7 +28,7 @@ export const exercise: Exercise[] = [
         }
     },
     {
-        title: "Qual a escrita correta para a imagem abaixo?",
+        title: "Selecione a palavra correspondente a imagem",
         image: "../img/marisco.jpg",
         options: {
             option1: "marisco",
@@ -39,7 +39,7 @@ export const exercise: Exercise[] = [
         }
     },
     {
-        title: "Qual a escrita correta para a imagem abaixo?",
+        title: "Selecione a palavra correspondente a imagem",
         image: "../img/canoapesca.jpg",
         options: {
             option1: "canoa",
@@ -51,7 +51,7 @@ export const exercise: Exercise[] = [
 
     },
     {
-        title: "Qual a escrita correta para a imagem abaixo?",
+        title: "Selecione a palavra correspondente a imagem",
         image: "../img/anzol.jpg",
         options: {
             option1: "anzol",
@@ -62,7 +62,7 @@ export const exercise: Exercise[] = [
         }
     },
     {
-        title: "Qual a escrita correta para a imagem abaixo?",
+        title: "Selecione a palavra correspondente a imagem",
         image: "../img/rio.jpg",
         options: {
             option1: "rio",

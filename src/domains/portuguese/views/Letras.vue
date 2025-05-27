@@ -4,6 +4,7 @@ import { ref, watch, onMounted } from 'vue';
 import { exercise } from "../services/attLetras.ts";
 import AttEscrita from "@/domains/portuguese/components/AttLetras.vue";
 import HeaderLevels from '../components/HeaderLevels.vue';
+import Header from '@/domains/reasoning/components/Header.vue';
 import { speakText } from '../services/fala.js';
 import { useRouter } from 'vue-router';
 import { defineEmits } from 'vue';
@@ -58,7 +59,7 @@ function attNext() {
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-                <HeaderLevels :frase="frase" />
+                <Header />
             </div>
             <div id="options">
                 <AttEscrita

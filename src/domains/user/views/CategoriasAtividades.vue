@@ -2,6 +2,7 @@
 import { IonPage, IonContent } from '@ionic/vue';
 import Header from '@/domains/reasoning/components/Header.vue';
 import CardLevels from '../components/CardLevels.vue';
+import TitleCategories from '../components/TitleCategories.vue';
 import Exercise from '@/domains/portuguese/components/Exercise.vue';
 import { falar } from '@/utils/falar';
 
@@ -13,10 +14,10 @@ import { falar } from '@/utils/falar';
             <div>
                 <Header />
             </div>
-            <RouterLink to="/home" class="title">
-                <img src="/public/img/IconsHome/voltar.png">
-                <p>Educação Ambiental</p>
-            </RouterLink>
+            <TitleCategories
+                title="Educação Ambiental"
+                route="/categorias"    
+            />
             <div class="content">
                 <CardLevels 
                     title="Letrinhas da Natureza"
@@ -28,13 +29,13 @@ import { falar } from '@/utils/falar';
                     time="10 min"
                 />
                  <CardLevels 
-                    title="Letrinhas da Natureza"
-                    descripition="Aprenda as letras com palavras sobre a natureza"
-                    competencia="EF01LP02"
+                    title="Sílabas Sustentáveis"
+                    descripition="Forme palavras com sílabas sobre reciclagem e meio ambiente"
+                    competencia="EF01LP04"
                     image="img/icons/letras.png"
                     link="/att/roadMap"
                     atividade="Português"
-                    time="5 min"
+                    time="20 min"
                 />
             </div>
         </ion-content>

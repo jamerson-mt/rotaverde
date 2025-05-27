@@ -2,7 +2,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { ref, watch, onMounted } from 'vue';
 import { exercise } from "../services/attEscrita.js";
-
+import TitleCategories from '@/domains/user/components/TitleCategories.vue';
 import AttEscrita from "@/domains/portuguese/components/AttEscrita.vue";
 import { speakText } from '../services/fala.js';
 import { useRouter } from 'vue-router';
@@ -15,8 +15,6 @@ const emit = defineEmits<{
 
 const frase = ref('null');
 const router = useRouter();
-
-
 
 let itemArray = ref(0);
 let att = ref(exercise[itemArray.value]);
@@ -48,7 +46,13 @@ function attNext() {
 <template>
     <ion-page>
         <ion-content :fullscreen="true">
-           
+            <div class="header">
+                <img src="/public/img/IconsHome/relogio.png">
+                <TitleCategories class="title"
+                    title="Atividade"
+                    route="/att/roadMap"    
+                />
+            </div>
             <div id="options">
                 <AttEscrita :title="att.title" :image="att.image" :options="att.options" />
                 <div id="button">
@@ -64,6 +68,24 @@ function attNext() {
 </template>
 
 <style scoped>
+
+.header img {
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.title {
+    margin: 3rem auto 1rem auto;
+}
+
+::v-deep(.title p) {
+  font-size: 2rem;
+  margin-left: 5px;
+}
+
 #button {
     display: flex;
     justify-content: center;

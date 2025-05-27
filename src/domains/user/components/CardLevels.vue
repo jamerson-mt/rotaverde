@@ -29,7 +29,6 @@ const props = defineProps ({
         type: String,
         required: false,
     }
-
 });
 
 </script>
@@ -99,17 +98,9 @@ const props = defineProps ({
     border-radius: 5px;
 }
 
-p,.link{
-    font-family: "DM Sans", sans-serif;
-    font-weight: 500;
-    font-style: medium;
-    font-size: 18px;
-    margin-left: 20px;
-}
-
 p {
-    font-size: 18px;
-    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-bottom: 5px;
 }
 
 .link {
@@ -138,7 +129,7 @@ p {
 
 .img p {
     position: relative;
-    top: -5%;
+    top: -8%;
     width: 100%;
     font-family: "DM Sans", sans-serif;
     border-radius: 10px;

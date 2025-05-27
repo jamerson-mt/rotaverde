@@ -32,6 +32,7 @@ const props = defineProps ({
     justify-content: center;
 }
 
+
 .title img {
     width: 2rem;
     height: 2rem;
