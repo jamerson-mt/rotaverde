@@ -32,7 +32,7 @@ const props = defineProps({
 <style scoped>
 .image {
     position: relative;
-    top: 3.5rem;
+
     background-color: #2cadad;
     width: 5.5rem;
     height: 5.5rem;
@@ -50,7 +50,7 @@ const props = defineProps({
 
 p {
     position: relative;
-    top: 4rem;
+    top: 1rem;
     font-size: 0.8rem;
     font-weight: bold;
     text-align: center;

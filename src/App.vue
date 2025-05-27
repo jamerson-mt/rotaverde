@@ -4,7 +4,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
 
 <template>
   <ion-app class="container">
-    <ion-router-outlet />
+    <ion-router-outlet /> 
   </ion-app>
 </template>
 
@@ -15,5 +15,6 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
   box-sizing: border-box;
   height: 100vh;
   width: 100vw;
+  overflow: hidden; /* Impede a rolagem no container principal */
 }
 </style>

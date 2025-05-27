@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { IonPage } from '@ionic/vue';
-import HeaderLevels from '@/domains/portuguese/components/HeaderLevels.vue';
   
 import CardLevels from '@/domains/user/components/CardLevels.vue';
-import { ref } from 'vue'
-import Buzina from "@/domains/auth/components/Buzina.vue"
 
-const frase = ref('selecione o módulo'); 
 
 </script>
 
@@ -14,11 +10,7 @@ const frase = ref('selecione o módulo');
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-            <Buzina frase="selecione o módulo Descobrindo palavras"/>
             </div>
-            <br></br>
-            <br></br>
-            <br></br>
             <div class="container">
                 <CardLevels 
                 title="Descobrindo palavras"

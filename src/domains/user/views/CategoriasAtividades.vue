@@ -3,8 +3,6 @@ import { IonPage, IonContent } from '@ionic/vue';
 import Header from '@/domains/reasoning/components/Header.vue';
 import CardLevels from '../components/CardLevels.vue';
 import TitleCategories from '../components/TitleCategories.vue';
-import Exercise from '@/domains/portuguese/components/Exercise.vue';
-import { falar } from '@/utils/falar';
 
 </script>
 
@@ -15,8 +13,8 @@ import { falar } from '@/utils/falar';
                 <Header />
             </div>
             <TitleCategories
-                title="Educação Ambiental"
-                route="/categorias"    
+                title="Português"
+                route="/home"    
             />
             <div class="content">
                 <CardLevels 
@@ -27,7 +25,8 @@ import { falar } from '@/utils/falar';
                     link="/att/roadMap"
                     atividade="Português"
                     time="10 min"
-                />
+                    :isBlocked="false"/>
+
                  <CardLevels 
                     title="Sílabas Sustentáveis"
                     descripition="Forme palavras com sílabas sobre reciclagem e meio ambiente"
@@ -36,7 +35,11 @@ import { falar } from '@/utils/falar';
                     link="/att/roadMap"
                     atividade="Português"
                     time="20 min"
+                    :isBlocked="true"
                 />
+
+                
+                
             </div>
         </ion-content>
     </ion-page>
@@ -69,6 +72,22 @@ import { falar } from '@/utils/falar';
     align-items: center;
     justify-content: center;
     margin-top: 1rem; 
+    gap: 2em;
+    overflow-y: auto; /* Permite rolagem vertical */
+    padding-right: 1rem; /* Espaço para evitar sobreposição com a barra de rolagem */
+}
+
+.content::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: #249B9B; /* Cor da barra de rolagem */
+    border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background-color: #1E7A7A; /* Cor ao passar o mouse */
 }
 
 </style>

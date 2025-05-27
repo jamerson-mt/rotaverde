@@ -15,7 +15,11 @@ import { falar } from '@/utils/falar';
       <div id="container">
         <Card
           @click="falar('cliqueparaprosseguir', 'essassaosuasatividades', '/categorias')"
-          title="Educação Ambiental" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
+          title="Português" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
+          
+          <Card
+          @click="falar('cliqueparaprosseguir', 'essassaosuasatividades', '/categorias')"
+          title="Matemática" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
         
           <!-- <Card  @click="falar('raciocinio lóogico em manutenção')"  
             title="Raciocínio Lógico"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-const props = defineProps ({
+defineProps({
     title: { 
         type: String,
         required: true
@@ -28,13 +28,21 @@ const props = defineProps ({
     time: {
         type: String,
         required: false,
+    },
+    isBlocked: {
+        type: Boolean,
+        required: true
     }
 });
 
 </script>
 
 <template>
-    <RouterLink class="card" :to="link">
+    <div class="card" :class="{ blocked: isBlocked }">
+        <div v-if="isBlocked" class="overlay">
+            <p class="blocked-text">Bloqueado</p>
+        </div>
+        <RouterLink v-else :to="link" class="card">
             <div class="content">
                 <p class="title">{{ title }}</p>
                 <p class="descripition">{{ descripition }}</p>
@@ -44,7 +52,8 @@ const props = defineProps ({
                 <p>{{ time }}</p>
                 <img :alt="title" :src="image" />
             </div>
-    </RouterLink>
+        </RouterLink>
+    </div>
 </template>
 
 <style scoped>
@@ -53,8 +62,10 @@ const props = defineProps ({
 
 
 .card {
-    margin-top: 1rem;
+    margin-top: 0rem;
     display: flex;
+    flex-direction: row;
+    position: relative;
     width: 90%;
     height: 170px;
     background-color: #249B9B;
@@ -63,8 +74,38 @@ const props = defineProps ({
     margin-bottom: auto;
 }
 
+.card.blocked {
+    position: relative;
+    background-color: #249B9B; /* Mantém a cor original */
+    opacity: 1; /* Exibe normalmente */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Sobreposição translúcida */
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.blocked-text {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
 .content {
-    width: 74%;
+    width: 70%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -92,7 +133,9 @@ const props = defineProps ({
     font-style: medium;
     font-size: 15px;
     margin-left: 20px;
+    align-self: flex-start;
     color: #0F3D3E;
+
     background-color: #ECC055;
     text-align: center;
     border-radius: 5px;
@@ -115,10 +158,12 @@ p {
 }
 
 .img {
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 10px;
     width: 4rem;
     height: 4rem;
 }
