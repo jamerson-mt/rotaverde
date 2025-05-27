@@ -6,7 +6,7 @@ import { defineProps, ref } from 'vue';
 import { defineEmits } from 'vue';
 
 const fala = () => {
-    speakText('qual a escrita correta da imagem abaixo?');
+    speakText('Selecione a palavra correspondente a imagem');
 }
 
 const props = defineProps({
@@ -48,8 +48,8 @@ function responseValue(value: boolean){
         }, 3000);
 
     } else {
-        speakText('Você errou, tente novamente');
-        modalMessage.value = 'Você errou, tente novamente';
+        speakText('Que pena, vamos tente novamente');
+        modalMessage.value = 'Que pena, vamos tente novamente';
         isModalOpen.value = true;
 
         setTimeout(() => {
@@ -69,7 +69,7 @@ function closeModal() {
         <div class="flex flex-col items-center justify-center">
             <h1 id="title">{{ title }}</h1>
            <div class="div-fone"> <i class="fone"><img src="img/fala.png" alt="" @click="fala"></i></div>
-            <img  class="w-48" :src="image">
+            <img id="img" class="w-48" :src="image">
             <div class="w-full">
                 <Options @submit="responseValue"
                     :options1="options.option1" 
@@ -87,14 +87,23 @@ function closeModal() {
 <style scoped>
 #title {
     font-size: 1.5rem;
-    font-weight: bold;
     margin: 1rem;
+    text-align: center;
 }
+
+#img {
+    border: solid 2px #b8ada4;
+    border-radius: 10px;
+    margin-top: -1.5rem;
+    margin-bottom: 1rem;
+}
+
 .fone{
     height: 50px;
     width: 50px;
 
 }
+
 .div-fone{
     display: flex;
     flex-direction: row;

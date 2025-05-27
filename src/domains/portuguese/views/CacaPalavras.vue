@@ -5,6 +5,7 @@ import NavBotton from "@/domains/portuguese/components/NavBotton.vue";
 import Quadro from "@/domains/portuguese/components/Quadro.vue";
 import { Portugues, portugues } from "../store/cacaPalavras";
 import { ref } from 'vue'
+import Header from "@/domains/reasoning/components/Header.vue";
 
 const frase = ref('CaçaPalavras');
 
@@ -22,7 +23,7 @@ const refresh = () => {
   <ion-page>
     <ion-content :fullscreen="true">
       <div>
-        <HeaderLevels frase="CaçaPalavras" />
+        <Header />
       </div>
       <div class="content">
         <div class="quadro">
