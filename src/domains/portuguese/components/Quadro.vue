@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import router from "@/router";
-import { defineProps, reactive } from "vue";
-
+import { defineProps, reactive, toRefs, watch } from "vue";
 
 const props = defineProps<{
   quadro: {
@@ -20,7 +19,8 @@ const props = defineProps<{
   };
 }>();
 
-const contador = 0;
+const { quadro } = toRefs(props);
+
 
 let letraAcendida = reactive(
   [
@@ -33,8 +33,14 @@ let letraAcendida = reactive(
   ].map((linha) => linha.map(() => false))
 );
 
+watch(quadro, () => {
+  letraAcendida = reactive(
+    Object.values(quadro.value).map((linha) => linha.map(() => false))
+  );
+});
+
 const confirme = (() =>{
-  if(o1 && o2 && o3 && o4){
+  if(o1 && o2 && o3 && o4 && o5 && o6){
     document.querySelectorAll(".aviso").forEach(function (valor) {
       valor.setAttribute("style", "opacity:0.8; z-index:2;");
     });
@@ -44,41 +50,66 @@ const confirme = (() =>{
     
   }
 });
+
+const pronunciar = (texto: string) => {
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(texto);
+  utterance.lang = "pt-BR";
+  synth.speak(utterance);
+};
+
 const check = (option: number) => {
   if (option == 1) {
     document.querySelectorAll(".rede").forEach(function (valor) {
       valor.setAttribute("style", "background-color:gray; color:white;");
- 
     });
     o1 = true;
-        confirme();
+    pronunciar("rede");
+    confirme();
   } else if (option == 2) {
     document.querySelectorAll(".peixe").forEach(function (valor) {
- valor.setAttribute("style", "background-color:gray; color:white;");
-    
+      valor.setAttribute("style", "background-color:gray; color:white;");
     });
     o2 = true;
-        confirme();
+    pronunciar("peixe");
+    confirme();
   } else if (option == 3) {
     document.querySelectorAll(".rio").forEach(function (valor) {
- valor.setAttribute("style", "background-color:gray; color:white;");
-    
+      valor.setAttribute("style", "background-color:gray; color:white;");
     });
     o3 = true;
-        confirme();
+    pronunciar("rio");
+    confirme();
   } else if (option == 4) {
     document.querySelectorAll(".canoa").forEach(function (valor) {
- valor.setAttribute("style", "background-color:gray; color:white;");
-    
+      valor.setAttribute("style", "background-color:gray; color:white;");
     });
     o4 = true;
+    pronunciar("canoa");
+    confirme();
+  } else if (option == 5) {
+    document.querySelectorAll(".árvore").forEach(function (valor) {
+      valor.setAttribute("style", "background-color:gray; color:white;");
+    });
+    o5 = true;
+    pronunciar("árvore");
+    confirme();
+  } else if (option == 6) {
+    document.querySelectorAll(".solar").forEach(function (valor) {
+      valor.setAttribute("style", "background-color:gray; color:white;");
+    });
+    o6 = true;
+    pronunciar("solar");
     confirme();
   }
 };
-let o1 : Boolean = false;
-let o2 : Boolean = false;
-let o3 : Boolean = false;
-let o4 : Boolean = false;
+
+let o1: boolean = false;
+let o2: boolean = false;
+let o3: boolean = false;
+let o4: boolean = false;
+let o5: boolean = false;
+let o6: boolean = false;
 
 const verificaCombinacao = () => {
   if (
@@ -113,11 +144,31 @@ const verificaCombinacao = () => {
   ) {
    
     check(4); //bola
+  } else if (
+    letraAcendida[4][0] == true &&
+    letraAcendida[4][1] == true &&
+    letraAcendida[4][2] == true &&
+    letraAcendida[4][3] == true &&
+    letraAcendida[4][4] == true &&
+    letraAcendida[4][5] == true &&
+    o5 == false
+  ) {
+    check(5); // Árvore
+  } else if (
+    letraAcendida[5][0] == true &&
+    letraAcendida[5][1] == true &&
+    letraAcendida[5][2] == true &&
+    letraAcendida[5][3] == true &&
+    letraAcendida[5][4] == true &&
+    o6 == false
+  ) {
+    check(6); // Solar
   }
 };
 
 const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
   letraAcendida[linhaIndex][celulaIndex] = !letraAcendida[linhaIndex][celulaIndex];
+  pronunciar(props.quadro[`line${linhaIndex + 1}` as keyof typeof props.quadro][celulaIndex]);
   verificaCombinacao();
 };
 </script>
@@ -196,5 +247,33 @@ const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
 
 .letra-acendida {
   background-color: yellow;
+}
+
+@media (max-width: 375px) {
+  .content {
+    gap: 10px;
+  }
+
+  .quadro {
+    gap: 3px;
+  }
+
+  .linha {
+    gap: 5px;
+  }
+
+  .celula {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .letra-acendida {
+    background-color: yellow;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
 }
 </style>

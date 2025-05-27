@@ -14,24 +14,28 @@ export interface Portugues {
         word2: string[];
         word3: string[];
         word4: string[];
+        word5: string[];
+        word6: string[];
     }
 }
 
 export const portugues: Portugues[] = [
     {
         frame: {
-            line1: ["R","E","D","E","A"],
-            line2: ["P","E","I","X","E"],
-            line3: ["R","I","O","I","S"],
-            line4: ["C","A","N","O","A"],
-            line5: ["A","V","E","R","N"],
-            line6: ["S","O","L","T","A"]
+            line1: ["R", "E", "D", "E", "S", "O"],
+            line2: ["P", "E", "I", "X", "E", "L"],
+            line3: ["R", "I", "O", "A", "R", "E"],
+            line4: ["C", "A", "N", "O", "A", "C"],
+            line5: ["Á", "R", "V", "O", "R", "E"],
+            line6: ["S", "O", "L", "A", "R", "E"],
         },
         words: {
-            word1: ["R","E","D","E"],
-            word2: ["P","E","I","X","E"],
-            word3: ["R","i","o"],
-            word4: ["C","A","N","O","A"],
+            word1: ["R", "E", "D", "E"],
+            word2: ["P", "E", "I", "X", "E"],
+            word3: ["R", "I", "O"],
+            word4: ["C", "A", "N", "O", "A"],
+            word5: ["Á", "R", "V", "O", "R", "E"],
+            word6: ["S", "O", "L", "A", "R"],
         }
     }
 ];

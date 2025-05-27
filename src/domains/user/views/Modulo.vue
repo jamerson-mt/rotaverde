@@ -17,6 +17,7 @@ import CardLevels from '@/domains/user/components/CardLevels.vue';
                 image="img/abc.png"
                 link="/att/roadMap"
                 atividade="letras"
+                :isBlocked="false"
                 />
             </div>
         </ion-content>

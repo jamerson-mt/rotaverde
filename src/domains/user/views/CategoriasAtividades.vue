@@ -20,7 +20,8 @@ import TitleCategories from '../components/TitleCategories.vue';
                 <CardLevels 
                     title="Letrinhas da Natureza"
                     descripition="Aprenda as letras com palavras sobre a natureza"
-                    competencia="EF01LP02"
+                    competencia="EF01LP01"
+                    competencia2="EF01LP02"
                     image="img/icons/letras.png"
                     link="/att/roadMap"
                     atividade="Português"

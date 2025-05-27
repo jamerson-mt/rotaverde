@@ -25,6 +25,10 @@ defineProps({
         type: String,
         required: false,
     },
+    competencia2: {
+        type: String,
+        required: false,
+    },
     time: {
         type: String,
         required: false,
@@ -46,7 +50,10 @@ defineProps({
             <div class="content">
                 <p class="title">{{ title }}</p>
                 <p class="descripition">{{ descripition }}</p>
-                <p class="competencia">{{ competencia }}</p>
+                <div class="competencias">
+                    <p v-if="competencia" class="competencia">{{ competencia }}</p>
+                    <p v-if="competencia2" class="competencia">{{ competencia2 }}</p>
+                </div>
             </div>
             <div class="img">
                 <p>{{ time }}</p>
@@ -126,19 +133,24 @@ defineProps({
     font-size: 15px;
 }
 
+.competencias {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 0px;
+}
+
 .competencia {
-    width: 40%;
     font-family: "DM Sans", sans-serif;
     font-weight: 500;
     font-style: medium;
     font-size: 15px;
-    margin-left: 20px;
-    align-self: flex-start;
     color: #0F3D3E;
-
     background-color: #ECC055;
     text-align: center;
     border-radius: 5px;
+    padding: 5px 5px;
+    white-space: nowrap;
 }
 
 p {
