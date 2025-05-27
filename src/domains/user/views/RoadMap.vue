@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { IonPage, IonContent } from '@ionic/vue';
-import HeaderLevels from '@/domains/portuguese/components/HeaderLevels.vue';
+import Header from '@/domains/reasoning/components/Header.vue';
 import Exercise from '@/domains/portuguese/components/Exercise.vue';
-
+import TitleCategories from '../components/TitleCategories.vue';
 import { falar } from '@/utils/falar';
-
-
 
 </script>
 
@@ -13,8 +11,14 @@ import { falar } from '@/utils/falar';
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
-                <HeaderLevels frase="selecione uma das atividades" />
+                <Header />
             </div>
+
+            <TitleCategories
+                title="Educação Ambiental"
+                route="/categorias"    
+            />
+            
             <div class="container">
                 <div class="component1" @click="falar('descobrirprimeiraletra', 'descobrirprimeiraletra2', 'pt/letras')">
                     <Exercise img="img/icons/letras.png" title="palavras Iniciais" link="pt/letras" />
@@ -46,6 +50,7 @@ import { falar } from '@/utils/falar';
 </template>
 
 <style scoped>
+
 .container {
     display: flex;
     flex-direction: column;
@@ -53,11 +58,7 @@ import { falar } from '@/utils/falar';
     margin-top: -10rem;
     gap: 30px;
     align-items: center;
+    z-index: 0;
 }
 
-.NavBotton {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
 </style>

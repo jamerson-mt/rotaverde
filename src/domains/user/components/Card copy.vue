@@ -44,10 +44,8 @@ export default defineComponent({
     <div class="confetti-container">
       <span v-for="n in 20" :key="n" class="confetti"></span>
     </div>
-    <img class="nuvem" src="/public/img/IconsHome/nuvem.png" alt="">
     <div class="button" :to="link2">
-      <div class="content">
-        <img src="/public/img/iconesSustentabilidade/arvore.png" alt="">
+      <div>
         <p>{{ title }}</p>
       </div>
     </div>
@@ -79,18 +77,10 @@ export default defineComponent({
   flex-wrap: wrap;
   border-radius: 10px;
   animation: pulse 2s infinite;
+  background-image: url('public/img/fundo1.jpg');
   background-size: cover;       
   background-position: center;   
-  background-repeat: no-repeat; 
-}
-
-.nuvem {
-  position: relative;
-  top: -5px;
-  left: 35px;
-  width: 60px;
-  height: auto;
-  z-index: 0;
+  background-repeat: no-repeat;  
 }
 
 #figura {
@@ -99,30 +89,18 @@ export default defineComponent({
   left: 5px;
 }
 
-.content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-}
-
-.content img {
-  width: 50px;
-}
-
-.content p {
+p {
   position: relative;
-  /* top: 3rem;  */
-  color: #1E1E1E;
+  top: 3rem;
+  color: #2e2e2e;
   font-family: "DM Sans", sans-serif;
   font-weight: bold;
   padding: 0px;
   line-height: 20px;
   font-style: normal;
   font-size: 16px;
+  margin-left: 10px;
   text-transform: capitalize;
-  text-align: center;
 }
 
 .clicked {

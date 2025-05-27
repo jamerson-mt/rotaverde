@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/Home.vue';
 import PerfilPage from '../views/Perfil.vue';
-import Modulo from '../views/Modulo.vue';
+import Modulo from '../views/CategoriasAtividades.vue';
 import RoadMap from '../views/RoadMap.vue';
 import ShowContents from '@/domains/active/user/views/contents/ShowContents.vue';
 
@@ -16,8 +16,13 @@ const userRoutes: Array<RouteRecordRaw> = [
         name: 'Perfil',
         component: PerfilPage
     },
+    // {
+    //     path: '/att/modulo',
+    //     name: 'Modulo de atividade',
+    //     component: Modulo
+    // }, 
     {
-        path: '/att/modulo',
+        path: '/categorias',
         name: 'Modulo de atividade',
         component: Modulo
     },

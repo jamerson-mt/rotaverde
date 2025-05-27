@@ -1,13 +1,13 @@
 <script setup>
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
-import { falar } from '@/utils/falar'; // Corrigida a importação
+import { falar } from '@/utils/falar'; 
 </script>
 
 <template>
-    <ion-page>
+    <ion-page class="welcome">
         <ion-content class="content">
             <div class="img">
-                <img src="/public/img/fundoarvore.jpg" alt="Rota Verde" />
+                <img src="/public/img/capas/itapissuma.png" alt="Rota Verde" />
             </div>
             <div class="back"></div>
             <div class="title">
@@ -15,38 +15,26 @@ import { falar } from '@/utils/falar'; // Corrigida a importação
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
                 <IonButton class="route" @click="falar('boasvindas', 'essaesuaarea','/home')">Vamos lá</IonButton>
             </div>
-
+            <div class="icons">
+                <img src="/public/img/iconesSustentabilidade/reciclagem.png" />
+                <img src="/public/img/iconesSustentabilidade/planta.png" />
+                <img src="/public/img/iconesSustentabilidade/agua.png" />
+            </div>
         </ion-content>
     </ion-page>
 </template>
 
 <style scoped>
+
 .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: black;
+    --background: #0F3D3E;
     color: white;
     overflow: hidden;
-}
-
-.img {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.img img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
 }
 
 .back {
@@ -58,7 +46,7 @@ import { falar } from '@/utils/falar'; // Corrigida a importação
     margin: 0px;
     width: 100%;
     height: 60%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(24, 24, 24, 0.5), rgb(15, 15, 15, 0.7), rgb(15, 15, 15));
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(24, 24, 24, 0.5), rgb(15, 15, 15, 0.7), rgb(15, 15, 15)); */
     z-index: -1;
 }
 
@@ -93,14 +81,33 @@ import { falar } from '@/utils/falar'; // Corrigida a importação
 
 .route {
     position: relative;
-    --background: rgb(16, 190, 45);
+    --background: #137E60;
     color: azure;
-    width: 90%;
+    width: 100%;
     height: 4.3rem;
     margin: 0 auto;
     font-weight: bold;
-    border-radius: 5px;
+    --border-radius: 3px;
     padding: 10px 20px;
     text-align: center;
 }
+
+.icons {
+    position: relative;
+    top: 38%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.icons img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 </style>
