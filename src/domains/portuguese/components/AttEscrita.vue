@@ -48,8 +48,8 @@ function responseValue(value: boolean){
         }, 3000);
 
     } else {
-        speakText('Que pena, vamos tente novamente');
-        modalMessage.value = 'Que pena, vamos tente novamente';
+        speakText('Ops, vamos tentar novamente');
+        modalMessage.value = 'Que pena, tente novamente';
         isModalOpen.value = true;
 
         setTimeout(() => {
