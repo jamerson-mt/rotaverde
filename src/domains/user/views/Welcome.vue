@@ -20,11 +20,23 @@ import { falar } from '@/utils/falar';
                 <img src="/public/img/iconesSustentabilidade/planta.png" />
                 <img src="/public/img/iconesSustentabilidade/agua.png" />
             </div>
+            <div class="fala" @click="falar('boasvindas', '','#')">
+                <img src="/public/img/fala.png">
+            </div>
         </ion-content>
     </ion-page>
 </template>
 
 <style scoped>
+.fala {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
 
 .content {
     display: flex;
