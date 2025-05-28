@@ -8,6 +8,7 @@ import Header from '@/domains/reasoning/components/Header.vue';
 import { speakText } from '../services/fala.js';
 import { useRouter } from 'vue-router';
 import { defineEmits } from 'vue';
+import { falar } from '@/utils/falar';
 
 const emit = defineEmits<{
   (e: 'nextAtt' | 'closeModal', payload: boolean): void; 
@@ -20,7 +21,8 @@ const fala = () => {
 }
 
 setTimeout(() => {
-    speakText('qual a inicial correta da imagem abaixo?');
+    falar('attLetras', '', '#')
+    // speakText('qual a inicial correta da imagem abaixo?');
 }, 1000);
 
 let itemArray = ref(0);

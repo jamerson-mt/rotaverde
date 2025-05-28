@@ -6,6 +6,7 @@ import { defineProps, ref } from 'vue';
 import { defineEmits } from 'vue';
 import { defineExpose } from 'vue';
 import { watch } from 'vue';
+import { falar } from '@/utils/falar';
 
 
 const props = defineProps({
@@ -55,7 +56,7 @@ function responseValue(value: boolean) {
         }, 15000);
         
     } else {
-        speakText('Você errou. Quer tentar novamente?');
+        speakText('Ops. Vamos tentar novamente?');
         modalMessage.value = 'Vamos novamente?';
         isModalOpen.value = true;
 
@@ -87,7 +88,7 @@ watch(() => props.closeModalProps, (newValue) => {
         <h1 id="title">Descubra a letra inicial da imagem</h1>
     </header>
         <div class="flex flex-col items-center justify-center">
-           <div class="div-fone"> <i class="fone"><img src="img/fala.png" alt="" @click="fala"></i></div>
+           <div class="div-fone"> <i class="fone"><img src="img/fala.png" alt="" @click="falar('attLetras', '', '#')"></i></div>
             <img id="img" class="w-48" :src="image">
             <div class="w-full">
                 <Options @submit="responseValue"
