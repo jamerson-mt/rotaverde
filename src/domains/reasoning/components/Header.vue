@@ -10,6 +10,9 @@ function goToHome() {
 
 <template>
     <div class="toolbar">
+      <div class="user" @click="falar('boasvindas', '','#')">
+          <img src="/public/img/capas/user2.png">
+      </div>
       <div id="image" class="w-16 left-5" @click="goToHome">
         <img src="/public/img/iconesSustentabilidade/reciclagem.png" />
         <img src="/public/img/iconesSustentabilidade/planta.png" />
@@ -46,6 +49,20 @@ function goToHome() {
   height: 150px;
   width: 100%;
   background-color: #137E60;
+}
+
+.user {
+    position: absolute;
+    top: 25px;
+    left: 12px;
+    width: 3rem;
+    cursor: pointer;
+}
+
+.user img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 
 #title {
