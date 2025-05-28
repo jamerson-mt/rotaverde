@@ -43,10 +43,10 @@ const mostrarStatus = ref(false);
                     /> -->
                 <!-- </div> -->
 
-                <div class="component component2" @click="falar('descobrirpalavra', 'descobrirpalavra2', 'pt/escrita')">
+                <div class="component component2" @click="falar('descobrirpalavra', '', 'pt/escrita')">
                     <Exercise img="img/roadMap/pencil.png" title="Escrita" link="pt/escrita" />
                 </div>
-                <div class="component component3" @click="falar('cacapalavras', 'cacapalavras2', 'pt/cacapalavras')">
+                <div class="component component3" @click="falar('novos/attCacaPalavras', 'novos/cacaPalavras', 'pt/cacapalavras')">
                     <Exercise img="img/roadMap/book.png" title="Caça palavras" link="pt/cacapalavras" />
                 </div>
                 <!-- <div class="component4" >

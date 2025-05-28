@@ -4,10 +4,9 @@ import { speakText , speek } from '@/domains/portuguese/services/fala';
 import Modal from "@/domains/technology/components/Modal.vue";
 import { defineProps, ref } from 'vue';
 import { defineEmits } from 'vue';
+import { falar } from "@/utils/falar";
 
-const fala = () => {
-    speakText('Selecione a palavra correspondente a imagem');
-}
+falar('novos/attPalavraCorreta', '', '#');
 
 const props = defineProps({
     title: {
@@ -48,8 +47,8 @@ function responseValue(value: boolean){
         }, 3000);
 
     } else {
-        speakText('Que pena, vamos tente novamente');
-        modalMessage.value = 'Que pena, vamos tente novamente';
+        speakText('Ops, tente novamente');
+        modalMessage.value = 'Que pena, vamos tentar novamente';
         isModalOpen.value = true;
 
         setTimeout(() => {
@@ -68,7 +67,7 @@ function closeModal() {
 <template>
         <div class="flex flex-col items-center justify-center">
             <h1 id="title">{{ title }}</h1>
-           <div class="div-fone"> <i class="fone"><img src="img/fala.png" alt="" @click="fala"></i></div>
+           <div class="div-fone"> <i class="fone"><img src="img/fala.png" alt="" @click="falar('novos/attPalavraCorreta', '', '#')"></i></div>
             <img id="img" class="w-48" :src="image">
             <div class="w-full">
                 <Options @submit="responseValue"

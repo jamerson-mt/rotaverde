@@ -3,6 +3,7 @@ import { IonPage, IonContent } from '@ionic/vue';
 import Header from '@/domains/reasoning/components/Header.vue';
 import CardLevels from '../components/CardLevels.vue';
 import TitleCategories from '../components/TitleCategories.vue';
+import { falar } from '@/utils/falar';
 
 </script>
 
@@ -18,6 +19,7 @@ import TitleCategories from '../components/TitleCategories.vue';
             />
             <div class="content">
                 <CardLevels 
+                    @click="falar('novos/roadMap', '', '#')"
                     title="Letrinhas da Natureza"
                     descripition="Aprenda as letras com palavras sobre a natureza"
                     competencia="EF01LP01"
