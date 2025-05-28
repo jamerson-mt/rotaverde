@@ -20,6 +20,9 @@ import { falar } from '@/utils/falar';
                 <img src="/public/img/iconesSustentabilidade/planta.png" />
                 <img src="/public/img/iconesSustentabilidade/agua.png" />
             </div>
+            <div class="user" @click="falar('boasvindas', '','#')">
+                <img src="/public/img/capas/user.png">
+            </div>
             <div class="fala" @click="falar('boasvindas', '','#')">
                 <img src="/public/img/fala.png">
             </div>
@@ -37,6 +40,19 @@ import { falar } from '@/utils/falar';
     cursor: pointer;
 }
 
+.user {
+    position: absolute;
+    top: 25px;
+    left: 12px;
+    width: 2.9rem;
+    cursor: pointer;
+}
+
+.user img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
 
 .content {
     display: flex;
