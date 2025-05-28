@@ -20,6 +20,17 @@ const showInfoCard = ref(false);
 const toggleInfoCard = () => {
   showInfoCard.value = !showInfoCard.value;
 };
+
+const pronunciar = (texto: string) => {
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(texto);
+  utterance.lang = "pt-BR";
+  synth.speak(utterance);
+};
+
+const pronunciarPalavra = (palavra: string[]) => {
+  pronunciar(palavra.join(""));
+};
 </script>
 
 <template>
@@ -33,7 +44,11 @@ const toggleInfoCard = () => {
           <Quadro :quadro="frame" :palavras="words" />
         </div>
         <div class="palavras">
-          <div v-for="(palavra, palavraIndex) in words" :key="palavraIndex">
+          <div
+            v-for="(palavra, palavraIndex) in words"
+            :key="palavraIndex"
+            @click="pronunciarPalavra(palavra)"
+          >
             <p :class="palavra.join('').toLowerCase()">{{ palavra.join("") }}</p>
           </div>
         </div>

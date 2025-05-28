@@ -1,7 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from "@ionic/vue";
-import { RouterLink } from "vue-router";
 
 export default defineComponent({
   components: { IonCard, IonCardContent, IonCardHeader, IonCardTitle },
@@ -44,8 +43,8 @@ export default defineComponent({
     <div class="confetti-container">
       <span v-for="n in 20" :key="n" class="confetti"></span>
     </div>
-    <img class="nuvem" src="/public/img/IconsHome/nuvem.png" alt="">
     <div class="button" :to="link2">
+      <img class="nuvem" src="/public/img/IconsHome/nuvem.png" alt="">
       <div class="content">
         <img src="/public/img/iconesSustentabilidade/arvore.png" alt="">
         <p>{{ title }}</p>
@@ -71,7 +70,7 @@ export default defineComponent({
 
 .container {
   display: flex;
-  width: 145px;
+  width: 155px;
   height: 155px;
   margin: 15px auto;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
@@ -109,6 +108,17 @@ export default defineComponent({
 
 .content img {
   width: 50px;
+}
+.button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
 }
 
 .content p {

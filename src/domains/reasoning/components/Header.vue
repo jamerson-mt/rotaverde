@@ -1,9 +1,16 @@
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goToHome() {
+  router.push('/');
+}
 </script>
 
 <template>
     <div class="toolbar">
-      <div id="image" class="w-16 left-5">
+      <div id="image" class="w-16 left-5" @click="goToHome">
         <img src="/public/img/iconesSustentabilidade/reciclagem.png" />
         <img src="/public/img/iconesSustentabilidade/planta.png" />
         <img src="/public/img/iconesSustentabilidade/agua.png" />
@@ -15,11 +22,11 @@
         </div>
         <div>
           <img src="/public/img/IconsHome/formatura.png" alt="">
-          <p>2° Ano</p>
+          <p>1° Ano</p>
         </div>
         <div>
           <img src="/public/img/IconsHome/vitoria.png" alt="">
-          <p>2° Lugar</p>
+          <p>1° Lugar</p>
         </div>
       </div>
   </div>

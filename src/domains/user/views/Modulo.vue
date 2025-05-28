@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IonPage } from '@ionic/vue';
-  
+
 import CardLevels from '@/domains/user/components/CardLevels.vue';
 
 
@@ -11,8 +11,8 @@ import CardLevels from '@/domains/user/components/CardLevels.vue';
         <ion-content :fullscreen="true">
             <div>
             </div>
-            <div class="container">
-                <CardLevels 
+            <div class="container"  >
+                <CardLevels  
                 title="Descobrindo palavras"
                 image="img/abc.png"
                 link="/att/roadMap"

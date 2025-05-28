@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { falar } from '@/utils/falar';
 
 defineProps({
     title: { 
@@ -46,7 +47,7 @@ defineProps({
         <div v-if="isBlocked" class="overlay">
             <p class="blocked-text">Bloqueado</p>
         </div>
-        <RouterLink v-else :to="link" class="card">
+        <div v-else  class="card" @click="falar('modulo1pt','suasatividades','/att/roadMap')">
             <div class="content">
                 <p class="title">{{ title }}</p>
                 <p class="descripition">{{ descripition }}</p>
@@ -59,7 +60,7 @@ defineProps({
                 <p>{{ time }}</p>
                 <img :alt="title" :src="image" />
             </div>
-        </RouterLink>
+        </div>
     </div>
 </template>
 
