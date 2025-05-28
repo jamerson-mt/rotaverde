@@ -24,7 +24,7 @@ const mostrarStatus = ref(false);
 
         
             <div class="container">
-                <div class="component component1" @click="falar('descobrirprimeiraletra', 'descobrirprimeiraletra2', 'pt/letras'), mostrarStatus = true">
+                <div id="comp" class="component component1" @click="falar('descobrirprimeiraletra', 'descobrirprimeiraletra2', 'pt/letras'), mostrarStatus = true">
                     <Exercise img="img/icons/letras.png" title="palavras Iniciais" link="pt/letras" />
                    
                     <!-- <StatusAtt v-if="mostrarStatus"
@@ -43,10 +43,10 @@ const mostrarStatus = ref(false);
                     /> -->
                 </div>
 
-                <div class="component component2" @click="falar('descobrirpalavra', 'descobrirpalavra2', 'pt/escrita')">
+                <div id="comp1" class="component component2" @click="falar('descobrirpalavra', 'descobrirpalavra2', 'pt/escrita')">
                     <Exercise img="img/roadMap/pencil.png" title="Escrita" link="pt/escrita" />
                 </div>
-                <div class="component component3" @click="falar('cacapalavras', 'cacapalavras2', 'pt/cacapalavras')">
+                <div id="comp3" class="component component3" @click="falar('cacapalavras', 'cacapalavras2', 'pt/cacapalavras')">
                     <Exercise img="img/roadMap/book.png" title="Caça palavras" link="pt/cacapalavras" />
                 </div>
                 <!-- <div class="component4" >
@@ -120,6 +120,11 @@ const mostrarStatus = ref(false);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Intensifica a sombra */
     background-color: #137E60;
     color: #e0f7e9;
+}
+
+#comp, #comp1, #comp3 {
+    width: 11rem;
+    cursor: pointer; 
 }
 
 </style>
