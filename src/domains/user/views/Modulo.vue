@@ -2,7 +2,6 @@
 import { IonPage } from '@ionic/vue';
 
 import CardLevels from '@/domains/user/components/CardLevels.vue';
-import FalarComponent from '@/domains/user/components/FalarComponent.vue'; // Importação do FalarComponent
 
 </script>
 

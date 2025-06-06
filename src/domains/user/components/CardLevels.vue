@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 import FalarComponent from '@/components/FalarComponent.vue';
 
 defineProps({
@@ -41,6 +41,18 @@ defineProps({
     }
 });
 
+import type FalarComponentType from '@/components/FalarComponent.vue';
+
+const falarComponent = ref<InstanceType<typeof FalarComponentType> | null>(null);
+
+function handleCardClick(card: string, module: string, activity: string, link: string) {
+    if (falarComponent.value) {
+        falarComponent.value.falar(card, module, activity, link);
+    } else {
+        console.error('FalarComponent não está disponível.');
+    }
+}
+
 </script>
 
 <template>
@@ -49,7 +61,7 @@ defineProps({
             <p class="blocked-text">Bloqueado</p>
         </div>
       
-        <div v-else class="card" @click="$refs.falarComponent.falar('card1','modulo1pt', 'suasatividades', link)">
+        <div v-else class="card" @click="handleCardClick('card1', 'modulo1pt', 'suasatividades', link)">
             <div class="content">
                 <p class="title">{{ title }}</p>
                 <p class="descripition">{{ descripition }}</p>

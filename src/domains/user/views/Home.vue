@@ -3,9 +3,26 @@ import { IonContent, IonPage } from '@ionic/vue';
 import Card from '@/domains/user/components/Card.vue';
 import Header from '@/domains/reasoning/components/Header.vue';
 import FalarComponent from '@/components/FalarComponent.vue';
-import { inject } from "vue";
+import { inject, ref } from "vue";
 
 const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está sendo injetado corretamente
+const falarComponent = ref(null);
+
+function handleFalar(language: string, subject: string, module: string, route: string) {
+    if (falarComponent.value) {
+        falarComponent.value.falar(language, subject, module, route);
+    } else {
+        console.error('FalarComponent não está disponível.');
+    }
+}
+
+function stopAudio() {
+    if (falarComponent.value) {
+        falarComponent.value.stopAudio();
+    } else {
+        console.error('FalarComponent não está disponível.');
+    }
+}
 </script>
 
 <template>
@@ -17,15 +34,15 @@ const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está se
 
       <div id="container">
         <Card
-          @click="$refs.falarComponent.falar('pt','portugues', 'seusmodulos', '/categorias')"
+          @click="handleFalar('pt', 'portugues', 'seusmodulos', '/categorias')"
           title="Português" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
           
         <Card
-          @click="$refs.falarComponent.falar('mt','matematica', 'seusmodulos', '/categorias')"
+          @click="handleFalar('mt', 'matematica', 'seusmodulos', '/categorias')"
           title="Matemática" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
 
         <Card
-          @click="$refs.falarComponent.falar('cc','ciencias', 'seusmodulos', '/categorias')"
+          @click="handleFalar('cc', 'ciencias', 'seusmodulos', '/categorias')"
           title="Ciências" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
 
         <!-- Certifique-se de que o componente está sempre presente -->
@@ -34,7 +51,7 @@ const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está se
         <!-- Exibe o GIF e o botão "Cancelar" quando o áudio está tocando -->
         <div v-if="isPlaying" class="audio-overlay">
           <img src="/public/img/speaker.gif" alt="Executando áudio" />
-          <button class="cancel-button" @click="$refs.falarComponent.stopAudio()">Cancelar</button>
+          <button class="cancel-button" @click="stopAudio">Cancelar</button>
         </div>
       </div>
     </ion-content>
