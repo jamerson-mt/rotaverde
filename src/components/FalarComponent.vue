@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isPlaying" class="audio-overlay">
-      <img src="/public/img/speaker.gif" alt="Executando áudio" />
+      <img src="/public/img/carpa.gif" alt="Executando áudio" />
       <button class="cancel-button" @click="stopAudio">Cancelar</button>
     </div>
   </div>
