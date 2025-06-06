@@ -2,7 +2,10 @@
 import { IonContent, IonPage } from '@ionic/vue';
 import Card from '@/domains/user/components/Card.vue';
 import Header from '@/domains/reasoning/components/Header.vue';
-import { falar } from '@/utils/falar';
+import FalarComponent from '@/components/FalarComponent.vue';
+import { inject } from "vue";
+
+const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está sendo injetado corretamente
 </script>
 
 <template>
@@ -14,38 +17,25 @@ import { falar } from '@/utils/falar';
 
       <div id="container">
         <Card
-          @click="falar('portugues', 'seusmodulos', '/categorias')"
+          @click="$refs.falarComponent.falar('pt','portugues', 'seusmodulos', '/categorias')"
           title="Português" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
           
-          <Card
-          @click="falar('matematica', 'seusmodulos', '/categorias')"
+        <Card
+          @click="$refs.falarComponent.falar('mt','matematica', 'seusmodulos', '/categorias')"
           title="Matemática" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
 
-          <Card
-          @click="falar('ciencias', 'seusmodulos', '/categorias')"
+        <Card
+          @click="$refs.falarComponent.falar('cc','ciencias', 'seusmodulos', '/categorias')"
           title="Ciências" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
-        
-          <!-- <Card  @click="falar('raciocinio lóogico em manutenção')"  
-            title="Raciocínio Lógico"
-            image="img/curuja.png"
-            link="#"
-            link2="#"
-            bgc="#F6A9CB"
-          />
-          <Card  @click="falar('matemática em manutenção')"  
-            title="Matemática"
-            image="img/curuja.png"
-            link="#"
-            link2="#"
-            bgc="#59CAFC"
-          />
-          <Card  @click="falar('tecnologia em manutenção')"  
-            title="Tecnologia"
-            image="img/curuja.png"
-            link="#"
-            link2="#"
-            bgc="#F07979"
-          /> -->
+
+        <!-- Certifique-se de que o componente está sempre presente -->
+        <FalarComponent ref="falarComponent" />
+
+        <!-- Exibe o GIF e o botão "Cancelar" quando o áudio está tocando -->
+        <div v-if="isPlaying" class="audio-overlay">
+          <img src="/public/img/speaker.gif" alt="Executando áudio" />
+          <button class="cancel-button" @click="$refs.falarComponent.stopAudio()">Cancelar</button>
+        </div>
       </div>
     </ion-content>
   </ion-page>
@@ -59,7 +49,34 @@ import { falar } from '@/utils/falar';
   padding: 0px 20px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+}
 
-  /* overflow: hidden;  */
+.audio-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.audio-overlay img {
+  width: 100px;
+  height: 100px;
+}
+
+.cancel-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>

@@ -1,6 +1,9 @@
 <script setup>
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
-import { falar } from '@/utils/falar'; 
+import FalarComponent from '@/components/FalarComponent.vue';
+import { inject } from "vue";
+
+const isPlaying = inject("isPlaying");
 </script>
 
 <template>
@@ -13,18 +16,18 @@ import { falar } from '@/utils/falar';
             <div class="title">
                 <h1>Rota Verde</h1>
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
-                <IonButton class="route" @click="falar('boasvindas', 'essaesuaarea','/home')">Vamos lá</IonButton>
+                <IonButton class="route" @click="$refs.falarComponent.falar('welcome','boasvindas', 'essaesuaarea', '/home')">Vamos lá</IonButton>
             </div>
             <div class="icons">
                 <img src="/public/img/iconesSustentabilidade/reciclagem.png" />
                 <img src="/public/img/iconesSustentabilidade/planta.png" />
                 <img src="/public/img/iconesSustentabilidade/agua.png" />
             </div>
-            <div class="user" @click="falar('boasvindas', '','#')">
-                <img src="/public/img/capas/user.png">
+            <div class="user">
+                <FalarComponent ref="falarComponent" audio1="" audio2="" rota="#" />
             </div>
-            <div class="fala" @click="falar('boasvindas', '','#')">
-                <img src="/public/img/fala.png">
+            <div class="fala" v-if="isPlaying">
+                <FalarComponent ref="falarComponent" audio1="" audio2="" rota="#" />
             </div>
         </ion-content>
     </ion-page>
@@ -138,4 +141,32 @@ import { falar } from '@/utils/falar';
     border-radius: 50%;
 }
 
+.audio-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.audio-overlay img {
+    width: 100px;
+    height: 100px;
+}
+
+.cancel-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 </style>

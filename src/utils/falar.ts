@@ -1,5 +1,8 @@
 import { nextPage } from "./nextPage";
 
+// Esta função foi migrada para o componente FalarComponent.
+// Recomenda-se usar o componente FalarComponent para reutilização e melhor integração com Vue.
+
 let cc = 0;
 let currentAudio: HTMLAudioElement | null = null;
 

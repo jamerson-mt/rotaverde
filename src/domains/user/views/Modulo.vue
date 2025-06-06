@@ -2,7 +2,7 @@
 import { IonPage } from '@ionic/vue';
 
 import CardLevels from '@/domains/user/components/CardLevels.vue';
-
+import FalarComponent from '@/domains/user/components/FalarComponent.vue'; // Importação do FalarComponent
 
 </script>
 
@@ -10,9 +10,11 @@ import CardLevels from '@/domains/user/components/CardLevels.vue';
     <ion-page>
         <ion-content :fullscreen="true">
             <div>
+                <FalarComponent ref="falarComponent" /> <!-- Adicionando a referência ao FalarComponent -->
             </div>
-            <div class="container"  >
-                <CardLevels  
+            <div class="container">
+                <CardLevels 
+               
                 title="Descobrindo palavras"
                 image="img/abc.png"
                 link="/att/roadMap"
@@ -21,7 +23,6 @@ import CardLevels from '@/domains/user/components/CardLevels.vue';
                 />
             </div>
         </ion-content>
-         
     </ion-page>
 </template>
 

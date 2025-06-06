@@ -34,11 +34,14 @@ import '@ionic/vue/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-
+import audioManager from "@/utils/audioManager";
 
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
+
+// Fornece o gerenciador de áudio globalmente
+app.provide("audioManager", audioManager);
 
 router.isReady().then(() => {
   app.mount('#app');

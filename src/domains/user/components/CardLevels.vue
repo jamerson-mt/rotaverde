@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { falar } from '@/utils/falar';
+import { defineProps } from 'vue';
+import FalarComponent from '@/components/FalarComponent.vue';
 
 defineProps({
     title: { 
@@ -47,7 +48,8 @@ defineProps({
         <div v-if="isBlocked" class="overlay">
             <p class="blocked-text">Bloqueado</p>
         </div>
-        <div v-else  class="card" @click="falar('modulo1pt','suasatividades','/att/roadMap')">
+      
+        <div v-else class="card" @click="$refs.falarComponent.falar('card1','modulo1pt', 'suasatividades', link)">
             <div class="content">
                 <p class="title">{{ title }}</p>
                 <p class="descripition">{{ descripition }}</p>
@@ -61,7 +63,10 @@ defineProps({
                 <img :alt="title" :src="image" />
             </div>
         </div>
+        <FalarComponent ref="falarComponent" />
+        
     </div>
+   
 </template>
 
 <style scoped>
