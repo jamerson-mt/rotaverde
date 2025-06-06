@@ -6,7 +6,15 @@ import FalarComponent from '@/components/FalarComponent.vue';
 import { inject, ref } from "vue";
 
 const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está sendo injetado corretamente
-const falarComponent = ref(null);
+
+// Defina a interface para o tipo do FalarComponent
+interface FalarComponentType {
+    falar(language: string, subject: string, module: string, route: string): void;
+    stopAudio(): void;
+}
+
+// Tipar a referência do FalarComponent
+const falarComponent = ref<FalarComponentType | null>(null);
 
 function handleFalar(language: string, subject: string, module: string, route: string) {
     if (falarComponent.value) {
