@@ -4,6 +4,7 @@ import PerfilPage from '../views/Perfil.vue';
 import Modulo from '../views/CategoriasAtividades.vue';
 import RoadMap from '../views/RoadMap.vue';
 import ShowContents from '@/domains/active/user/views/contents/ShowContents.vue';
+import Form from '../views/Form.vue';
 
 const userRoutes: Array<RouteRecordRaw> = [
     {
@@ -32,6 +33,7 @@ const userRoutes: Array<RouteRecordRaw> = [
       component: RoadMap
     },
 
+    { path: '/user/form', component: Form },
     { path: "/user/contents/m/:id", component: ShowContents }
 ]
 
