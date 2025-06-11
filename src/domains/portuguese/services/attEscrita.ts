@@ -27,6 +27,17 @@ export const exercise: Exercise[] = [
             response: "peixe",
         }
     },
+     {
+        title:"Qual a escrita correta para a imagem abaixo?",
+        image: "../img/casa.png",
+        options: {
+            option1: "casa",
+            option2: "caza",
+            option3: "casaa",
+            option4: "cazaa",
+            response: "casa",
+        }
+    },
     {
         title: "Selecione a palavra correspondente a imagem",
         image: "../img/marisco.jpg",
@@ -36,6 +47,17 @@ export const exercise: Exercise[] = [
             option3: "mariscu",
             option4: "marissco",
             response: "marisco",
+        }
+    },
+    {
+        title: "Qual a escrita correta para a imagem abaixo?",
+        image: "../img/curuja.png",
+        options: {
+            option1: "coruja",
+            option2: "curuja",
+            option3: "corujaa",
+            option4: "curujaa",
+            response: "coruja",
         }
     },
     {
@@ -62,6 +84,17 @@ export const exercise: Exercise[] = [
         }
     },
     {
+        title: "Qual a escrita correta para a imagem abaixo?",
+        image: "../img/carro.jpg",
+        options: {
+            option1: "caro",
+            option2: "carro",
+            option3: "corra",
+            option4: "corre",
+            response: "carro",
+        }
+    },
+    {
         title: "Selecione a palavra correspondente a imagem",
         image: "../img/rio.jpg",
         options: {
@@ -71,5 +104,6 @@ export const exercise: Exercise[] = [
             option4: "ril",
             response: "rio",
         }
-    }
+    },
+   
 ];

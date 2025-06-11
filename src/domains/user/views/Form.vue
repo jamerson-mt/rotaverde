@@ -23,11 +23,11 @@ export default {
         { pergunta: 'Você possui acesso à internet?', key: 'internet', tipo: 'select', opcoes: ['Sim', 'Não'] },
         { pergunta: 'Você possui celular?', key: 'celular', tipo: 'select', opcoes: ['Sim', 'Não'] },
         { pergunta: 'Qual o seu nível de conhecimento com o uso de telefones celulares?', key: 'digital', tipo: 'select', opcoes: 
-        ['Nenhum (Nunca utilizei um celular ou não sei como usá-lo)',
-         'Básico (Sei atender e fazer ligações, e talvez enviar mensagens simples)',
-         'Intermediário (Consigo usar funções como câmera, WhatsApp e fazer pesquisas na internet)',
-         'Bom (Sei instalar aplicativos, usar redes sociais, configurar o aparelho e resolver pequenos problemas)',
-         'Avançado (Tenho facilidade com novas funções, uso recursos como armazenamento em nuvem e configurações de acessibilidade)'
+        ['Nenhum',
+         'Básico',
+         'Intermediário',
+         'Bom',
+         'Avançado'
         ]},
         { pergunta: 'Qual o seu nível de leitura e escrita?', key: 'escrita', tipo: 'select', opcoes: ['Não sei ler', 'Leio com dificuldade', 'Leitura e escrita básica', 'Leitura e escrita fluente'] }
       ],
