@@ -16,7 +16,7 @@ const isPlaying = inject("isPlaying");
             <div class="title">
                 <h1>Rota Verde</h1>
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
-                <IonButton class="route" @click="$refs.falarComponent.falar('welcome','boasvindas', 'essaesuaarea', '/home')">Vamos lá</IonButton>
+                <IonButton class="route" @click="$refs.falarComponent.falar('welcome','boasvindas', '', '/user/form')">Vamos lá</IonButton>
             </div>
             <div class="icons">
                 <img src="/public/img/iconesSustentabilidade/reciclagem.png" />

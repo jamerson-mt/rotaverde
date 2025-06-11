@@ -1,5 +1,13 @@
 <script>
+import { falar } from '@/utils/falar';
 import { IonContent } from '@ionic/vue';
+import { onMounted } from 'vue';
+import { defineComponent, inject, ref } from "vue";
+import router from '@/router';
+import { useRoute } from 'vue-router';
+import audioManager from '@/utils/audioManager';
+
+const route = useRoute();
 
 export default {
   data() {
@@ -14,7 +22,13 @@ export default {
         { pergunta: 'Onde você mora?', key: 'cidade', tipo: 'select', opcoes: ['Igarassu', 'Itapissuma', 'Outro'] },
         { pergunta: 'Você possui acesso à internet?', key: 'internet', tipo: 'select', opcoes: ['Sim', 'Não'] },
         { pergunta: 'Você possui celular?', key: 'celular', tipo: 'select', opcoes: ['Sim', 'Não'] },
-        { pergunta: 'Qual o seu nível de conhecimento com o uso de telefones celulares?', key: 'digital', tipo: 'select', opcoes: ['Nenhum', 'Básico', 'Intermediário', 'Avançado'] },
+        { pergunta: 'Qual o seu nível de conhecimento com o uso de telefones celulares?', key: 'digital', tipo: 'select', opcoes: 
+        ['Nenhum (Nunca utilizei um celular ou não sei como usá-lo)',
+         'Básico (Sei atender e fazer ligações, e talvez enviar mensagens simples)',
+         'Intermediário (Consigo usar funções como câmera, WhatsApp e fazer pesquisas na internet)',
+         'Bom (Sei instalar aplicativos, usar redes sociais, configurar o aparelho e resolver pequenos problemas)',
+         'Avançado (Tenho facilidade com novas funções, uso recursos como armazenamento em nuvem e configurações de acessibilidade)'
+        ]},
         { pergunta: 'Qual o seu nível de leitura e escrita?', key: 'escrita', tipo: 'select', opcoes: ['Não sei ler', 'Leio com dificuldade', 'Leitura e escrita básica', 'Leitura e escrita fluente'] }
       ],
       formData: {}
@@ -26,14 +40,16 @@ export default {
     }
   },
   watch: {
-    // Lê a pergunta sempre que a pergunta atual mudar
     currentQuestionIndex(newIndex) {
       const novaPergunta = this.perguntas[newIndex]?.pergunta;
       if (novaPergunta) this.falar(novaPergunta);
     }
   },
   mounted() {
-    this.falar(this.perguntaAtual.pergunta); // lê a primeira pergunta ao carregar
+    this.falar('Quero te conhecer melhor!');
+    setTimeout(() => {
+      this.falar(this.perguntaAtual.pergunta);
+    }, 3000);
   },
   methods: {
     nextQuestion() {
@@ -42,7 +58,7 @@ export default {
         this.currentQuestionIndex++;
       } else {
         console.log('Por favor, responda antes de continuar.');
-        this.falar('Por favor, responda antes de continuar.');
+        this.falar('Por favor, responda para continuar.');
       }
     },
     handleSubmit() {
@@ -58,14 +74,14 @@ export default {
         .then((res) => res.json())
         .then(() => {
           console.log('Formulário enviado com sucesso!');
-          this.falar('Formulário enviado com sucesso!');
           this.currentQuestionIndex = 0;
           this.formData = {};
-          this.$router.push('/home');
+          audioManager.playAudio(`public/audio/essaesuaarea.wav`);
+          router.push('/home');
         })
         .catch((err) => {
-          console.error('Erro ao enviar o formulário:', err);
-          this.falar('Erro ao enviar o formulário.');
+          audioManager.playAudio(`public/audio/essaesuaarea.wav`);
+          router.push('/home');
         });
     },
     falar(texto) {
@@ -85,6 +101,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <template>
