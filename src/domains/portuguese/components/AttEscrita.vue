@@ -4,9 +4,11 @@ import { speakText , speek } from '@/domains/portuguese/services/fala';
 import Modal from "@/domains/technology/components/Modal.vue";
 import { defineProps, ref } from 'vue';
 import { defineEmits } from 'vue';
+import audioManager from '@/utils/audioManager';
 
 const fala = () => {
-    speakText('Selecione a palavra correspondente a imagem');
+    // speakText('Selecione a palavra correspondente a imagem');
+    audioManager.playAudio(`public/audio/palavracorreta.wav`);
 }
 
 const props = defineProps({
@@ -80,7 +82,7 @@ function closeModal() {
                 />
             </div>
 
-            <Modal :isOpen="isModalOpen" @close="closeModal" :modalMessage = "modalMessage" />
+            <!-- <Modal :isOpen="isModalOpen" @close="closeModal" :modalMessage = "modalMessage" /> -->
         </div>
 </template>
 

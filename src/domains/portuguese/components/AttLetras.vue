@@ -45,26 +45,31 @@ function attNext () {
 
 function responseValue(value: boolean) {
     if (value) {
-        speakText('Parabéns, quer seguir para a próxima atividade?');
+        speakText('Parabéns, você acertou!');
+        nextAtt.value = true;
         modalMessage.value = 'Seguir para a próxima atividade?';
         attIsCorrect.value = true;
         isModalOpen.value = true;
         
         setTimeout(() => {
-            closeModal();
+            // closeModal();
             attNext();
-        }, 15000);
+        }, 5000);
         
     } else {
         speakText('Ops. Vamos tentar novamente?');
         modalMessage.value = 'Vamos novamente?';
         isModalOpen.value = true;
 
-        setTimeout(() => {
-            closeModal();
-        }, 15000);
+        // setTimeout(() => {
+        //     closeModal();
+        // }, 15000);
     }
 }
+
+// function lerImg(frase){
+//     falar(frase);
+// }
 
 
 function closeModal() {
@@ -89,7 +94,7 @@ watch(() => props.closeModalProps, (newValue) => {
     </header>
         <div class="flex flex-col items-center justify-center">
            <div class="div-fone"> <i class="fone"><img src="img/fala.png" alt="" @click="falar('attLetras', '', '#')"></i></div>
-            <img id="img" class="w-48" :src="image">
+            <img id="img" class="w-48" :src="image" >
             <div class="w-full">
                 <Options @submit="responseValue"
                     :options1="options.option1" 
@@ -99,13 +104,13 @@ watch(() => props.closeModalProps, (newValue) => {
                 />
             </div>
 
-            <Modal 
+            <!-- <Modal 
                 :isOpen="isModalOpen" 
                 @close="closeModal" 
                 :modalMessage="modalMessage" 
                 @nextAtt="attNext" 
                 :correct="attIsCorrect"
-            />
+            /> -->
         </div>
 </template>
 
