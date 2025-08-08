@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from "@ionic/vue";
 import Quadro from "@/domains/portuguese/components/Quadro.vue";
-import {portugues } from "../store/cacaPalavras";
-import { ref } from 'vue'
+import { portugues } from "../store/cacaPalavras";
+import { ref } from "vue";
 import Header from "@/domains/reasoning/components/Header.vue";
-
 
 const { frame, words } = portugues[0];
 
@@ -12,10 +11,10 @@ const refresh = () => {
   document.querySelectorAll(".aviso").forEach(function (valor) {
     valor.setAttribute("style", "opacity:0; z-index:0;");
   });
-  
 };
 
 const showInfoCard = ref(false);
+const selectedWord = ref<null | { image: string; description: string }>(null);
 
 const toggleInfoCard = () => {
   showInfoCard.value = !showInfoCard.value;
@@ -28,8 +27,9 @@ const pronunciar = (texto: string) => {
   synth.speak(utterance);
 };
 
-const pronunciarPalavra = (palavra: string[]) => {
-  pronunciar(palavra.join(""));
+const pronunciarPalavra = (palavra: { letters: string[]; image: string; description: string }) => {
+  pronunciar(palavra.letters.join(""));
+  selectedWord.value = { image: palavra.image, description: palavra.description };
 };
 </script>
 
@@ -45,12 +45,16 @@ const pronunciarPalavra = (palavra: string[]) => {
         </div>
         <div class="palavras">
           <div
-            v-for="(palavra, palavraIndex) in words"
+            v-for="(palavra, palavraIndex) in Object.values(words)"
             :key="palavraIndex"
             @click="pronunciarPalavra(palavra)"
           >
-            <p :class="palavra.join('').toLowerCase()">{{ palavra.join("") }}</p>
+            <p :class="palavra.letters.join('').toLowerCase()">{{ palavra.letters.join("") }}</p>
           </div>
+        </div>
+        <div v-if="selectedWord" class="word-details">
+          <img :src="selectedWord.image" alt="Imagem da palavra" />
+          <p>{{ selectedWord.description }}</p>
         </div>
       </div>
       <div class="aviso">
@@ -236,5 +240,22 @@ const pronunciarPalavra = (palavra: string[]) => {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.word-details {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.word-details img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.word-details p {
+  font-size: 1.2em;
+  color: #333;
 }
 </style>

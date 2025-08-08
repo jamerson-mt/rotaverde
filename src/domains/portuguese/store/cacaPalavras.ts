@@ -10,12 +10,36 @@ export interface Portugues {
         line6: string[];
     };
     words: {
-        word1: string[];
-        word2: string[];
-        word3: string[];
-        word4: string[];
-        word5: string[];
-        word6: string[];
+        word1: {
+            letters: string[];
+            image: string;
+            description: string;
+        };
+        word2: {
+            letters: string[];
+            image: string;
+            description: string;
+        };
+        word3: {
+            letters: string[];
+            image: string;
+            description: string;
+        };
+        word4: {
+            letters: string[];
+            image: string;
+            description: string;
+        };
+        word5: {
+            letters: string[];
+            image: string;
+            description: string;
+        };
+        word6: {
+            letters: string[];
+            image: string;
+            description: string;
+        };
     }
 }
 
@@ -30,12 +54,36 @@ export const portugues: Portugues[] = [
             line6: ["S", "O", "L", "A", "R", "E"],
         },
         words: {
-            word1: ["R", "E", "D", "E"],
-            word2: ["P", "E", "I", "X", "E"],
-            word3: ["R", "I", "O"],
-            word4: ["C", "A", "N", "O", "A"],
-            word5: ["Á", "R", "V", "O", "R", "E"],
-            word6: ["S", "O", "L", "A", "R"],
+            word1: {
+                letters: ["R", "E", "D", "E"],
+                image: "public/img/rede.jpg",
+                description: "Uma rede de pesca usada para capturar peixes."
+            },
+            word2: {
+                letters: ["P", "E", "I", "X", "E"],
+                image: "public/img/peixe.jpg",
+                description: "Um animal aquático que vive nos rios e oceanos."
+            },
+            word3: {
+                letters: ["R", "I", "O"],
+                image: "public/img/rio.jpg",
+                description: "Um curso de água que flui em direção ao mar."
+            },
+            word4: {
+                letters: ["C", "A", "N", "O", "A"],
+                image: "public/img/canoa.jpg",
+                description: "Uma pequena embarcação usada para navegar em rios."
+            },
+            word5: {
+                letters: ["Á", "R", "V", "O", "R", "E"],
+                image: "public/img/arvore.png",
+                description: "Uma planta grande com tronco, galhos e folhas."
+            },
+            word6: {
+                letters: ["S", "O", "L", "A", "R"],
+                image: "public/img/solar.jpg",
+                description: "Relacionado à energia proveniente do sol."
+            }
         }
     }
 ];

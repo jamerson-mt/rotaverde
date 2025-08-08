@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from "@/router";
-import { defineProps, reactive, toRefs, watch } from "vue";
+import { defineProps, reactive, ref, toRefs, watch } from "vue";
 
 const props = defineProps<{
   quadro: {
@@ -12,15 +12,15 @@ const props = defineProps<{
     line6: string[];
   };
   palavras: {
-    word1: string[];
-    word2: string[];
-    word3: string[];
-    word4: string[];
+    [key: string]: {
+      letters: string[];
+      image: string;
+      description: string;
+    };
   };
 }>();
 
 const { quadro } = toRefs(props);
-
 
 let letraAcendida = reactive(
   [
@@ -39,67 +39,37 @@ watch(quadro, () => {
   );
 });
 
-const confirme = (() =>{
-  if(o1 && o2 && o3 && o4 && o5 && o6){
+const selectedWord = ref<null | { image: string; description: string }>(null);
+
+const confirme = (() => {
+  if (o1 && o2 && o3 && o4 && o5 && o6) {
     document.querySelectorAll(".aviso").forEach(function (valor) {
       valor.setAttribute("style", "opacity:0.8; z-index:2;");
     });
-    setTimeout(()=>{
-      router.push('/home');
-    },2000);
-    
+    setTimeout(() => {
+      router.push("/home");
+    }, 2000);
   }
 });
 
-const pronunciar = (texto: string) => {
+const pronunciar = (texto: string, descricao?: string) => {
   const synth = window.speechSynthesis;
-  const utterance = new SpeechSynthesisUtterance(texto);
+  const utterance = new SpeechSynthesisUtterance(texto + (descricao ? `. ${descricao}` : ""));
   utterance.lang = "pt-BR";
   synth.speak(utterance);
 };
 
 const check = (option: number) => {
-  if (option == 1) {
-    document.querySelectorAll(".rede").forEach(function (valor) {
+  const palavraKeys = Object.keys(props.palavras);
+  const palavra = props.palavras[palavraKeys[option - 1]];
+
+  if (palavra) {
+    document.querySelectorAll(`.${palavra.letters.join("").toLowerCase()}`).forEach(function (valor) {
       valor.setAttribute("style", "background-color:gray; color:white;");
     });
-    o1 = true;
-    pronunciar("rede");
-    confirme();
-  } else if (option == 2) {
-    document.querySelectorAll(".peixe").forEach(function (valor) {
-      valor.setAttribute("style", "background-color:gray; color:white;");
-    });
-    o2 = true;
-    pronunciar("peixe");
-    confirme();
-  } else if (option == 3) {
-    document.querySelectorAll(".rio").forEach(function (valor) {
-      valor.setAttribute("style", "background-color:gray; color:white;");
-    });
-    o3 = true;
-    pronunciar("rio");
-    confirme();
-  } else if (option == 4) {
-    document.querySelectorAll(".canoa").forEach(function (valor) {
-      valor.setAttribute("style", "background-color:gray; color:white;");
-    });
-    o4 = true;
-    pronunciar("canoa");
-    confirme();
-  } else if (option == 5) {
-    document.querySelectorAll(".árvore").forEach(function (valor) {
-      valor.setAttribute("style", "background-color:gray; color:white;");
-    });
-    o5 = true;
-    pronunciar("árvore");
-    confirme();
-  } else if (option == 6) {
-    document.querySelectorAll(".solar").forEach(function (valor) {
-      valor.setAttribute("style", "background-color:gray; color:white;");
-    });
-    o6 = true;
-    pronunciar("solar");
+
+    selectedWord.value = { image: palavra.image, description: palavra.description };
+    pronunciar(palavra.letters.join(""), palavra.description);
     confirme();
   }
 };
@@ -116,34 +86,39 @@ const verificaCombinacao = () => {
     letraAcendida[0][0] == true &&
     letraAcendida[0][1] == true &&
     letraAcendida[0][2] == true &&
-    letraAcendida[0][3] == true  && o1 == false) {
-    check(1); // casa
-   
+    letraAcendida[0][3] == true &&
+    o1 == false
+  ) {
+    o1 = true;
+    check(1);
   } else if (
     letraAcendida[1][0] == true &&
     letraAcendida[1][1] == true &&
     letraAcendida[1][2] == true &&
-    letraAcendida[1][3] == true && 
-    letraAcendida[1][4] == true && o2 == false
+    letraAcendida[1][3] == true &&
+    letraAcendida[1][4] == true &&
+    o2 == false
   ) {
-    check(2); //mala
-   
+    o2 = true;
+    check(2);
   } else if (
     letraAcendida[2][0] == true &&
     letraAcendida[2][1] == true &&
-    letraAcendida[2][2] == true  && o3 == false
+    letraAcendida[2][2] == true &&
+    o3 == false
   ) {
-    check(3); //copo
-   
+    o3 = true;
+    check(3);
   } else if (
     letraAcendida[3][0] == true &&
     letraAcendida[3][1] == true &&
     letraAcendida[3][2] == true &&
     letraAcendida[3][3] == true &&
-    letraAcendida[3][4] == true && o4 == false
+    letraAcendida[3][4] == true &&
+    o4 == false
   ) {
-   
-    check(4); //bola
+    o4 = true;
+    check(4);
   } else if (
     letraAcendida[4][0] == true &&
     letraAcendida[4][1] == true &&
@@ -153,7 +128,8 @@ const verificaCombinacao = () => {
     letraAcendida[4][5] == true &&
     o5 == false
   ) {
-    check(5); // Árvore
+    o5 = true;
+    check(5);
   } else if (
     letraAcendida[5][0] == true &&
     letraAcendida[5][1] == true &&
@@ -162,7 +138,8 @@ const verificaCombinacao = () => {
     letraAcendida[5][4] == true &&
     o6 == false
   ) {
-    check(6); // Solar
+    o6 = true;
+    check(6);
   }
 };
 
@@ -170,6 +147,10 @@ const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
   letraAcendida[linhaIndex][celulaIndex] = !letraAcendida[linhaIndex][celulaIndex];
   pronunciar(props.quadro[`line${linhaIndex + 1}` as keyof typeof props.quadro][celulaIndex]);
   verificaCombinacao();
+};
+
+const closeCard = () => {
+  selectedWord.value = null;
 };
 </script>
 
@@ -199,6 +180,11 @@ const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
           {{ letra }}
         </div>
       </div>
+    </div>
+    <div v-if="selectedWord" class="word-details">
+      <button class="close-button" @click="closeCard">X</button>
+      <img :src="selectedWord.image" alt="Imagem da palavra" />
+      <p>{{ selectedWord.description }}</p>
     </div>
   </div>
 </template>
@@ -275,5 +261,45 @@ const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
   h1 {
     font-size: 18px;
   }
+}
+
+.word-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 10;
+}
+
+.word-details img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.word-details p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-button:hover {
+  color: red;
 }
 </style>
