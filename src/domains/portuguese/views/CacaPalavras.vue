@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from "@ionic/vue";
-import Quadro from "@/domains/portuguese/components/Quadro.vue";
+import Quadro from "@/domains/portuguese/components/QuadroCacapalavras.vue";
 import { portugues } from "../store/cacaPalavras";
 import { ref } from "vue";
 import Header from "@/domains/reasoning/components/Header.vue";
