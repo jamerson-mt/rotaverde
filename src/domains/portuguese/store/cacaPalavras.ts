@@ -56,32 +56,32 @@ export const portugues: Portugues[] = [
         words: {
             word1: {
                 letters: ["R", "E", "D", "E"],
-                image: "public/img/rede.jpg",
+                image: "img/rede.jpg",
                 description: "Uma rede de pesca usada para capturar peixes."
             },
             word2: {
                 letters: ["P", "E", "I", "X", "E"],
-                image: "public/img/peixe.jpg",
+                image: "img/peixe.jpg",
                 description: "Um animal aquático que vive nos rios e oceanos."
             },
             word3: {
                 letters: ["R", "I", "O"],
-                image: "public/img/rio.jpg",
+                image: "img/rio.jpg",
                 description: "Um curso de água que flui em direção ao mar."
             },
             word4: {
                 letters: ["C", "A", "N", "O", "A"],
-                image: "public/img/canoa.jpg",
+                image: "img/canoa.jpg",
                 description: "Uma pequena embarcação usada para navegar em rios."
             },
             word5: {
                 letters: ["Á", "R", "V", "O", "R", "E"],
-                image: "public/img/arvore.png",
+                image: "img/arvore.png",
                 description: "Uma planta grande com tronco, galhos e folhas."
             },
             word6: {
                 letters: ["S", "O", "L", "A", "R"],
-                image: "public/img/solar.jpg",
+                image: "img/solar.jpg",
                 description: "Relacionado à energia proveniente do sol."
             }
         }
