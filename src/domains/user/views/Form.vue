@@ -106,6 +106,9 @@ export default {
 
 <template>
   <ion-content class="content">
+    <a href="/home" class="skip-button">
+      <p>Pular</p>
+    </a>
     <div class="form-container">
       <form @submit.prevent="handleSubmit">
         <div v-if="currentQuestionIndex < perguntas.length">
@@ -155,6 +158,22 @@ export default {
 </template>
 
 <style scoped>
+
+.skip-button {
+  position: absolute;
+  width: 80px;
+  text-align: center;
+  top: 20px;
+  right: 20px;
+  background-color: #32846B;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 10;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
