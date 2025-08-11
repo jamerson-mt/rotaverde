@@ -72,21 +72,21 @@ const mostrarStatus = ref(false);
 
 .container {
     display: flex;
-    flex-direction: row; /* Alinha os itens em linha */
-    justify-content: initial; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
-    gap: 20px; /* Reduz o espaçamento entre os itens */
-    margin-top: 5rem; /* Ajusta o espaçamento superior */
-    padding: 1rem; /* Adiciona espaçamento interno */
+    flex-direction: row; 
+    justify-content: initial; 
+    align-items: center; 
+    gap: 20px; 
+    margin-top: 5rem; 
+    padding: 1rem; 
     z-index: 0;
-    overflow-x: auto; /* Permite rolagem horizontal */
-    overflow-y: hidden; /* Remove a rolagem vertical */
-    width: 100%; /* Ajusta a largura para ocupar todo o espaço disponível */
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    width: 100%; 
     height: 300px;
-    scroll-behavior: smooth; /* Adiciona rolagem suave */
-    white-space: nowrap; /* Garante que os itens fiquem em uma única linha */
-    scrollbar-color: #28a745 #f5f5f5; /* Cor do scroll e do fundo */
-    scrollbar-width: thin; /* Define a largura do scroll */
+    scroll-behavior: smooth; 
+    white-space: nowrap; 
+    scrollbar-color: #28a745 #f5f5f5;
+    scrollbar-width: thin; 
 }
 
 .container::-webkit-scrollbar {
