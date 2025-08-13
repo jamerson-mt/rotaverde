@@ -18,7 +18,7 @@ import TitleCategories from '../components/TitleCategories.vue';
             />
             <div class="content">
                 <CardLevels 
-                    title="Letrinhas da Natureza"
+                    title="Letras da Natureza"
                     descripition="Aprenda as letras com palavras sobre a natureza"
                     competencia="EF01LP01"
                     competencia2="EF01LP02"

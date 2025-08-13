@@ -45,13 +45,7 @@ function stopAudio() {
           @click="handleFalar('pt', 'portugues', 'seusmodulos', '/categorias')"
           title="Português" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
           
-        <Card
-          @click="handleFalar('mt', 'matematica', 'seusmodulos', '/categorias')"
-          title="Matemática" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
-
-        <Card
-          @click="handleFalar('cc', 'ciencias', 'seusmodulos', '/categorias')"
-          title="Ciências" image="img/curuja.png" link="/home?q=pt" link2="/att/roadMap" bgc="#4DC591" />
+      
 
         <!-- Certifique-se de que o componente está sempre presente -->
         <FalarComponent ref="falarComponent" />

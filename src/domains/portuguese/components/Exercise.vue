@@ -30,12 +30,21 @@ const props = defineProps({
 </template>
 
 <style scoped>
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
 .image {
     position: relative;
 
     background-color: #2cadad;
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     border: solid #C4C4C4 8px;
     display: flex;
