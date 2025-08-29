@@ -11,14 +11,18 @@ const props = defineProps ({
     }
 });
 
+function goBack() {
+    window.history.back();
+}
+
 </script>
 
 <template>
     <div class="content">
-        <RouterLink :to="route" class="title">
+        <div @click="goBack()" class="title">
             <img src="/public/img/IconsHome/voltar.png">
             <p>{{ title }}</p>
-        </RouterLink>
+        </div>
     </div>
 </template>
 

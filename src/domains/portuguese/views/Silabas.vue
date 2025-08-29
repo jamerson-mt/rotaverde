@@ -3,13 +3,13 @@ import { ref, watch } from "vue";
 import Header from '@/domains/reasoning/components/Header.vue';
 
 const wordsData = [
-  { id: "vitoria-regia", word: "VITÓRIA-RÉGIA", syllables: ["VI", "TÓ", "RIA", "-RÉ", "GIA"], definition: "Uma planta aquática gigante..." },
-  { id: "desmatamento", word: "DESMATAMENTO", syllables: ["DES", "MA", "TA", "MEN", "TO"], definition: "A retirada da vegetação..." },
-  { id: "caatinga", word: "CAATINGA", syllables: ["CAA", "TIN", "GA"], definition: "Um bioma brasileiro caracterizado..." },
-  { id: "floresta", word: "FLORESTA", syllables: ["FLO", "RES", "TA"], definition: "Uma grande área coberta..." },
-  { id: "reciclagem", word: "RECICLAGEM", syllables: ["RE", "CI", "CLA", "GEM"], definition: "Processo de transformar materiais..." },
-  { id: "sustentavel", word: "SUSTENTÁVEL", syllables: ["SUS", "TEN", "TÁ", "VEL"], definition: "Algo que pode ser mantido..." },
-  { id: "poluicao", word: "POLUIÇÃO", syllables: ["PO", "LUI", "ÇÃO"], definition: "A contaminação do meio ambiente..." },
+  { id: "vitoria-regia", word: "VITÓRIA-RÉGIA", syllables: ["VI", "TÓ", "RIA", "-RÉ", "GI", "A"], definition: "Uma planta aquática gigante da Amazônia, com folhas circulares que podem chegar a mais de 2 metros de diâmetro." },
+  { id: "desmatamento", word: "DESMATAMENTO", syllables: ["DES", "MA", "TA", "MEN", "TO"], definition: "A retirada da vegetação de uma área, geralmente causada por atividades humanas como agricultura e urbanização." },
+  { id: "caatinga", word: "CAATINGA", syllables: ["CA", "A", "TIN", "GA"], definition: "Um bioma brasileiro caracterizado pelo clima semiárido, com vegetação adaptada à seca." },
+  { id: "floresta", word: "FLORESTA", syllables: ["FLO", "RES", "TA"], definition: "Uma grande área coberta por árvores e outras formas de vegetação, abrigando uma rica biodiversidade." },
+  { id: "reciclagem", word: "RECICLAGEM", syllables: ["RE", "CI", "CLA", "GEM"], definition: "Processo de transformar materiais usados em novos produtos, ajudando a reduzir o lixo e preservar recursos naturais." },
+  { id: "sustentavel", word: "SUSTENTÁVEL", syllables: ["SUS", "TEN", "TÁ", "VEL"], definition: "Algo que pode ser mantido por muito tempo sem esgotar os recursos naturais ou prejudicar o meio ambiente." },
+  { id: "poluicao", word: "POLUIÇÃO", syllables: ["PO", "LU", "I", "ÇÃO"], definition: "A contaminação do meio ambiente causada por substâncias nocivas, como lixo, fumaça ou produtos químicos." },
 ];
 
 const currentWordIndex = ref(0);
@@ -43,8 +43,54 @@ watch(currentWordIndex, () => {
   initializeGame();
 });
 
+function speakSyllable(text) {
+  if ('speechSynthesis' in window) {
+    let toSpeak = text.length <= 2 ? text.split('').join(' ') : text;
+    const utterance = new window.SpeechSynthesisUtterance(toSpeak);
+    utterance.lang = 'pt-BR';
+    utterance.rate = 0.7;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+function speakDescription(text) {
+  if ('speechSynthesis' in window) {
+    const utterance = new window.SpeechSynthesisUtterance(text);
+    utterance.lang = 'pt-BR';
+    utterance.rate = 0.95;
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+function speakWordAndDescription(word, description) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const wordUtter = new window.SpeechSynthesisUtterance(word);
+    wordUtter.lang = 'pt-BR';
+    wordUtter.rate = 0.85;
+    wordUtter.onend = function() {
+      speakDescription(description);
+    };
+    window.speechSynthesis.speak(wordUtter);
+  }
+}
+
+function speakFeedback(text) {
+  if ('speechSynthesis' in window) {
+    const utterance = new window.SpeechSynthesisUtterance(text);
+    utterance.lang = 'pt-BR';
+    utterance.rate = 0.95;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
 function handleTilePress(tileText, isFromScrambledPool, indexInPool) {
   if (isCorrect.value) return;
+
+  // Fala a sílaba ao clicar
+  speakSyllable(tileText);
 
   if (isFromScrambledPool) {
     const firstEmptyIndex = assembledTiles.value.findIndex(t => t === null);
@@ -67,10 +113,12 @@ function checkWord() {
     feedbackMessage.value = "Parabéns! Você acertou!";
     showDefinition.value = true;
     isCorrect.value = true;
+    speakWordAndDescription(currentWordData.value.word, currentWordData.value.definition);
   } else {
     feedbackMessage.value = "Ops! Tente novamente.";
     showDefinition.value = false;
     isCorrect.value = false;
+    speakFeedback(feedbackMessage.value);
   }
 }
 

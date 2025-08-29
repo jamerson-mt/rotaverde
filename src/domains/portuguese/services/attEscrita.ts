@@ -13,6 +13,7 @@ export interface Exercise {
         response: string;
         [key: string]: string;
     }
+    level: number;
 }
 
 export const exercise: Exercise[] = [
@@ -25,7 +26,8 @@ export const exercise: Exercise[] = [
             option3: "pexe",
             option4: "peiche",
             response: "peixe",
-        }
+        },
+        level: 1
     },
      {
         title:"Qual a escrita correta para a imagem abaixo?",
@@ -36,7 +38,8 @@ export const exercise: Exercise[] = [
             option3: "casaa",
             option4: "cazaa",
             response: "casa",
-        }
+        },
+        level: 1
     },
     {
         title: "Selecione a palavra correspondente a imagem",
@@ -47,7 +50,8 @@ export const exercise: Exercise[] = [
             option3: "mariscu",
             option4: "marissco",
             response: "marisco",
-        }
+        },
+        level: 2
     },
     {
         title: "Qual a escrita correta para a imagem abaixo?",
@@ -58,7 +62,8 @@ export const exercise: Exercise[] = [
             option3: "corujaa",
             option4: "curujaa",
             response: "coruja",
-        }
+        },
+        level: 1
     },
     {
         title: "Selecione a palavra correspondente a imagem",
@@ -69,8 +74,8 @@ export const exercise: Exercise[] = [
             option3: "camoa",
             option4: "kanoa",
             response: "canoa",
-        }
-
+        },
+        level: 1
     },
     {
         title: "Selecione a palavra correspondente a imagem",
@@ -81,7 +86,8 @@ export const exercise: Exercise[] = [
             option3: "anzou",
             option4: "azoul",
             response: "anzol",
-        }
+        },
+        level: 2
     },
     {
         title: "Qual a escrita correta para a imagem abaixo?",
@@ -92,7 +98,8 @@ export const exercise: Exercise[] = [
             option3: "corra",
             option4: "corre",
             response: "carro",
-        }
+        },
+        level: 2
     },
     {
         title: "Selecione a palavra correspondente a imagem",
@@ -103,7 +110,7 @@ export const exercise: Exercise[] = [
             option3: "rrio",
             option4: "ril",
             response: "rio",
-        }
+        },
+        level: 1
     },
-   
 ];

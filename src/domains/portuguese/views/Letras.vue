@@ -9,6 +9,7 @@ import { speakText } from '../services/fala.js';
 import { useRouter } from 'vue-router';
 import { defineEmits } from 'vue';
 import { falar } from '@/utils/falar';
+import NivelModal from '../components/NivelModal.vue';
 
 const emit = defineEmits<{
   (e: 'nextAtt' | 'closeModal', payload: boolean): void; 
@@ -22,11 +23,10 @@ const fala = () => {
 
 setTimeout(() => {
     falar('attLetras', '', '#')
-    // speakText('qual a inicial correta da imagem abaixo?');
 }, 1000);
 
 let itemArray = ref(0);
-let att = ref(exercise[itemArray.value]);
+let att = ref<any>(null);
 
 watch(itemArray, (newValue) => {
     att.value = exercise[newValue];
@@ -39,15 +39,13 @@ onMounted(() => {
 const attEscritaRef = ref<InstanceType<typeof AttEscrita> | null>(null);
 
 function nextAtt() {
-    console.log("Fechando modal...");
-    attEscritaRef.value?.closeModal(); 
-    
     itemArray.value++;
-    if (itemArray.value >= exercise.length) {
+    if (itemArray.value >= atividadesFiltradas.value.length) {
         itemArray.value = 0;
-        router.push('/home');
+        router.push('/att/roadMap');
+    } else {
+        att.value = atividadesFiltradas.value[itemArray.value];
     }
-
 }
 
 function attNext() {
@@ -55,10 +53,42 @@ function attNext() {
     emit('nextAtt', next);
 }
 
+const showNivelModal = ref(true);
+const nivelSelecionado = ref<number | null>(null);
+const atividadesFiltradas = ref<typeof exercise>([]);
+
+function resetNivelModal() {
+    showNivelModal.value = false;
+    setTimeout(() => {
+        showNivelModal.value = true;
+        atividadesFiltradas.value = [];
+        att.value = null;
+        itemArray.value = 0;
+    }, 300);
+}
+
+function handleNivelSelecionado(nivel: number) {
+    nivelSelecionado.value = nivel;
+    atividadesFiltradas.value = exercise.filter(e => e.level === nivel);
+    itemArray.value = 0;
+    att.value = atividadesFiltradas.value[0] || null;
+    showNivelModal.value = false;
+}
+
+onMounted(() => {
+    resetNivelModal();
+});
+
+import { onBeforeRouteUpdate } from 'vue-router';
+onBeforeRouteUpdate((to, from, next) => {
+    resetNivelModal();
+    next();
+});
 </script>
 
 <template>
     <ion-page>
+        <NivelModal :isOpen="showNivelModal" @nivelSelecionado="handleNivelSelecionado" @close="showNivelModal = false" />
         <ion-content :fullscreen="true">
             <div>
                 <Header />
@@ -66,14 +96,13 @@ function attNext() {
             <div id="options">
                 <AttEscrita
                     ref="attEscritaRef"
+                    v-if="att"
                     :image="att.image"
                     :title="att.title"
                     :options="att.options"
                     @nextAtt="nextAtt"
                 />
-                <!-- <div id="button">
-                    <button @click="nextAtt()" id="router" class="text-white font-bold py-2 px-4 rounded-3xl mt-5 w-3/5 text-center mt-10">Próximo</button>
-                </div> -->
+                <div v-else class="text-center text-lg mt-10">Nenhuma atividade disponível para este nível.</div>
             </div>
         </ion-content>
         <div class="bottom-0">
