@@ -2,7 +2,7 @@
 
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import Welcome from '@/domains/user/views/Welcome.vue';
+import Welcome from '@/domains/user/views/WelcomeView.vue';
 import Login from '../domains/auth/views/Login.vue';
 import Person from '@/domains/auth/views/Person.vue';
 import UsersAll from '@/domains/auth/views/UsersAll.vue';

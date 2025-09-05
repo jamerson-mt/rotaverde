@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/Home.vue';
+import HomePage from '../views/HomeView.vue';
 import PerfilPage from '../views/Perfil.vue';
 import Modulo from '../views/CategoriasAtividades.vue';
 import RoadMap from '../views/RoadMap.vue';
