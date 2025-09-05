@@ -1,8 +1,10 @@
 <template>
   <div>
     <div v-if="isPlaying" class="audio-overlay">
-      <img src="/public/img/gifs/carpa.gif" alt="Executando áudio" />
-      <button class="cancel-button" @click="stopAudio">Cancelar</button>
+      <div class="audio-content">
+        <img src="/public/img/gifs/carpa.gif" alt="Executando áudio" />
+        <button class="cancel-button" @click="stopAudio">Cancelar</button>
+      </div>
     </div>
   </div>
 </template>
@@ -58,10 +60,22 @@ export default defineComponent({
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  pointer-events: auto; /* Permite interação apenas com a sobreposição */
+}
+
+.audio-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .audio-overlay img {

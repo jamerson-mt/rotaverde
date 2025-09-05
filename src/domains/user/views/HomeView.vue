@@ -2,7 +2,7 @@
 import { IonContent, IonPage } from '@ionic/vue';
 import Card from '@/domains/user/components/Card.vue';
 import Header from '@/domains/reasoning/components/Header.vue';
-import FalarComponent from '@/components/FalarComponent.vue';
+import FalarComponent from '@/components/specific/FalarComponent.vue';
 import { inject, ref } from "vue";
 
 const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está sendo injetado corretamente

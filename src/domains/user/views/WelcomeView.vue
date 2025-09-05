@@ -1,6 +1,6 @@
 <script setup>
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
-import FalarComponent from '@/components/FalarComponent.vue';
+import FalarComponent from '@/components/specific/FalarComponent.vue';
 import { inject } from "vue";
 
 const isPlaying = inject("isPlaying");
