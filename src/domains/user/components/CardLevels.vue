@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps, ref } from "vue";
 import FalarComponent from "@/components/specific/FalarComponent.vue";
+import Competencia from "@/domains/user/components/CompetenciaComponent.vue";
 
 defineProps({
   title: {
@@ -60,19 +61,15 @@ function handleCardClick(card: string, module: string, activity: string, link: s
 
 <template>
   <div class="card" :class="{ blocked: isBlocked }">
-    <div
-      class="card"
-      @click="handleCardClick('card1', fala1, 'suasatividades', link)"
-    >
+    <div class="card" @click="handleCardClick('card1', fala1, 'suasatividades', link)">
       <div class="content">
         <p class="title">{{ title }}</p>
         <p class="descripition">{{ descripition }}</p>
         <div class="competencias">
-          <p v-if="competencia" class="competencia">{{ competencia }}</p>
-          <p v-if="competencia2" class="competencia">{{ competencia2 }}</p>
+          <Competencia v-if="competencia" :text="competencia" />
+          <Competencia v-if="competencia2" :text="competencia2" />
         </div>
       </div>
-      
     </div>
     <FalarComponent ref="falarComponent" />
   </div>
@@ -98,6 +95,7 @@ function handleCardClick(card: string, module: string, activity: string, link: s
   display: flex;
   flex-direction: column;
   color: white;
+  align-items: flex-start; /* Adicionado para alinhar verticalmente */
 }
 
 .title {
@@ -117,22 +115,10 @@ function handleCardClick(card: string, module: string, activity: string, link: s
 
 .competencias {
   display: flex;
+  flex-direction: row; /* Alterado para alinhar verticalmente */
   justify-content: flex-start;
-  width: 100%;
-  margin-left: 0px;
-}
-
-.competencia {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  font-style: medium;
-  font-size: 15px;
-  color: #0f3d3e;
-  background-color: #ecc055;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px 5px;
-  white-space: nowrap;
+  margin-left: 20px; /* Ajustado para alinhar com o título e descrição */
+  gap: 4px;
 }
 
 p {

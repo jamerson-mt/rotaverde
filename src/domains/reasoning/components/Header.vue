@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 function goToHome() {
-  router.push('/home');
+  router.push('/categorias');
 }
 </script>
 

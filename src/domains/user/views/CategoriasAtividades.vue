@@ -11,12 +11,10 @@ import TitleCategories from "../components/TitleCategories.vue";
       <div>
         <Header />
       </div>
-      <TitleCategories title="Português" route="/home" />
+      <TitleCategories title="Módulos" route="/categorias" />
       <div class="content">
         <CardLevels
-        
           fala1="modulo1pt"
-     
           title="Módulo 1"
           descripition="Aprenda as letras com palavras sobre a natureza"
           competencia="EF01LP01"
@@ -28,9 +26,7 @@ import TitleCategories from "../components/TitleCategories.vue";
         />
 
         <CardLevels
-         
           fala1="modulo1pt"
-     
           title="Módulo 2"
           descripition="Forme palavras com sílabas sobre reciclagem e meio ambiente"
           competencia="EF01LP04"
@@ -42,9 +38,7 @@ import TitleCategories from "../components/TitleCategories.vue";
         />
 
         <CardLevels
-          
           fala1="modulo1pt"
-     
           title="Módulo 3"
           descripition="Construa frases com temas relacionados à sustentabilidade"
           competencia="EF02LP05"
@@ -56,9 +50,7 @@ import TitleCategories from "../components/TitleCategories.vue";
         />
 
         <CardLevels
-          
           fala1="modulo1pt"
-     
           title="Módulo 4"
           descripition="Desenvolva textos sobre preservação ambiental"
           competencia="EF03LP06"
