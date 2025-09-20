@@ -9,7 +9,7 @@ export default defineComponent({
     title: { type: String, required: true },
     image: { type: String, required: true },
     link:  { type: String, required: true },
-    link2: { type: String, required: true },
+    link2: { type: String, required: false },
     bgc:   { type: String, required: true },
 
   },
@@ -39,14 +39,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="container" :style="{ backgroundColor: bgc }" @click="handleClick">
+  <div class="container" :style="{ backgroundColor: bgc }" >
     <div class="confetti-container">
       <span v-for="n in 20" :key="n" class="confetti"></span>
     </div>
     <div class="button" :to="link2">
-      <img class="nuvem" src="/public/img/IconsHome/nuvem.png" alt="">
       <div class="content">
-        <img src="/public/img/iconesSustentabilidade/arvore.png" alt="">
+        <img :src="image" alt="">
         <p>{{ title }}</p>
       </div>
     </div>
@@ -107,7 +106,10 @@ export default defineComponent({
 }
 
 .content img {
-  width: 50px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  
 }
 .button{
   display: flex;

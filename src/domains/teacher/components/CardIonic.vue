@@ -14,15 +14,15 @@ export default defineComponent({
         },
         shapeColor: {
             type: String,
-            required: true
+            required: false
         },
         image: {
             type: String,
-            required: true
+            required: false
         },
         link: {
             type: String,
-            required: true
+            required: false
         }
     }
 });
@@ -34,7 +34,7 @@ export default defineComponent({
             <div class="shape" :style="{ background: shapeColor }"></div>
             <div class="img">
                 <img :src="image" />
-                <a href="#"><img id="info"src="../../../../public/img/info.png"></a>
+                <a href="#"><img id="info" src="../../../../public/img/info.png"></a>
             </div>
             <p>{{ title }}</p>
         </div>
@@ -45,7 +45,14 @@ export default defineComponent({
 
 .card {
     text-decoration: none;
-    color: aliceblue;
+    color: #2e2e2e;
+    margin: 0.5rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    height: 6rem;
+
 }
 
 .content {
@@ -59,6 +66,7 @@ export default defineComponent({
     border-radius: 12px;
     padding-left: 1rem;
     padding-right: 0.4rem;
+    border: 2px solid #00664f;
     overflow: hidden;
 }
 

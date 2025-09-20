@@ -12,7 +12,7 @@ import TitleCategories from "../components/TitleCategories.vue";
         <Header />
       </div>
       <TitleCategories title="Módulos" route="/categorias" />
-      <div class="content">
+      <div class="containerModules">
         <CardLevels
           fala1="modulo1pt"
           title="Módulo 1"
@@ -85,18 +85,22 @@ import TitleCategories from "../components/TitleCategories.vue";
   color: #1e1e1e;
 }
 
-.content {
+.containerModules {
   display: flex;
   flex-direction: column;
   max-height: 60vh; /* Altura máxima baseada na altura da viewport */
   align-items: center;
   justify-content: flex-start; /* Ajustado para alinhar itens ao início */
   margin-top: 1rem;
-  gap: 2em;
+  gap:1.5em;
+  padding-top: 0.5rem;
   overflow-y: auto; /* Permite rolagem vertical */
-  padding-right: 1rem; /* Espaço para evitar sobreposição com a barra de rolagem */
-  scrollbar-width: thin; /* Para navegadores compatíveis */
+  padding-right: 0.5rem; /* Espaço para evitar sobreposição com a barra de rolagem */
+  scrollbar-width: thin; /* Largura fina para Firefox */
   scrollbar-color: #249b9b #f0f0f0; /* Cor da barra e do fundo */
+  border: 0px solid #1e7a7a; /* Borda leve para destacar a área */
+  border-radius: 10px; /* Bordas arredondadas */
+ 
 }
 
 .content > * {

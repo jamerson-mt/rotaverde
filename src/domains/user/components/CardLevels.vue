@@ -81,7 +81,7 @@ function handleCardClick(card: string, module: string, activity: string, link: s
 .card {
   margin-top: 0rem;
   display: flex;
-  padding: 10px;
+  padding: 5px;
   flex-direction: row;
   position: relative;
   width: 90%;
