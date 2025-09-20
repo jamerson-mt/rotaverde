@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <RouterLink class="card" :to="link">
+    <div class="card" >
         <div class="content" :style="{ background: bgColor }">
             <div class="shape" :style="{ background: shapeColor }"></div>
             <div class="img">
@@ -38,7 +38,7 @@ export default defineComponent({
             </div>
             <p>{{ title }}</p>
         </div>
-    </RouterLink>
+    </div>
 </template>
 
 <style scoped>
