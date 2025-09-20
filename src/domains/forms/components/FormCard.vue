@@ -20,9 +20,7 @@ export default {
   },
   methods: {
     navigateToLink() {
-      if (!this.link) return; // Evita navegação se o link não estiver definido ou for vazio
-      this.$router.push(this.link);
-      window.location.reload(); // Recarrega a página após a navegação
+      window.location.href = this.link;
     },
   },
 };

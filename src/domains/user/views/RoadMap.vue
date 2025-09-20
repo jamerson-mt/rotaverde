@@ -127,7 +127,7 @@ const go = (rota: string) => {
   overflow-x: auto;
   overflow-y: auto;
   width: 100%;
-  height: 300px;
+  height: 500px;
   scroll-behavior: smooth;
   white-space: nowrap;
   scrollbar-color: #28a745 #f5f5f5;
