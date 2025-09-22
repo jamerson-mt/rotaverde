@@ -3,20 +3,29 @@ import {
   IonContent,
   IonPage,
 } from "@ionic/vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 import CardIonic from "@/domains/teacher/components/CardIonic.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
-// import AlunosDesempenho from "@/domains/teacher/components/AlunosDesempenho.vue";
+import AlunosLista from "@/domains/teacher/components/AlunosLista.vue";
 
-// const alunos = ref(); // Define os dados dos alunos como uma referência reativa
+const alunos = ref([]); // Define os dados dos alunos como uma referência reativa
 
-// const filterThreshold = ref(3); // Tempo médio limite para o filtro (em minutos)
-// const sortByTime = ref(false); // Define se a lista será ordenada pelo tempo
+// Função para buscar os alunos da API
+const fetchAlunos = async () => {
+  try {
+    const response = await fetch("http://localhost:5198/api/aluno");
+    if (!response.ok) {
+      throw new Error("Erro ao buscar alunos");
+    }
+    alunos.value = await response.json();
+  } catch (error) {
+    console.error("Erro ao carregar alunos:", error);
+  }
+};
 
-
-
-
+// Busca os alunos ao montar o componente
+onMounted(fetchAlunos);
 </script>
 
 <template>
@@ -39,15 +48,10 @@ import TitleCategories from "@/domains/user/components/TitleCategories.vue";
                 shape-color="#00664f"
                 link="/professor/create-turma"
               />
-             
             </div>
           </div>
 
-          <!-- <AlunosDesempenho
-            :alunos="alunos"
-            :filter-threshold="filterThreshold"
-            :sort-by-time="sortByTime"
-          /> -->
+          <AlunosLista :alunos="alunos" />
         </div>
       </ion-content>
     </ion-page>
