@@ -7,13 +7,12 @@ import { ref } from "vue";
 
 import CardIonic from "@/domains/teacher/components/CardIonic.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
-import alunosData from "../data/alunos.json"; // Importa o arquivo JSON com os dados dos alunos
-import AlunosDesempenho from "@/domains/teacher/components/AlunosDesempenho.vue";
+// import AlunosDesempenho from "@/domains/teacher/components/AlunosDesempenho.vue";
 
-const alunos = ref(alunosData); // Define os dados dos alunos como uma referência reativa
+// const alunos = ref(); // Define os dados dos alunos como uma referência reativa
 
-const filterThreshold = ref(3); // Tempo médio limite para o filtro (em minutos)
-const sortByTime = ref(false); // Define se a lista será ordenada pelo tempo
+// const filterThreshold = ref(3); // Tempo médio limite para o filtro (em minutos)
+// const sortByTime = ref(false); // Define se a lista será ordenada pelo tempo
 
 
 
@@ -44,11 +43,11 @@ const sortByTime = ref(false); // Define se a lista será ordenada pelo tempo
             </div>
           </div>
 
-          <AlunosDesempenho
+          <!-- <AlunosDesempenho
             :alunos="alunos"
             :filter-threshold="filterThreshold"
             :sort-by-time="sortByTime"
-          />
+          /> -->
         </div>
       </ion-content>
     </ion-page>

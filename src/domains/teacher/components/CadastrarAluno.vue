@@ -9,9 +9,6 @@
 </template>
 
 <script>
-import { studentsState } from '../data/studentsState';
-import students from '../data/students.json';
-
 export default {
   data() {
     return {
@@ -20,20 +17,10 @@ export default {
       },
     };
   },
-  created() {
-    if (!studentsState.students.length) {
-      studentsState.students.push(...students);
-    }
-  },
   methods: {
     submitForm() {
-      const newId = studentsState.students.length
-        ? studentsState.students[studentsState.students.length - 1].id + 1
-        : 1;
-      const newStudent = { id: newId, ...this.newStudent };
-      studentsState.students.push(newStudent);
+      this.$emit('add', { ...this.newStudent });
       this.newStudent.name = '';
-      this.$router.push('/listar-alunos'); // Navega para "ListarAlunos"
     },
   },
 };

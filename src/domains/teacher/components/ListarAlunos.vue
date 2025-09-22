@@ -21,7 +21,6 @@ export default {
   methods: {
     selectStudent(student) {
       this.$emit('select', student); // Emite o evento ao selecionar um aluno
-      this.$router.push('/selecionar-alunos'); // Navega para "SelecionarAlunos"
     },
   },
 };

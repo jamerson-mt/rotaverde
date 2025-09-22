@@ -11,12 +11,11 @@
 </template>
 
 <script>
-import { studentsState } from '../data/studentsState';
-
 export default {
-  computed: {
-    selectedStudents() {
-      return studentsState.students;
+  props: {
+    selectedStudents: {
+      type: Array,
+      required: true,
     },
   },
 };

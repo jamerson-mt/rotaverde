@@ -3,6 +3,7 @@ import ListarAlunos from "../components/ListarAlunos.vue";
 import SelecionarAlunos from "../components/SelecionarAlunos.vue";
 import CadastrarAluno from "../components/CadastrarAluno.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
+
 export default {
   components: {
     ListarAlunos,
@@ -13,11 +14,7 @@ export default {
   data() {
     return {
       selectedStudents: [],
-      students: [
-        { id: 1, name: "Aluno 1" },
-        { id: 2, name: "Aluno 2" },
-        { id: 3, name: "Aluno 3" },
-      ],
+      students: [],
       classData: {
         name: "",
         year: "",
@@ -25,14 +22,24 @@ export default {
       },
     };
   },
+  created() {
+    this.fetchStudents();
+  },
   methods: {
+    async fetchStudents() {
+      try {
+        const response = await fetch('/api/students'); // Substitua pela URL da API
+        this.students = await response.json();
+      } catch (error) {
+        console.error("Erro ao carregar alunos:", error);
+      }
+    },
     handleSelect(student) {
       this.selectedStudents.push(student);
       this.students = this.students.filter((s) => s.id !== student.id);
     },
     handleAddStudent(newStudent) {
-      // Lógica para adicionar o aluno
-      console.log("Aluno adicionado:", newStudent);
+      this.students.push({ id: Date.now(), ...newStudent });
     },
     createClass() {
       console.log("Dados da turma:", this.classData);
