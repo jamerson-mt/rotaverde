@@ -29,7 +29,7 @@ async function removerAluno(id: number) {
       throw new Error("Erro ao remover aluno");
     }
     alert("Aluno removido com sucesso!");
-    window.location.reload();
+    window.location.reload(); 
   } catch (error) {
     console.error("Erro ao remover aluno:", error);
     alert("Não foi possível remover o aluno.");
@@ -45,7 +45,7 @@ async function removerAluno(id: number) {
     </div>
     <ul>
       <li v-for="(aluno, index) in alunos" :key="index">
-        <strong>{{ aluno.nome }}</strong> - {{ aluno.idade }} anos
+        <strong>{{ aluno.nome }}</strong> <b>|</b> {{ aluno.idade }} anos
         <button @click="removerAluno(aluno.id)" class="remove-button">Remover</button>
       </li>
     </ul>
@@ -65,8 +65,15 @@ async function removerAluno(id: number) {
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 300px;
+  
 }
 
+strong {
+  width: 150px;
+
+}
 .title h2 {
   font-size: 1.5rem;
   color: #333;
@@ -75,14 +82,30 @@ async function removerAluno(id: number) {
 
 ul {
   list-style: none;
+  margin: 0;
   padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
 }
 
 li {
   font-size: 1rem;
   color: #555;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li:hover {
+  background-color: #f1f1f1;
 }
 
 .add-button {

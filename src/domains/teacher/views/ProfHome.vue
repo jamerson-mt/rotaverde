@@ -8,13 +8,18 @@ import { ref, onMounted } from "vue";
 import CardIonic from "@/domains/teacher/components/CardIonic.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
 import AlunosLista from "@/domains/teacher/components/AlunosLista.vue";
+import TurmaCard from "@/domains/teacher/components/TurmaCard.vue";
 
 const alunos = ref([]); // Define os dados dos alunos como uma referência reativa
+const turmas = ref<{ id: number; [key: string]: any }[]>([]); // Define os dados das turmas como uma referência reativa com tipo explícito
+
+// URL da API obtida da variável de ambiente
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Função para buscar os alunos da API
 const fetchAlunos = async () => {
   try {
-    const response = await fetch("http://localhost:5198/api/aluno");
+    const response = await fetch(`${API_URL}aluno`);
     if (!response.ok) {
       throw new Error("Erro ao buscar alunos");
     }
@@ -24,8 +29,24 @@ const fetchAlunos = async () => {
   }
 };
 
-// Busca os alunos ao montar o componente
-onMounted(fetchAlunos);
+// Função para buscar as turmas da API
+const fetchTurmas = async () => {
+  try {
+    const response = await fetch(`${API_URL}turma`);
+    if (!response.ok) {
+      throw new Error("Erro ao buscar turmas");
+    }
+    turmas.value = await response.json();
+  } catch (error) {
+    console.error("Erro ao carregar turmas:", error);
+  }
+};
+
+// Busca os alunos e as turmas ao montar o componente
+onMounted(() => {
+  fetchAlunos();
+  fetchTurmas();
+});
 </script>
 
 <template>
@@ -52,6 +73,13 @@ onMounted(fetchAlunos);
           </div>
 
           <AlunosLista :alunos="alunos" />
+
+          <div class="turmas">
+            <h2>Turmas</h2>
+            <div class="turmas-list">
+              <TurmaCard v-for="turma in turmas" :key="turma.id" :turma="turma" />
+            </div>
+          </div>
         </div>
       </ion-content>
     </ion-page>
@@ -219,5 +247,20 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:not(:checked) {
   background-color: #ffffff; /* Fundo branco quando não marcado */
+}
+
+.turmas {
+  margin-top: 2rem;
+}
+
+.turmas-list {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow-x: auto;
 }
 </style>

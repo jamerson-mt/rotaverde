@@ -1,25 +1,25 @@
 <script>
 import ListarAlunos from "../components/ListarAlunos.vue";
-import SelecionarAlunos from "../components/SelecionarAlunos.vue";
-import CadastrarAluno from "../components/CadastrarAluno.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
+ 
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default {
   components: {
     ListarAlunos,
-    SelecionarAlunos,
-    CadastrarAluno,
     TitleCategories,
   },
   data() {
     return {
+      step: 1, // Etapa atual do processo
       selectedStudents: [],
       students: [],
       classData: {
         name: "",
-        year: "",
+        year: null, // Alterado para número
         teacher: "",
       },
+      classId: null, // Adicionado para armazenar o ID da turma criada
     };
   },
   created() {
@@ -28,7 +28,7 @@ export default {
   methods: {
     async fetchStudents() {
       try {
-        const response = await fetch('/api/students'); // Substitua pela URL da API
+        const response = await fetch(`${API_URL}aluno`); // Substitua pela URL da API
         this.students = await response.json();
       } catch (error) {
         console.error("Erro ao carregar alunos:", error);
@@ -41,10 +41,52 @@ export default {
     handleAddStudent(newStudent) {
       this.students.push({ id: Date.now(), ...newStudent });
     },
-    createClass() {
-      console.log("Dados da turma:", this.classData);
-      console.log("Alunos selecionados:", this.selectedStudents);
-      // Lógica para criar a turma
+    nextStep() {
+      if (this.step === 1 && this.classData.name && this.classData.year) {
+        this.step++;
+      } else {
+        alert("Preencha os dados da turma antes de prosseguir.");
+      }
+    },
+    previousStep() {
+      if (this.step > 1) {
+        this.step--;
+      }
+    },
+    async createClass() {
+      if (this.step === 1) {
+        try {
+          const response = await fetch(`${API_URL}turma`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              nome: this.classData.name,
+              anoLetivo: this.classData.year,
+            }),
+          });
+          if (!response.ok) {
+            throw new Error("Erro ao criar turma");
+          }
+          const data = await response.json();
+          this.classId = data.id; // Armazena o ID da turma criada
+          window.alert("Turma criada com sucesso!" + data.id); // Substituído por window.alert
+
+          this.nextStep();
+        } catch (error) {
+          console.error("Erro ao criar turma:", error);
+        }
+      }
+    },
+    async updateStudentClass(student) {
+      try {
+        await fetch(`${API_URL}aluno/${student.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ turmaId: this.classId }),
+        });
+      } catch (error) {
+        console.error(`Erro ao atualizar turma do aluno ${student.id}:`, error);
+      }
     },
   },
 };
@@ -54,15 +96,21 @@ export default {
   <div class="prof-turmas">
     <TitleCategories title="Criar Turma" route="teacher/home" />
     <h1>Criar Turma</h1>
-    <form @submit.prevent="createClass">
-      <input v-model="classData.name" placeholder="Nome da Turma" required />
-      <input v-model="classData.year" placeholder="Ano" type="number" required />
-      <input v-model="classData.teacher" placeholder="Professor Responsável" required />
-      <button type="submit">Criar Turma</button>
-    </form>
-    <ListarAlunos @select="handleSelect" />
-    <SelecionarAlunos :selectedStudents="selectedStudents" />
-    <CadastrarAluno @add="handleAddStudent" />
+    <div class="step-indicator">
+      <span :class="{ active: step === 1 }">Etapa 1: Dados da Turma</span>
+      <span :class="{ active: step === 2 }">Etapa 2: Seleção de Alunos</span>
+    </div>
+    <div v-if="step === 1">
+      <form @submit.prevent="createClass()">
+        <input v-model="classData.name" placeholder="Nome da Turma" required />
+        <input v-model.number="classData.year" placeholder="Ano Letivo" type="number" required />
+       
+        <button type="submit">Próximo</button>
+      </form>
+    </div>
+    <div v-else-if="step === 2">
+      <ListarAlunos :classId="classId" />
+    </div>
   </div>
 </template>
 
@@ -101,5 +149,45 @@ form button {
 }
 form button:hover {
   background-color: #27ae60;
+}
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.step-indicator span {
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+}
+.step-indicator span.active {
+  background-color: #2ecc71;
+  color: white;
+}
+.btn-back {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.btn-back:hover {
+  background-color: #2980b9;
+}
+.btn-finish {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-finish:hover {
+  background-color: #c0392b;
 }
 </style>
