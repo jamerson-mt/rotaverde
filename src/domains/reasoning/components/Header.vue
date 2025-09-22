@@ -6,6 +6,10 @@ const router = useRouter();
 function goToHome() {
   router.push('/categorias');
 }
+
+function login() {
+  router.push('/login');
+}
 </script>
 
 <template>
@@ -32,6 +36,7 @@ function goToHome() {
           <p>1° Lugar</p>
         </div>
       </div>
+      <button class="login-button" @click="login">Login</button>
   </div>
 </template>
 
@@ -116,4 +121,20 @@ function goToHome() {
   font-size: 14px;
 }
 
+.login-button {
+  position: absolute;
+  top: 25px;
+  right: 12px;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #137E60;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.login-button:hover {
+  background-color: #f0f0f0;
+}
 </style>

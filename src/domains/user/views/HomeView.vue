@@ -43,6 +43,7 @@ function stopAudio() {
       <div>
         <Header />
       </div>
+     
 
       <div id="container">
         <Card
@@ -67,6 +68,7 @@ function stopAudio() {
           link="/profesor"
           bgc="#fff"
         />
+        <!-- Botão para login -->
         <!-- Certifique-se de que o componente está sempre presente -->
         <FalarComponent ref="falarComponent" />
 
@@ -75,6 +77,8 @@ function stopAudio() {
           <img src="/public/img/speaker.gif" alt="Executando áudio" />
           <button class="cancel-button" @click="stopAudio">Cancelar</button>
         </div>
+        
+
       </div>
     </ion-content>
   </ion-page>
@@ -117,5 +121,16 @@ function stopAudio() {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.login-button {
+  position: absolute;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 </style>

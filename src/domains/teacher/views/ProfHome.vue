@@ -3,32 +3,21 @@ import {
   IonContent,
   IonPage,
 } from "@ionic/vue";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 import CardIonic from "@/domains/teacher/components/CardIonic.vue";
-import CardAluno from "@/domains/teacher/components/CardAluno.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
 import alunosData from "../data/alunos.json"; // Importa o arquivo JSON com os dados dos alunos
+import AlunosDesempenho from "@/domains/teacher/components/AlunosDesempenho.vue";
 
 const alunos = ref(alunosData); // Define os dados dos alunos como uma referência reativa
 
 const filterThreshold = ref(3); // Tempo médio limite para o filtro (em minutos)
 const sortByTime = ref(false); // Define se a lista será ordenada pelo tempo
 
-const sortedAndFilteredAlunos = computed(() => {
-  let result = alunos.value.filter((aluno) => parseFloat(aluno.averageTime) <= filterThreshold.value);
-  if (sortByTime.value) {
-    result = result.sort((a, b) => parseFloat(a.averageTime) - parseFloat(b.averageTime));
-  }
-  return result;
-});
 
-const getTimeClass = (averageTime: string) => {
-  const time = parseFloat(averageTime);
-  if (time <= 1) return "good-time"; // Verde
-  if (time <= 2) return "medium-time"; // Amarelo
-  return "bad-time"; // Vermelho
-};
+
+
 </script>
 
 <template>
@@ -49,41 +38,17 @@ const getTimeClass = (averageTime: string) => {
                 image="img/IconsHome/grupo.png"
                 bg-color="#fff"
                 shape-color="#00664f"
+                link="/professor/create-turma"
               />
              
             </div>
           </div>
 
-          <div class="alunos">
-            <div class="title">
-              <h1>Desempenho dos Alunos</h1>
-              <h2>Maior Ranking</h2>
-            </div>
-            <div class="filter">
-              <label for="threshold">Filtrar por tempo médio até :</label>
-              <input
-                id="threshold"
-                type="number"
-                v-model="filterThreshold"
-                min="0"
-                step="0.1"
-              />
-              <label>
-                <input type="checkbox" v-model="sortByTime" />
-                Ordenar por menor tempo
-              </label>
-            </div>
-            <div class="cards-alunos">
-              <CardAluno
-                v-for="(aluno, index) in sortedAndFilteredAlunos"
-                :key="index"
-                :title="aluno.title"
-                :average-time="aluno.averageTime"
-                :class-group="aluno.classGroup"
-                :class="[getTimeClass(aluno.averageTime)]"
-              />
-            </div>
-          </div>
+          <AlunosDesempenho
+            :alunos="alunos"
+            :filter-threshold="filterThreshold"
+            :sort-by-time="sortByTime"
+          />
         </div>
       </ion-content>
     </ion-page>

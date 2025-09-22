@@ -11,7 +11,7 @@ import ManagerUsers from "@/domains/teacher/views/ManagerUsers.vue";
 // Routes of domains
 
 import authRoutes from "@/domains/auth/router/auth";
-import teacherRoutes from "@/domains/teacher/router/teacherRoutes";
+import teacherRoutes from "@/domains/teacher/views/router/teacherRoutes";
 import userRoutes from "@/domains/user/router/userRoutes";
 import technologyRoutes from "@/domains/technology/router/technologyRoutes";
 import portugueseRoutes from "@/domains/portuguese/router/portugueseRoutes";

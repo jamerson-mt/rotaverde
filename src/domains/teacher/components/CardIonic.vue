@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { RouterLink } from 'vue-router';
 
 export default defineComponent({
     props: {
@@ -22,14 +21,19 @@ export default defineComponent({
         },
         link: {
             type: String,
-            required: false
+            required: true
+        }
+    },
+    methods: {
+        nextPage() {
+            window.location.href = this.link || '#'; // Redireciona para a página desejada
         }
     }
 });
 </script>
 
 <template>
-    <div class="card" >
+    <div class="card" @click="nextPage()">
         <div class="content" :style="{ background: bgColor }">
             <div class="shape" :style="{ background: shapeColor }"></div>
             <div class="img">

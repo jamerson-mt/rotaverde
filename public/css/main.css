@@ -23,3 +23,8 @@ body {
   
 }
 
+input {
+  background-color: #ffffff; /* Fundo branco */
+  color: #2e2e2e; /* Cor do texto */
+}
+
