@@ -1,17 +1,27 @@
 <script setup lang="ts">
-import {
-  IonContent,
-  IonPage,
-} from "@ionic/vue";
+import { IonContent, IonPage } from "@ionic/vue";
 import { ref, onMounted } from "vue";
 
 import CardIonic from "@/domains/teacher/components/CardIonic.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
 import AlunosLista from "@/domains/teacher/components/AlunosLista.vue";
 import TurmaCard from "@/domains/teacher/components/TurmaCard.vue";
+import TurmaPopup from "@/domains/teacher/components/TurmaPopup.vue";
 
 const alunos = ref([]); // Define os dados dos alunos como uma referência reativa
 const turmas = ref<{ id: number; [key: string]: any }[]>([]); // Define os dados das turmas como uma referência reativa com tipo explícito
+
+const selectedTurma = ref(null);
+const selectedAlunosCount = ref(0);
+
+const openPopup = (data: { turma: any; alunosCount: number }) => {
+  selectedTurma.value = data.turma;
+  selectedAlunosCount.value = data.alunosCount;
+};
+
+const closePopup = () => {
+  selectedTurma.value = null;
+};
 
 // URL da API obtida da variável de ambiente
 const API_URL = import.meta.env.VITE_API_URL;
@@ -58,10 +68,16 @@ onMounted(() => {
             <TitleCategories title="Painel Professor" route="teste" />
 
             <div class="title">
-              <h1>Funcionalidades</h1>
+              <h1>Turmas</h1>
               <h2>Mais Recentes</h2>
             </div>
-            <div class="cards">
+            <div class="turmas-list">
+              <TurmaCard
+                v-for="turma in turmas"
+                :key="turma.id"
+                :turma="turma"
+                @click="openPopup"
+              />
               <CardIonic
                 title="Criar Turma"
                 image="img/IconsHome/grupo.png"
@@ -73,16 +89,15 @@ onMounted(() => {
           </div>
 
           <AlunosLista :alunos="alunos" />
-
-          <div class="turmas">
-            <h2>Turmas</h2>
-            <div class="turmas-list">
-              <TurmaCard v-for="turma in turmas" :key="turma.id" :turma="turma" />
-            </div>
-          </div>
         </div>
       </ion-content>
     </ion-page>
+    <TurmaPopup
+      v-if="selectedTurma"
+      :turma="selectedTurma"
+      :alunosCount="selectedAlunosCount"
+      @close="closePopup"
+    />
   </div>
 </template>
 
@@ -255,12 +270,34 @@ input[type="checkbox"]:not(:checked) {
 
 .turmas-list {
   display: flex;
+  padding: 1rem;
   width: 100%;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  flex-wrap: nowrap;
   overflow-x: auto;
+  gap: 1rem; /* Adiciona espaçamento entre os itens */
+  scroll-snap-type: x mandatory; /* Habilita o snap para o carrossel */
+}
+
+.turmas-list > * {
+  scroll-snap-align: start; /* Alinha os itens no início ao rolar */
+  flex: 0 0 auto; /* Garante que os itens não encolham ou cresçam */
+}
+
+.turmas-list::-webkit-scrollbar {
+  height: 8px; /* Define a altura da barra de rolagem */
+}
+
+.turmas-list::-webkit-scrollbar-thumb {
+  background: #00664f; /* Cor da barra de rolagem */
+  border-radius: 4px;
+}
+
+.turmas-list::-webkit-scrollbar-thumb:hover {
+  background: #004d3a; /* Cor ao passar o mouse */
+}
+
+.turmas-list::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Cor do fundo da barra de rolagem */
 }
 </style>

@@ -43,13 +43,17 @@ async function removerAluno(id: number) {
     <div class="title">
       <h2>Lista de Alunos</h2>
     </div>
-    <ul>
-      <li v-for="(aluno, index) in alunos" :key="index">
-        <strong>{{ aluno.nome }}</strong> <b>|</b> {{ aluno.idade }} anos
-        <button @click="removerAluno(aluno.id)" class="remove-button">Remover</button>
-      </li>
-    </ul>
-    <button @click="adicionarAluno" class="add-button">Adicionar Aluno</button>
+    <div class="alunos-container">
+      <ul>
+        <li v-for="(aluno, index) in alunos" :key="index">
+          <strong>{{ aluno.nome }}</strong> <b>|</b> {{ aluno.idade }} anos
+          <button @click="removerAluno(aluno.id)" class="remove-button">Remover</button>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons-container">
+      <button @click="adicionarAluno" class="add-button">Adicionar Aluno</button>
+    </div>
     <div v-if="mostrarPopup" class="popup-overlay">
       <AdicionarAluno/>
     </div>
@@ -65,15 +69,20 @@ async function removerAluno(id: number) {
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alunos-container {
   overflow-y: auto;
   max-height: 300px;
-  
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
 }
 
 strong {
   width: 150px;
-
 }
+
 .title h2 {
   font-size: 1.5rem;
   color: #333;
@@ -84,9 +93,6 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
 }
 
 li {
@@ -106,6 +112,12 @@ li:last-child {
 
 li:hover {
   background-color: #f1f1f1;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 .add-button {

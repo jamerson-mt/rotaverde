@@ -36,6 +36,10 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  --color-input-background: #ffffff; /* Fundo dos campos sempre branco */
+  --color-input-border: var(--vt-c-divider-light-2);
+  --color-input-text: #333333; /* Cor do texto ajustada para contraste no fundo branco */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,6 +53,10 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+
+    --color-input-background: #ffffff; /* Fundo dos campos sempre branco */
+    --color-input-border: var(--vt-c-divider-dark-2);
+    --color-input-text: #333333; /* Cor do texto ajustada para contraste no fundo branco */
   }
 }
 
@@ -78,4 +86,21 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos globais para inputs */
+input,
+textarea,
+select {
+  background-color: var(--color-input-background);
+  color: var(--color-input-text);
+  border: 1px solid var(--color-input-border);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-border-hover);
+  outline: none;
 }
