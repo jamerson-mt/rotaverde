@@ -1,9 +1,22 @@
 <script setup>
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
 import FalarComponent from '@/components/specific/FalarComponent.vue';
-import { inject } from "vue";
+import { inject, ref } from "vue";
+import { speakText } from '@/utils/textToSpeech';
 
 const isPlaying = inject("isPlaying");
+const loginClickCount = ref(0);
+
+function handleLoginClick() {
+    loginClickCount.value++;
+    if (loginClickCount.value === 1) {
+        speechSynthesis.cancel(); // Garante que nenhuma fala anterior esteja em andamento
+        speakText('Você será redirecionado para a página de autenticação', { rate: 1.1, pitch: 1.2, volume: 0.9 });
+    } else if (loginClickCount.value === 2) {
+        speechSynthesis.cancel(); // Interrompe a fala em andamento
+        window.location.href = '/login';
+    }
+}
 </script>
 
 <template>
@@ -16,7 +29,8 @@ const isPlaying = inject("isPlaying");
             <div class="title">
                 <h1>Rota Verde</h1>
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
-                <IonButton class="route" @click="$refs.falarComponent.falar('welcome','boasvindas', 'essaesuaarea', '/home')">Vamos lá</IonButton>
+                <IonButton class="route" @click="$refs.falarComponent.falar('welcome','boasvindas', 'essaesuaarea', '/home')">Acessar sem login</IonButton>
+                <IonButton class="route login" @click="handleLoginClick">Acessar com login</IonButton>
             </div>
             <div class="icons">
                 <img src="/public/img/iconesSustentabilidade/reciclagem.png" />
@@ -27,7 +41,7 @@ const isPlaying = inject("isPlaying");
                 <FalarComponent ref="falarComponent" audio1="" audio2="" rota="#" />
             </div>
             <div class="fala" v-if="isPlaying">
-                <FalarComponent ref="falarComponent" audio1="" audio2="" rota="#" />
+                <!-- Removido o componente TextToFala -->
             </div>
         </ion-content>
     </ion-page>
@@ -121,6 +135,11 @@ const isPlaying = inject("isPlaying");
     --border-radius: 3px;
     padding: 10px 20px;
     text-align: center;
+}
+
+.route.login {
+    margin-top: 10px;
+    --background: #0A6EBD;
 }
 
 .icons {
