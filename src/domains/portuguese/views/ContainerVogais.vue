@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from '@ionic/vue';
 import ListaVogais from '../components/ListaVogais.vue'; // Importando o componente de vogais
-import Header from '@/domains/reasoning/components/Header.vue'; // Importando o componente Header
+import Header from '@/domains/reasoning/components/HeaderTop.vue'; // Importando o componente Header
 import TitleCategories from '@/domains/user/components/TitleCategories.vue' // Importando o componente de título de categorias
 
 

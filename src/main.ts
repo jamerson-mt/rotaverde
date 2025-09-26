@@ -36,6 +36,7 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 import audioManager from "@/utils/audioManager";
 
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router);

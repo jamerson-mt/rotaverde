@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from "vue";
-import Header from '@/domains/reasoning/components/Header.vue';
+import Header from '@/domains/reasoning/components/HeaderTop.vue';
 
 const wordsData = [
   { id: "vitoria-regia", word: "VITÓRIA-RÉGIA", syllables: ["VI", "TÓ", "RIA", "-RÉ", "GI", "A"], definition: "Uma planta aquática gigante da Amazônia, com folhas circulares que podem chegar a mais de 2 metros de diâmetro." },

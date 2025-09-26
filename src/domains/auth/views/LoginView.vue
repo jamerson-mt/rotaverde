@@ -26,6 +26,10 @@ async function login() {
     if (response.ok) {
       const data = await response.json();
       console.log("Login bem-sucedido:", data);
+
+      // Armazena um cookie indicando que o usuário está logado
+      document.cookie = "isLoggedIn=true; path=/; max-age=86400"; // Expira em 1 dia
+
       router.push("/home");
     } else {
       console.error("Erro ao fazer login:", await response.text());
@@ -47,8 +51,7 @@ async function register() {
         email: email.value,
         password: password.value,
       }),
-      //credentials
-      credentials: 'include' // Se precisar enviar cookies
+      credentials: "include", // Se precisar enviar cookies
     });
 
     if (response.ok) {

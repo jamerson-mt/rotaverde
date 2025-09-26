@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 import { onMounted } from 'vue';
 import { exercise } from "../../portuguese/services/attEscrita.js";
   
-import Header from '@/domains/reasoning/components/Header.vue';
+import Header from '@/domains/reasoning/components/HeaderTop.vue';
 import AttEscrita from "@/domains/portuguese/components/AttEscrita.vue";
 
 let itemArray = ref(0);

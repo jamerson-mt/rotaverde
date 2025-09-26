@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
-import Header from "@/domains/reasoning/components/Header.vue";
+import Header from "@/domains/reasoning/components/HeaderTop.vue";
 import CardLevels from "../components/CardLevels.vue";
 import TitleCategories from "../components/TitleCategories.vue";
 </script>

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from "@ionic/vue";
 import Card from "@/domains/user/components/Card.vue";
-import Header from "@/domains/reasoning/components/Header.vue";
+import Header from "@/domains/reasoning/components/HeaderTop.vue";
 import FalarComponent from "@/components/specific/FalarComponent.vue";
 import { inject, ref } from "vue";
 
 const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está sendo injetado corretamente
-
+const isLoggedIn = ref(document.cookie.includes("isLoggedIn=true")); // Verifica o cookie
+console.log("isLoggedIn no HomeView:", isLoggedIn);
 // Defina a interface para o tipo do FalarComponent
 interface FalarComponentType {
   falar(language: string, subject: string, module: string, route: string): void;
@@ -61,14 +62,17 @@ function stopAudio() {
           link="/forms?q=pt"
           bgc="#fff" 
         />
+        <!-- Exibe os cards do dashboard apenas se o usuário estiver logado -->
         <Card
+          v-if="isLoggedIn"
           @click="goPage('professor')"
           title="Dashboard Professor"
           image="img/prata.png"
           link="/profesor"
           bgc="#fff"
         />
-        <!-- Botão para login -->
+        <!-- Botão de login aparece apenas se o usuário não estiver logado -->
+        
         <!-- Certifique-se de que o componente está sempre presente -->
         <FalarComponent ref="falarComponent" />
 

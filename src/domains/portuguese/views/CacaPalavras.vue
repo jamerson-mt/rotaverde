@@ -3,7 +3,7 @@ import { IonContent, IonPage } from "@ionic/vue";
 import Quadro from "@/domains/portuguese/components/QuadroCacapalavras.vue";
 import { portugues } from "../store/cacaPalavras";
 import { ref } from "vue";
-import Header from "@/domains/reasoning/components/Header.vue";
+import Header from "@/domains/reasoning/components/HeaderTop.vue";
 
 const { frame, words } = portugues[0];
 

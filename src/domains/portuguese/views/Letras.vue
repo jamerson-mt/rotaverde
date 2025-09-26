@@ -4,7 +4,7 @@ import { ref, watch, onMounted } from 'vue';
 import { exercise } from "../services/attLetras.ts";
 import AttEscrita from "@/domains/portuguese/components/AttLetras.vue";
 import HeaderLevels from '../components/HeaderLevels.vue';
-import Header from '@/domains/reasoning/components/Header.vue';
+import Header from '@/domains/reasoning/components/HeaderTop.vue';
 import { speakText } from '../services/fala.js';
 import { useRouter } from 'vue-router';
 import { defineEmits } from 'vue';

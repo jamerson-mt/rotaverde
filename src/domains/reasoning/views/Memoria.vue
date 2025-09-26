@@ -2,7 +2,7 @@
 import { IonPage, IonContent } from '@ionic/vue';
 import { ref } from 'vue';
 import { novaSequencia } from "../services/GameMemoria.js";
-import Header from '../components/Header.vue';
+import Header from '../components/HeaderTop.vue';
 import AttHeader from '../components/AttHeader.vue';
 import GameCircle from '../components/GameCircle.vue';
 import ButtonMemoria from '../components/ButtonMemoria.vue';
