@@ -3,17 +3,24 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const username = ref("");
 const email = ref("");
 const password = ref("");
+const isRegistering = ref(false);
+
+const API_URL = import.meta.env.VITE_API_URL.endsWith("/")
+  ? import.meta.env.VITE_API_URL
+  : `${import.meta.env.VITE_API_URL}/`; // Garante a barra final
 
 async function login() {
   try {
-    const response = await fetch("http://127.0.0.1:5245/api/auth/login", {
+    const response = await fetch(`${API_URL}auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: email.value, password: password.value }),
+      body: JSON.stringify({ username: username.value, password: password.value }),
+      credentials: "include", // Garante o envio e recebimento de cookies
     });
 
     if (response.ok) {
@@ -30,17 +37,23 @@ async function login() {
 
 async function register() {
   try {
-    const response = await fetch("http://127.0.0.1:5245/api/auth/register", {
+    const response = await fetch(`${API_URL}auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: email.value, password: password.value }),
+      body: JSON.stringify({
+        username: username.value,
+        email: email.value,
+        password: password.value,
+      }),
+      //credentials
+      credentials: 'include' // Se precisar enviar cookies
     });
 
     if (response.ok) {
       console.log("Registro bem-sucedido");
-      login(); // Faz login automaticamente após o registro
+      isRegistering.value = false;
     } else {
       console.error("Erro ao registrar:", await response.text());
     }
@@ -51,18 +64,25 @@ async function register() {
 </script>
 
 <template>
- <div class="container">
+  <div class="container">
     <div class="title">
-    <h1>Bem-vindo!</h1>
-    <p>Entre na sua conta ou registre-se</p>
-  </div>
+      <h1>Bem-vindo!</h1>
+      <p>{{ isRegistering ? "Crie sua conta" : "Entre na sua conta" }}</p>
+    </div>
 
-  <div class="form">
-    <input v-model="email" type="email" placeholder="Email" />
-    <input v-model="password" type="password" placeholder="Senha" />
-    <button class="login-button" @click="login">Entrar</button>
-    <button class="register-button" @click="register">Registrar</button>
-  </div></div>
+    <div class="form">
+      <input v-model="username" type="text" placeholder="Usuário" />
+      <input v-if="isRegistering" v-model="email" type="email" placeholder="Email" />
+      <input v-model="password" type="password" placeholder="Senha" />
+      <button v-if="isRegistering" class="register-button" @click="register">
+        Registrar
+      </button>
+      <button v-else class="login-button" @click="login">Entrar</button>
+      <button class="toggle-button" @click="isRegistering = !isRegistering">
+        {{ isRegistering ? "Já tem uma conta? Entrar" : "Não tem uma conta? Registrar" }}
+      </button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -158,6 +178,20 @@ body {
 
 .register-button:hover {
   background-color: #555;
+}
+
+.toggle-button {
+  background-color: transparent;
+  color: #888;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+.toggle-button:hover {
+  color: white;
 }
 
 @media (max-width: 768px) {
