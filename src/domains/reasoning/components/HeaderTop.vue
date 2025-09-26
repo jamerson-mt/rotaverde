@@ -10,7 +10,7 @@ function goToHome() {
 }
 
 function login() {
-  router.push("/login");
+  window.location.href = "/login";
 }
 
 const API_URL = import.meta.env.VITE_API_URL ;
@@ -21,6 +21,14 @@ function clearAllCookies() {
     const eqPos = cookie.indexOf("=");
     const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
     document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+  }
+}
+
+function clearLocalStorage() {
+  try {
+    localStorage.clear();
+  } catch {
+    console.warn("LocalStorage não está disponível.");
   }
 }
 
@@ -42,6 +50,8 @@ async function logout() {
 
   // Remove todos os cookies
   clearAllCookies();
+  //apague tambem todo o localstorage
+  clearLocalStorage();
 
   // Redireciona para a página inicial
   window.location.href = "/home";

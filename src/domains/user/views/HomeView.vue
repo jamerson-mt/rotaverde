@@ -4,10 +4,18 @@ import Card from "@/domains/user/components/Card.vue";
 import Header from "@/domains/reasoning/components/HeaderTop.vue";
 import FalarComponent from "@/components/specific/FalarComponent.vue";
 import { inject, ref } from "vue";
+import { getUserData } from "@/utils/localStorageUtils";
 
 const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está sendo injetado corretamente
-const isLoggedIn = ref(document.cookie.includes("isLoggedIn=true")); // Verifica o cookie
-console.log("isLoggedIn no HomeView:", isLoggedIn);
+
+// Verifica se o usuário está logado com base nos dados do localStorage
+const userData = ref(getUserData()?.user || {});
+
+// Verifica a role do usuário com base nos dados do localStorage
+
+// Verifica se o usuário possui a role "professor"
+const isProfessor = ref(userData.value.roles?.includes("professor") || false);
+
 // Defina a interface para o tipo do FalarComponent
 interface FalarComponentType {
   falar(language: string, subject: string, module: string, route: string): void;
@@ -48,6 +56,7 @@ function stopAudio() {
 
       <div id="container">
         <Card
+          v-if="!isProfessor"
           @click="handleFalar('pt', 'portugues', 'seusmodulos', '/categorias')"
           title="Módulos"
           image="img/iconesSustentabilidade/arvore.png"
@@ -55,23 +64,25 @@ function stopAudio() {
           link2="/att/roadMap"
           bgc="#fff"
         />
+        <!-- Exibe o card "formulários" apenas se o usuário não for professor -->
         <Card
+          v-if="!isProfessor"
           @click="goPage('forms')"
           title="formulários"
           image="img/list/list1.jpg"
           link="/forms?q=pt"
           bgc="#fff" 
         />
-        <!-- Exibe os cards do dashboard apenas se o usuário estiver logado -->
+        <!-- Exibe o card do dashboard apenas se o usuário for professor -->
         <Card
-          v-if="isLoggedIn"
+          v-if="isProfessor"
           @click="goPage('professor')"
           title="Dashboard Professor"
           image="img/prata.png"
           link="/profesor"
           bgc="#fff"
         />
-        <!-- Botão de login aparece apenas se o usuário não estiver logado -->
+        
         
         <!-- Certifique-se de que o componente está sempre presente -->
         <FalarComponent ref="falarComponent" />

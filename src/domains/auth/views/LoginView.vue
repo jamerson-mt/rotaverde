@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { saveUserData } from "@/utils/localStorageUtils";
 
 const router = useRouter();
 const username = ref("");
@@ -26,6 +27,9 @@ async function login() {
     if (response.ok) {
       const data = await response.json();
       console.log("Login bem-sucedido:", data);
+
+      // Armazena os dados do usuário no localStorage
+      saveUserData(data);
 
       // Armazena um cookie indicando que o usuário está logado
       document.cookie = "isLoggedIn=true; path=/; max-age=86400"; // Expira em 1 dia
