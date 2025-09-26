@@ -1,13 +1,25 @@
 <script setup>
 import { IonButton, IonContent, IonPage } from '@ionic/vue';
 import FalarComponent from '@/components/specific/FalarComponent.vue';
-import { inject, ref } from "vue";
+import { inject, ref, onMounted } from "vue";
 import { speakText } from '@/utils/textToSpeech';
 
 const isPlaying = inject("isPlaying");
 const loginClickCount = ref(0);
+const isLoggedIn = ref(document.cookie.includes("isLoggedIn=true")); // Verifica o cookie diretamente
+
+onMounted(() => {
+    if (isLoggedIn.value) {
+        window.location.href = '/home';
+    }
+});
 
 function handleLoginClick() {
+    if (isLoggedIn.value) {
+        window.location.href = '/home';
+        return;
+    }
+
     loginClickCount.value++;
     if (loginClickCount.value === 1) {
         speechSynthesis.cancel(); // Garante que nenhuma fala anterior esteja em andamento
