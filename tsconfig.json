@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "allowJs": true, 
-    "typeRoots": ["./node_modules/@types", "@/domains/assistant/services/speech-recognition", "./src/types"],
     "target": "ESNext",
-    "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "ignoreDeprecations": "6.0",
+    "useDefineForClassFields": true,
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "ignoreDeprecations": "5.0",
     "strict": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
@@ -16,6 +15,7 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true,
+    "typeRoots": ["./node_modules/@types", "@/domains/assistant/services/speech-recognition", "./src/types"],
     "paths": {
       "@/*": ["./src/*"]
     },
