@@ -3,10 +3,11 @@ import { IonButton, IonContent, IonPage } from '@ionic/vue';
 import FalarComponent from '@/components/specific/FalarComponent.vue';
 import { inject, ref, onMounted } from "vue";
 import { speakText } from '@/utils/textToSpeech';
+import { getUserData } from '@/utils/localStorageUtils';
 
 const isPlaying = inject("isPlaying");
 const loginClickCount = ref(0);
-const isLoggedIn = ref(document.cookie.includes("isLoggedIn=true")); // Verifica o cookie diretamente
+const isLoggedIn = ref(!!getUserData()); // Verifica se há dados do usuário no localStorage
 
 onMounted(() => {
     if (isLoggedIn.value) {

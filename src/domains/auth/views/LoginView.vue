@@ -2,12 +2,14 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { saveUserData } from "@/utils/localStorageUtils";
+import NumberLogin from "../components/NumberLogin.vue";
 
 const router = useRouter();
 const username = ref("");
 const email = ref("");
 const password = ref("");
 const isRegistering = ref(false);
+const showNumberLogin = ref(false);
 
 const API_URL = import.meta.env.VITE_API_URL.endsWith("/")
   ? import.meta.env.VITE_API_URL
@@ -72,12 +74,12 @@ async function register() {
 
 <template>
   <div class="container">
-    <div class="title">
+    <div v-if="!showNumberLogin" class="title">
       <h1>Bem-vindo!</h1>
       <p>{{ isRegistering ? "Crie sua conta" : "Entre na sua conta" }}</p>
     </div>
 
-    <div class="form">
+    <div v-if="!showNumberLogin" class="form">
       <input v-model="username" type="text" placeholder="Usuário" />
       <input v-if="isRegistering" v-model="email" type="email" placeholder="Email" />
       <input v-model="password" type="password" placeholder="Senha" />
@@ -88,7 +90,16 @@ async function register() {
       <button class="toggle-button" @click="isRegistering = !isRegistering">
         {{ isRegistering ? "Já tem uma conta? Entrar" : "Não tem uma conta? Registrar" }}
       </button>
+      <button class="number-login-button" @click="showNumberLogin = true">
+        Login com número de aluno
+      </button>
     </div>
+
+    <NumberLogin v-else>
+      <template #back-button>
+        <button @click="showNumberLogin = false">Voltar</button>
+      </template>
+    </NumberLogin>
   </div>
 </template>
 
@@ -199,6 +210,62 @@ body {
 
 .toggle-button:hover {
   color: white;
+}
+
+.number-login-button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #ff5722; /* Cor destacada */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.number-login-button:hover {
+  background-color: #e64a19;
+  transform: scale(1.05); /* Efeito de destaque ao passar o mouse */
+}
+
+.number-login {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 20px;
+  background-color: #2a2b30;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.number-login h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff5722; /* Cor destacada */
+  margin-bottom: 1rem;
+}
+
+.number-login button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #ff5722; /* Cor destacada */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.number-login button:hover {
+  background-color: #e64a19;
+  transform: scale(1.05); /* Efeito de destaque ao passar o mouse */
+}
+
+.number-login p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #d4d1d1;
 }
 
 @media (max-width: 768px) {

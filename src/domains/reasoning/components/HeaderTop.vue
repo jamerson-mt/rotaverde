@@ -1,9 +1,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { getUserData, removeUserData } from '@/utils/localStorageUtils';
 
 const router = useRouter();
-const isLoggedIn = ref(document.cookie.includes("isLoggedIn=true")); // Verifica o cookie
+const isLoggedIn = ref(!!getUserData()); // Verifica se há dados do usuário no localStorage
 
 function goToHome() {
   router.push("/categorias");
@@ -13,28 +14,9 @@ function login() {
   window.location.href = "/login";
 }
 
-const API_URL = import.meta.env.VITE_API_URL ;
-
-function clearAllCookies() {
-  const cookies = document.cookie.split("; ");
-  for (const cookie of cookies) {
-    const eqPos = cookie.indexOf("=");
-    const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-    document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
-  }
-}
-
-function clearLocalStorage() {
-  try {
-    localStorage.clear();
-  } catch {
-    console.warn("LocalStorage não está disponível.");
-  }
-}
+const API_URL = import.meta.env.VITE_API_URL;
 
 async function logout() {
-  // Define o cookie existente como false
-
   try {
     const response = await fetch(`${API_URL}auth/logout`, {
       method: "POST",
@@ -48,10 +30,8 @@ async function logout() {
     console.error("Erro ao deslogar:", error);
   }
 
-  // Remove todos os cookies
-  clearAllCookies();
-  //apague tambem todo o localstorage
-  clearLocalStorage();
+  // Remove os dados do usuário do localStorage
+  removeUserData();
 
   // Redireciona para a página inicial
   window.location.href = "/home";
