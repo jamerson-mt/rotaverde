@@ -10,6 +10,7 @@ const email = ref("");
 const password = ref("");
 const isRegistering = ref(false);
 const showNumberLogin = ref(false);
+const feedbackMessage = ref(""); // Nova variável para armazenar a mensagem de feedback
 
 const API_URL = import.meta.env.VITE_API_URL.endsWith("/")
   ? import.meta.env.VITE_API_URL
@@ -36,12 +37,17 @@ async function login() {
       // Armazena um cookie indicando que o usuário está logado
       document.cookie = "isLoggedIn=true; path=/; max-age=86400"; // Expira em 1 dia
 
+      feedbackMessage.value = "Login realizado com sucesso!";
       router.push("/home");
+      window.location.reload();
     } else {
-      console.error("Erro ao fazer login:", await response.text());
+      const errorText = await response.text();
+      console.error("Erro ao fazer login:", errorText);
+      feedbackMessage.value = `Erro ao fazer login: ${errorText}`;
     }
   } catch (error) {
     console.error("Erro na requisição de login:", error);
+    feedbackMessage.value = "Erro na requisição de login. Tente novamente.";
   }
 }
 
@@ -93,6 +99,7 @@ async function register() {
       <button class="number-login-button" @click="showNumberLogin = true">
         Login com número de aluno
       </button>
+      <p v-if="feedbackMessage" class="feedback-message">{{ feedbackMessage }}</p>
     </div>
 
     <NumberLogin v-else>
@@ -266,6 +273,13 @@ body {
   margin-top: 1rem;
   font-size: 1.2rem;
   color: #d4d1d1;
+}
+
+.feedback-message {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #ff5722; /* Cor de destaque para a mensagem */
+  text-align: center;
 }
 
 @media (max-width: 768px) {
