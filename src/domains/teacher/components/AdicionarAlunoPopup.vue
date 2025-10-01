@@ -1,41 +1,57 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-const nome = ref("Aluno Padrão");
-const idade = ref<number | null>(18);
+const nome = ref("");
+const email = ref("jjmt@discente.ifpe.edu.br"); // Email padrão
 const isPopupVisible = ref(false);
+
+const API_URL = import.meta.env.VITE_API_URL;
+const DEFAULT_PASSWORD = import.meta.env.VITE_DEFAULT_PASSWORD;
+
+const password = ref(DEFAULT_PASSWORD); // Usa a senha padrão inicialmente
 
 function fecharPopup() {
   isPopupVisible.value = false;
 }
 
 async function adicionarAluno() {
-  if (!nome.value || !idade.value) {
+  if (!nome.value || !email.value || !password.value) {
     alert("Por favor, preencha todos os campos.");
     return;
   }
 
   try {
-    const response = await fetch("http://localhost:5198/api/aluno", {
+    const response = await fetch(`${API_URL}auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ nome: nome.value, idade: idade.value }),
+      credentials: "include",
+      body: JSON.stringify({
+        UserName: nome.value,
+        Email: email.value,
+        Password: password.value,
+      }),
+     
     });
 
     if (!response.ok) {
-      throw new Error("Erro ao adicionar aluno.");
+      const errorData = await response.json().catch(() => null); // Tenta obter JSON, caso contrário retorna null
+      const errorMessage = errorData?.message || "Erro ao adicionar aluno.";
+      throw new Error(errorMessage);
     }
 
     alert("Aluno adicionado com sucesso!");
     fecharPopup();
-    window.location.reload();
     nome.value = "";
-    idade.value = null;
+    email.value = "jjmt@discente.ifpe.edu.br";
+    password.value = DEFAULT_PASSWORD;
+    window.location.reload();
+    // Atualize os dados localmente, se necessário, em vez de recarregar a página
   } catch (error) {
-    console.error(error);
-    alert("Ocorreu um erro ao adicionar o aluno.");
+    const errorMessage = error instanceof Error ? error.message : "Erro desconhecido.";
+    alert(`Erro: ${errorMessage}`);
+    console.error("Erro ao adicionar aluno:", error);
   }
 }
 
@@ -53,8 +69,12 @@ onMounted(() => {
         <input v-model="nome" type="text" />
       </label>
       <label>
-        Idade:
-        <input v-model.number="idade" type="number" />
+        Email:
+        <input v-model="email" type="email" />
+      </label>
+      <label>
+        Senha 
+        <input v-model="password" type="password" />
       </label>
       <div class="popup-actions">
         <button @click="adicionarAluno" class="confirm-button">Confirmar</button>

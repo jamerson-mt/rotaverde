@@ -22,7 +22,13 @@ const alunosCount = ref(0);
 
 const fetchAlunosCount = async () => {
   try {
-    const response = await fetch(`${API_URL}aluno`);
+    const response = await fetch(`${API_URL}user`, {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
     if (!response.ok) {
       throw new Error('Erro ao buscar alunos');
     }

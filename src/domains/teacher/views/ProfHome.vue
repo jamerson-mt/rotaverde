@@ -26,16 +26,22 @@ const closePopup = () => {
 // URL da API obtida da variável de ambiente
 const API_URL = import.meta.env.VITE_API_URL;
 
-// Função para buscar os alunos da API
-const fetchAlunos = async () => {
+// Função para buscar os usuários da API
+const fetchUsers = async () => {
   try {
-    const response = await fetch(`${API_URL}aluno`);
+    const response = await fetch(`${API_URL}user`, {
+      headers: {
+        'Cache-Control': 'no-cache', // Evita cache para garantir dados atualizados
+        'Content-Type': 'application/json', // Define o tipo de conteúdo
+      },
+      credentials: 'include', // Inclui cookies para autenticação, se necessário
+    });
     if (!response.ok) {
-      throw new Error("Erro ao buscar alunos");
+      throw new Error("Erro ao buscar usuários");
     }
-    alunos.value = await response.json();
+    alunos.value = await response.json(); // Atualiza a lista de usuários
   } catch (error) {
-    console.error("Erro ao carregar alunos:", error);
+    console.error("Erro ao carregar usuários:", error);
   }
 };
 
@@ -52,9 +58,9 @@ const fetchTurmas = async () => {
   }
 };
 
-// Busca os alunos e as turmas ao montar o componente
+// Busca os usuários e as turmas ao montar o componente
 onMounted(() => {
-  fetchAlunos();
+  fetchUsers();
   fetchTurmas();
 });
 </script>

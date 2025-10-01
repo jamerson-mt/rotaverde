@@ -5,15 +5,28 @@
       <p><strong>ID:</strong> {{ turma.id }}</p>
       <p><strong>Descrição:</strong> {{ turma.descricao || 'Sem descrição' }}</p>
       <p><strong>Quantidade de Alunos:</strong> {{ alunosCount }}</p>
-      <button @click="closePopup">Fechar</button>
-      <button @click="goToConfig">Configurações</button>
-      <button @click="removeTurma">Remover Turma</button>
+      <div v-if="!showActions">
+        <button id="btn-show-more" @click="toggleActions">Mostrar Mais</button>
+      </div>
+      <div v-else>
+        <button id="btn-close" @click="closePopup">Fechar</button>
+        <button id="btn-config" @click="goToConfig">Configurações</button>
+        <button id="btn-remove" @click="removeTurma">Remover Turma</button>
+        <button id="btn-access" @click="openTurmaActions">Acessar Turma</button>
+        <button id="btn-show-less" @click="toggleActions">Mostrar Menos</button>
+      </div>
     </div>
   </div>
+  <TurmaActionsPopup
+    v-if="showTurmaActionsPopup"
+    :turma="turma"
+    @close="showTurmaActionsPopup = false"
+  />
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, ref } from 'vue';
+import TurmaActionsPopup from './TurmaActionsPopup.vue';
 
 const props = defineProps({
   turma: {
@@ -27,15 +40,22 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
+const showActions = ref(false);
+const showTurmaActionsPopup = ref(false);
+
+const toggleActions = () => {
+  showActions.value = !showActions.value;
+};
 
 const closePopup = () => {
   emit('close');
 };
 
 const goToConfig = () => {
-    window.location.href = `/professor/turmas/${props.turma.id}`;
+  window.location.href = `/professor/turmas/${props.turma.id}`;
 };
-const API_URL = import.meta.env.VITE_API_URL 
+
+const API_URL = import.meta.env.VITE_API_URL;
 const removeTurma = async () => {
   if (confirm('Tem certeza que deseja remover esta turma?')) {
     try {
@@ -59,6 +79,10 @@ const removeTurma = async () => {
       alert('Ocorreu um erro ao tentar remover a turma.');
     }
   }
+};
+
+const openTurmaActions = () => {
+  showTurmaActionsPopup.value = true;
 };
 </script>
 
@@ -94,23 +118,91 @@ const removeTurma = async () => {
 .popup-content button {
   margin: 0.5rem 0.25rem; /* Ajuste de espaçamento uniforme */
   padding: 0.5rem 1.5rem; /* Botões mais largos */
-  background: #00664f;
-  color: white;
-  border: none;
+  background: #f5f5f5; /* Cor de fundo neutra */
+  color: #333; /* Cor do texto */
+  border: 1px solid #ccc; /* Borda sutil */
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem; /* Aumentar o tamanho da fonte */
 }
 
 .popup-content button:hover {
-  background: #004d3a;
+  background: #e0e0e0; /* Fundo levemente mais escuro ao passar o mouse */
 }
 
 .popup-content button:last-child {
-  background: #d9534f;
+  background: #f5f5f5; /* Cor neutra */
+  color: #333; /* Cor do texto padrão */
+  border: 1px solid #ccc; /* Borda neutra */
 }
 
 .popup-content button:last-child:hover {
-  background: #c9302c;
+  background: #e0e0e0; /* Fundo levemente mais escuro ao passar o mouse */
+}
+
+.popup-content button:nth-last-child(2) {
+  background: #f5f5f5; /* Mesma cor neutra */
+  color: #d9534f; /* Destaque na cor do texto */
+  border: 1px solid #d9534f; /* Borda correspondente */
+}
+
+.popup-content button:nth-last-child(2):hover {
+  background: #fbeaea; /* Fundo levemente avermelhado ao passar o mouse */
+}
+
+/* Estilos específicos para cada botão */
+#btn-show-more {
+  background: #007bff;
+  color: white;
+}
+
+#btn-show-more:hover {
+  background: #0056b3;
+}
+
+#btn-close {
+  background: #6c757d;
+  color: white;
+}
+
+#btn-close:hover {
+  background: #5a6268;
+}
+
+#btn-config {
+  background: #28a745;
+  color: white;
+}
+
+#btn-config:hover {
+  background: #218838;
+}
+
+#btn-remove {
+  background: #f5f5f5;
+  color: #d9534f;
+  border: 1px solid #d9534f;
+}
+
+#btn-remove:hover {
+  background: #fbeaea;
+}
+
+#btn-access {
+  background: #ffc107;
+  color: #212529;
+}
+
+#btn-access:hover {
+  background: #e0a800;
+}
+
+#btn-show-less {
+  background: #007bff;
+  color: white;
+}
+
+#btn-show-less:hover {
+  background: #0056b3;
 }
 </style>

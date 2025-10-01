@@ -40,7 +40,7 @@ const selectedStudents = ref([]);
 
 const fetchStudents = async () => {
   try {
-    const response = await fetch(`${API_URL}aluno`);
+    const response = await fetch(`${API_URL}user`);
     if (!response.ok) throw new Error('Erro ao buscar alunos');
     students.value = await response.json();
   } catch (error) {
@@ -67,7 +67,7 @@ const finalizeSelection = async () => {
     }));
 
     for (const student of updates) {
-      const response = await fetch(`${API_URL}aluno/${student.id}`, {
+      const response = await fetch(`${API_URL}user/${student.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(student),
@@ -89,42 +89,103 @@ onMounted(fetchStudents);
 
 <style scoped>
 .listar-alunos {
-  background-color: #f9f9f9;
-  padding: 15px;
+  background-color: #ffffff;
+  padding: 20px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-.selecionar-alunos {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  max-height: 200px;
-  overflow-y: auto;
-}
+
 h2 {
+  font-size: 1.6rem;
   color: #2c3e50;
+  margin-bottom: 1rem;
 }
+
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
+
 li {
-  padding: 5px 0;
-  border-bottom: 1px solid #eee;
+  padding: 12px 18px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+li:hover {
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 button {
   background-color: #3498db;
-  color: white;
+  color: #ffffff;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
+
 button:hover {
   background-color: #2980b9;
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.selecionar-alunos {
+  margin-top: 20px;
+}
+
+.selecionar-alunos h2 {
+  font-size: 1.4rem;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+.selecionar-alunos ul {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+
+.selecionar-alunos button {
+  margin-top: 10px;
+  background-color: #27ae60;
+}
+
+.selecionar-alunos button:hover {
+  background-color: #1e8449;
+}
+
+button.edit-button {
+  background-color: #f39c12;
+}
+
+button.edit-button:hover {
+  background-color: #d35400;
+}
+
+button.remove-button {
+  background-color: #e74c3c;
+}
+
+button.remove-button:hover {
+  background-color: #c0392b;
 }
 </style>

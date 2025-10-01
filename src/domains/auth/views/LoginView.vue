@@ -39,7 +39,6 @@ async function login() {
 
       feedbackMessage.value = "Login realizado com sucesso!";
       router.push("/home");
-      window.location.reload();
     } else {
       const errorText = await response.text();
       console.error("Erro ao fazer login:", errorText);

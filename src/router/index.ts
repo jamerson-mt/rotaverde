@@ -7,6 +7,8 @@ import Login from "../domains/auth/views/LoginView.vue";
 import Person from "@/domains/auth/views/Person.vue";
 import UsersAll from "@/domains/auth/views/UsersAll.vue";
 import ManagerUsers from "@/domains/teacher/views/ManagerUsers.vue";
+import HomeView from "@/domains/user/views/HomeView.vue";
+import { getUserData } from "@/utils/localStorageUtils";
 
 // Routes of domains
 
@@ -43,6 +45,19 @@ const routes: Array<RouteRecordRaw> = [
     path: "/manager/users",
     name: "Manager Users",
     component: ManagerUsers,
+  },
+  {
+    path: "/home",
+    name: "Home",
+    component: HomeView,
+    beforeEnter: (to, from, next) => {
+      const userData = getUserData();
+      if (userData && userData.user) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
 
   // Routes of domains
