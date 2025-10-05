@@ -29,7 +29,7 @@ const pronunciar = (texto: string) => {
 
 const pronunciarPalavra = (palavra: { letters: string[]; image: string; description: string }) => {
   pronunciar(palavra.letters.join(""));
-  selectedWord.value = { image: palavra.image, description: palavra.description };
+  // selectedWord.value = { image: palavra.image, description: palavra.description };
 };
 </script>
 
@@ -84,13 +84,11 @@ const pronunciarPalavra = (palavra: { letters: string[]; image: string; descript
       </div>
     </ion-content>
     <div id="navButton">
-      <!-- Botão flutuante -->
       <button class="floating-button" @click="toggleInfoCard">
         ℹ️
       </button>
     </div>
-
-    <!-- Card de informações -->
+    
     <div v-if="showInfoCard" class="info-card">
       <h3>Objetivo da Atividade</h3>
       <p>

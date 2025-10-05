@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from "@/router";
-import { defineProps, reactive, ref, toRefs, watch } from "vue";
+import { defineProps, reactive, ref, toRefs, watch, onBeforeUnmount } from "vue";
 
 const props = defineProps<{
   quadro: {
@@ -41,6 +41,14 @@ watch(quadro, () => {
 
 const selectedWord = ref<null | { image: string; description: string }>(null);
 
+let selectedWordTimeout: number | null = null
+function clearSelectedWordTimer() {
+  if (selectedWordTimeout !== null) {
+    clearTimeout(selectedWordTimeout)
+    selectedWordTimeout = null
+  }
+}
+
 const confirme = (() => {
   if (o1 && o2 && o3 && o4 && o5 && o6) {
     document.querySelectorAll(".aviso").forEach(function (valor) {
@@ -70,7 +78,13 @@ const check = (option: number) => {
 
     selectedWord.value = { image: palavra.image, description: palavra.description };
     pronunciar(palavra.letters.join(""), palavra.description);
-    confirme();
+      // inicia timer para fechar automaticamente após 10s
+      clearSelectedWordTimer()
+      selectedWordTimeout = window.setTimeout(() => {
+        selectedWord.value = null
+        selectedWordTimeout = null
+      }, 10000)
+      confirme();
   }
 };
 
@@ -151,7 +165,12 @@ const acenderLetra = (linhaIndex: number, celulaIndex: number) => {
 
 const closeCard = () => {
   selectedWord.value = null;
+  clearSelectedWordTimer()
 };
+
+onBeforeUnmount(() => {
+  clearSelectedWordTimer()
+})
 </script>
 
 <template>
