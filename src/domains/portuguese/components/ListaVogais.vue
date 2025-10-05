@@ -16,7 +16,7 @@
         <div class="card-corner top-left">{{ modalData.letra }}</div>
         <div class="card-corner bottom-right">{{ modalData.letra }}</div>
 
-        <div class="card-flip" :class="{ flipped: isFlipping }">
+  <div class="card-flip" :class="{ flipped: isFlipping }" @click="playFlip" role="button" tabindex="0">
           <div class="card-face card-front">
             <div class="card-inner">
               <div class="card-left">
@@ -65,6 +65,13 @@ const isFlipping = ref(false)
 const vogaisFormatadas = computed(() =>
   vogaisData.map((item) => (estiloAtual.value === 'lowercase' ? item.letra.toLowerCase() : item.letra.toUpperCase()))
 )
+
+function playFlip() {
+  isFlipping.value = false
+  void document.body.offsetWidth
+  isFlipping.value = true
+  setTimeout(() => { isFlipping.value = false }, 500)
+}
 
 function onKeyDownCard(e) {
   if (e.key === 'Escape' && showCardModal.value) closeCard()
@@ -286,6 +293,7 @@ onBeforeUnmount(() => {
   transform-style: preserve-3d;
   perspective: 1200px;
   transition: transform 0.5s cubic-bezier(.2,.9,.3,1);
+  cursor: pointer;
 }
 .card-flip.flipped { transform: rotateY(180deg); }
 .card-face {
