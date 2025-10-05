@@ -1,7 +1,7 @@
 <template>
   <div class="lista-vogais">
     <h2>Vogais</h2>
-    <button @click="lerTextoBotao" :style="{ backgroundColor: corBotao, color: '#ffffff' }">
+    <button class="btn-toggle-case btn-echo" @click="lerTextoBotao" :style="{ backgroundColor: corBotao, color: '#ffffff', '--btn-color': corBotao }">
       {{ estiloAtual === 'lowercase' ? 'minúscula' : 'MAIÚSCULA' }}
     </button>
     <ul>
@@ -164,6 +164,53 @@ onBeforeUnmount(() => {
   opacity: 0.9;
 }
 
+.btn-toggle-case {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.btn-echo::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 110%;
+  height: 110%;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0.02), 0 0 0 0 var(--btn-color, rgba(255,255,255,0.12));
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  animation: echoPulse 1.2s cubic-bezier(.25,.8,.25,1) infinite;
+}
+
+@keyframes echoPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0.02), 0 0 0 0 var(--btn-color);
+  }
+  45% {
+    transform: translate(-50%, -50%) scale(1.06);
+    opacity: 0.18;
+    box-shadow: 0 0 0 6px rgba(0,0,0,0.02), 0 0 0 6px var(--btn-color);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 0;
+    box-shadow: 0 0 0 14px rgba(0,0,0,0.02), 0 0 0 14px var(--btn-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-echo::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 .card-overlay {
   position: fixed;
   inset: 0;
@@ -232,7 +279,7 @@ onBeforeUnmount(() => {
 }
 .card-right {
   flex: 1;
-  text-align: left;
+  text-align: center;
   padding-left: 8px;
   display: flex;
   flex-direction: column;
