@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { getUserData, removeUserData } from '@/utils/localStorageUtils';
 
 const router = useRouter();
-const isLoggedIn = ref(!!getUserData()); // Verifica se há dados do usuário no localStorage
+const isLoggedIn = ref(!!getUserData()); 
 
 function goToHome() {
   router.push("/categorias");
@@ -20,7 +20,7 @@ async function logout() {
   try {
     const response = await fetch(`${API_URL}auth/logout`, {
       method: "POST",
-      credentials: "include", // Inclui cookies na requisição
+      credentials: "include",
     });
 
     if (!response.ok) {
