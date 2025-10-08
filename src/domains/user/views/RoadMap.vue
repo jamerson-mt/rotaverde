@@ -78,6 +78,14 @@ const go = (rota: string) => {
             @click="go('att/silabas')"
           />
         </div>
+        <div id="comp6" class="component component6">
+          <Exercise
+            img="img/abc.png"
+            title="Interpretação de textos"
+            link="att/int-textos"
+            @click="go('att/int-textos')"
+          />
+        </div>
         <div id="comp5" class="component component5">
           <Exercise
             img="img/abc.png"

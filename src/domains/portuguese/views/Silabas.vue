@@ -123,7 +123,6 @@ function checkWord() {
 }
 
 function goToNextWord() {
-  // Fecha modal e avança para a próxima palavra
   showDefinition.value = false;
   currentWordIndex.value = (currentWordIndex.value + 1) % wordsData.length;
 }
