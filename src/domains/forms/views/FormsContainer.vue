@@ -5,7 +5,8 @@ import FormCard from "../components/FormCard.vue";
 <template>
   <div class="forms-container">
     <TitleCategories title="Formulários" route="/categorias" />
-    <FormCard title="Simples Formulario" link="#teste" />
+    <FormCard title="Formulário Alunos" link="/forms/dados-aluno" />
+    <FormCard title="Formulário Docentes" link="/forms/dados-docente" />
     <FormCard title="Formulário Dados Iniciais" link="/forms/dados-iniciais" />
     <FormCard title="Termo de Livre Consentimento" link="/forms/termo-livre-consentimento" />
    
