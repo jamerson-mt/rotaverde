@@ -6,6 +6,7 @@ import Letras from '../views/Letras.vue';
 import Silabas from '../views/Silabas.vue';
 import Consoantes from '../views/ContainerConsoantes.vue';
 import Vogais from '../views/ContainerVogais.vue';
+import InterTextos from '../views/Inter-Textos.vue';
 
 const portugueseRoutes: Array<RouteRecordRaw> = [
     { path: '/att/pt/escrita', name: 'Escrita Portugues', component: EscritaPort },
@@ -14,7 +15,8 @@ const portugueseRoutes: Array<RouteRecordRaw> = [
     { path: '/att/pt/letras', name: 'Atividade Letras', component: Letras },
     { path: '/att/silabas', component: Silabas },
     { path: '/att/consoantes', component: Consoantes },
-    { path: '/att/vogais', component: Vogais }
+    { path: '/att/vogais', component: Vogais },
+    { path: '/att/int-textos',  component: InterTextos }
 ]
 
 export default portugueseRoutes;

@@ -1,15 +1,15 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import Header from '@/domains/reasoning/components/HeaderTop.vue';
 
 const wordsData = [
-  { id: "vitoria-regia", word: "VITÓRIA-RÉGIA", syllables: ["VI", "TÓ", "RIA", "-RÉ", "GI", "A"], definition: "Uma planta aquática gigante da Amazônia, com folhas circulares que podem chegar a mais de 2 metros de diâmetro." },
-  { id: "desmatamento", word: "DESMATAMENTO", syllables: ["DES", "MA", "TA", "MEN", "TO"], definition: "A retirada da vegetação de uma área, geralmente causada por atividades humanas como agricultura e urbanização." },
-  { id: "caatinga", word: "CAATINGA", syllables: ["CA", "A", "TIN", "GA"], definition: "Um bioma brasileiro caracterizado pelo clima semiárido, com vegetação adaptada à seca." },
-  { id: "floresta", word: "FLORESTA", syllables: ["FLO", "RES", "TA"], definition: "Uma grande área coberta por árvores e outras formas de vegetação, abrigando uma rica biodiversidade." },
-  { id: "reciclagem", word: "RECICLAGEM", syllables: ["RE", "CI", "CLA", "GEM"], definition: "Processo de transformar materiais usados em novos produtos, ajudando a reduzir o lixo e preservar recursos naturais." },
-  { id: "sustentavel", word: "SUSTENTÁVEL", syllables: ["SUS", "TEN", "TÁ", "VEL"], definition: "Algo que pode ser mantido por muito tempo sem esgotar os recursos naturais ou prejudicar o meio ambiente." },
-  { id: "poluicao", word: "POLUIÇÃO", syllables: ["PO", "LU", "I", "ÇÃO"], definition: "A contaminação do meio ambiente causada por substâncias nocivas, como lixo, fumaça ou produtos químicos." },
+  { id: "vitoria-regia", img:"vitoria-regia.png", word: "VITÓRIA-RÉGIA", syllables: ["VI", "TÓ", "RI", "A", "-RÉ", "GI", "A"], definition: "Uma planta aquática gigante da Amazônia, com folhas circulares que podem chegar a mais de 2 metros de diâmetro." },
+  { id: "desmatamento", img:"desmatamento.png", word: "DESMATAMENTO", syllables: ["DES", "MA", "TA", "MEN", "TO"], definition: "A retirada da vegetação de uma área, geralmente causada por atividades humanas como agricultura e urbanização." },
+  { id: "caatinga", img:"caatinga.png", word: "CAATINGA", syllables: ["CA", "A", "TIN", "GA"], definition: "Um bioma brasileiro caracterizado pelo clima semiárido, com vegetação adaptada à seca." },
+  { id: "floresta", img:"floresta.png", word: "FLORESTA", syllables: ["FLO", "RES", "TA"], definition: "Uma grande área coberta por árvores e outras formas de vegetação, abrigando uma rica biodiversidade." },
+  { id: "reciclagem", img:"reciclagem.png", word: "RECICLAGEM", syllables: ["RE", "CI", "CLA", "GEM"], definition: "Processo de transformar materiais usados em novos produtos, ajudando a reduzir o lixo e preservar recursos naturais." },
+  { id: "sustentavel", img:"sustentavel.png", word: "SUSTENTÁVEL", syllables: ["SUS", "TEN", "TÁ", "VEL"], definition: "Algo que pode ser mantido por muito tempo sem esgotar os recursos naturais ou prejudicar o meio ambiente." },
+  { id: "poluicao", img:"poluicao.png", word: "POLUIÇÃO", syllables: ["PO", "LU", "I", "ÇÃO"], definition: "A contaminação do meio ambiente causada por substâncias nocivas, como lixo, fumaça ou produtos químicos." },
 ];
 
 const currentWordIndex = ref(0);
@@ -115,7 +115,7 @@ function checkWord() {
     isCorrect.value = true;
     speakWordAndDescription(currentWordData.value.word, currentWordData.value.definition);
   } else {
-    feedbackMessage.value = "Ops! Tente novamente.";
+    feedbackMessage.value = "Foi quase, Tente de novo!";
     showDefinition.value = false;
     isCorrect.value = false;
     speakFeedback(feedbackMessage.value);
@@ -123,8 +123,27 @@ function checkWord() {
 }
 
 function goToNextWord() {
+  showDefinition.value = false;
   currentWordIndex.value = (currentWordIndex.value + 1) % wordsData.length;
 }
+
+function closeModal() {
+  showDefinition.value = false;
+}
+
+function handleKeyDown(e) {
+  if (e.key === 'Escape' && showDefinition.value) {
+    closeModal();
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeyDown);
+});
 
 function resetWord() {
   initializeGame();
@@ -139,8 +158,14 @@ initializeGame();
   <div class="container">
     <h1 class="title">Aventura Sustentável</h1>
     <h2 class="subtitle">Quebra-Cabeças de Palavras</h2>
-
-    <p class="instructions">Monte a palavra clicando nas sílabas.</p>
+    <div class="image-container" v-if="currentWordData.img">
+      <img
+        :src="`img/att-silabas/${currentWordData.img}`"
+        :alt="currentWordData.word"
+        class="word-image"
+        @click="speakWordAndDescription(currentWordData.word, currentWordData.definition)"
+      />
+    </div>
 
     <div class="assembled-area">
       <button
@@ -185,12 +210,26 @@ initializeGame();
       {{ feedbackMessage }}
     </p>
 
-    <div v-if="showDefinition" class="definition-box">
-      <h3>{{ currentWordData.word }}</h3>
-      <p>{{ currentWordData.definition }}</p>
-      <button class="next-btn" @click="goToNextWord">
-        Próxima Palavra
-      </button>
+    <div v-if="showDefinition" class="modal-overlay" @click.self="closeModal">
+      <div class="modal" role="dialog" aria-modal="true" :aria-label="currentWordData.word">
+        <button class="modal-close" @click="closeModal" aria-label="Fechar">×</button>
+        <div class="modal-content">
+          <div class="modal-grid">
+            <div class="modal-image" v-if="currentWordData.img">
+              <img :src="`img/att-silabas/${currentWordData.img}`" :alt="currentWordData.word" />
+            </div>
+            <div class="modal-text">
+              <h3>{{ currentWordData.word }}</h3>
+              <p>{{ currentWordData.definition }}</p>
+              <div class="modal-actions">
+                <button class="next-btn" @click="goToNextWord">
+                  Próxima Palavra
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -282,8 +321,110 @@ initializeGame();
 .next-btn {
   background: dodgerblue;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-radius: 15px;
   margin-top: 10px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+  max-height: 220px; 
+  overflow: hidden;
+}
+.word-image {
+  width: auto;
+  height: 180px; 
+  max-width: 100%;
+  object-fit: contain; 
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  background: #ffffff;
+  color: #1f2937;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+.modal-content h3 {
+  margin-top: 6px;
+  color: #137E60;
+}
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 16px;
+  align-items: center;
+}
+.modal-image img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(19,126,96,0.16);
+  background: linear-gradient(180deg, #f7fffb, #e9fff2);
+  padding: 8px;
+}
+.modal-text p {
+  text-align: left;
+  color: #334155;
+  line-height: 1.4;
+  margin-top: 8px;
+}
+.next-btn {
+  background: linear-gradient(90deg,#1eaab0,#137e60);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 14px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(19,126,96,0.18);
+}
+.next-btn:hover { transform: translateY(-2px); }
+.modal-close { font-size: 26px; color: #374151; }
+.modal-close:hover { color: #111827; }
+
+/* Responsividade: empilhar em telas pequenas */
+@media (max-width: 600px) {
+  .modal-grid { grid-template-columns: 1fr; }
+  .modal-image img { max-height: 160px; }
+  .modal { padding: 14px; }
 }
 </style>
