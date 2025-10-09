@@ -64,9 +64,8 @@ function stopAudio() {
           link2="/att/roadMap"
           bgc="#fff"
         />
-        <!-- Exibe o card "formulários" apenas se o usuário não for professor -->
+        <!-- Exibe o card "formulários" para todos os usuários -->
         <Card
-          v-if="!isProfessor"
           @click="goPage('forms')"
           title="formulários"
           image="img/list/list1.jpg"

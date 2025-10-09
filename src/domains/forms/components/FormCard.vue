@@ -32,33 +32,33 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #2e2e2e;
+  color: #ffffff;
   width: 100%;
-  height: 80px;
-  border: 2px solid #0b5f3c; /* Borda mais destacada */
-  border-radius: 8px;
-  padding: 10px;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+  height: 100px;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #0b5f3c, #1e8e5e);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .form-card:hover {
-  transform: scale(1.05);
-  background-color: #f0f8ff; /* Mudança de cor de fundo no hover */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.form-card__image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px 8px 0 0;
-  margin-bottom: 16px;
-}
-
-.form-card__title {
-  margin: 0 0 16px;
-  font-size: 18px;
+.form-card h1 {
+  margin: 0;
+  font-size: 20px;
   font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-card:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 </style>
