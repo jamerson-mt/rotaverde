@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { IonContent, IonPage } from '@ionic/vue';
-import ListaConsoantes from '../components/ListaConsoantes.vue'; // Importando o componente de consoantes
-import Header from '@/domains/reasoning/components/HeaderTop.vue'; // Importando o componente Header
-import TitleCategories from '@/domains/user/components/TitleCategories.vue' // Importando o componente de título de categorias
+import ListaConsoantes from '../components/ListaConsoantes.vue'; 
+import Header from '@/domains/reasoning/components/HeaderTop.vue'; 
+import TitleCategories from '@/domains/user/components/TitleCategories.vue';
 
 </script>
 
 <template>
     <ion-page>
         <ion-content :fullscreen="true">
-            <Header /> <!-- Componente Header -->
+            <Header /> 
             <TitleCategories title="atividade" route="/att/roadMap" />
-            <lista-consoantes /> <!-- Componente de lista de consoantes -->
+            <lista-consoantes /> 
         </ion-content>
     </ion-page>
 </template>
 
 <style scoped>
 ion-content {
-  --background: #f0f8ff; /* Fundo claro e agradável */
+  --background: #f0f8ff;
   display: flex;
   justify-content: center;
   align-items: center;
