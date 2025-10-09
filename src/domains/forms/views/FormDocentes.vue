@@ -30,7 +30,7 @@ export default {
         { pergunta: 'Acesso à internet durante as aulas:', key: 'Acesso à internet durante as aulas:', tipo: 'select', opcoes: ['Funcionou bem', 'Teve falhas', 'Sem internet'] },
         { pergunta: 'O Rota Verde está alinhado à proposta da EJA e ao planejamento da turma', key: 'O Rota Verde está alinhado à proposta da EJA e ao planejamento da turma', tipo: 'select', opcoes: ['Concordo Totalmente', 'Concordo um Pouco', 'Não Sei', 'Discordo um Pouco', 'Discordo Totalmente'] },
         { pergunta: 'Os conteúdos do jogo dialogam com a BNCC (Língua Portuguesa, Ciências da Natureza) e o contexto local', key: 'Os conteúdos do jogo dialogam com a BNCC (Língua Portuguesa, Ciências da Natureza) e o contexto local', tipo: 'select', opcoes: ['Concordo Totalmente', 'Concordo um Pouco', 'Não Sei', 'Discordo um Pouco', 'Discordo Totalmente'] },
-        { pergunta: 'Observei ganhos de letramento (vocabulário, consciência fonológica, leitura de palavras/frases).', key: 'Observei ganhos de letramento (vocabulário, consciência fonológica, leitura de palavras/frases)', tipo: 'select', opcoes: ['Concordo Totalmente', 'Concordo um Pouco', 'Não Sei', 'Discordo um Pouco', 'Discordo Totalmente'] },
+        { pergunta: 'Observei ganhos de letramento (vocabulário, consciência fonológica, leitura de palavras/frases).', key: 'Observei ganhos de letramento (vocabulário, consciência fonológica, leitura de palavras/frases).', tipo: 'select', opcoes: ['Concordo Totalmente', 'Concordo um Pouco', 'Não Sei', 'Discordo um Pouco', 'Discordo Totalmente'] },
         { pergunta: 'Observei ganhos de compreensão ambiental (manguezal/estuarino, práticas sustentáveis, noções climáticas)', key: 'Observei ganhos de compreensão ambiental (manguezal/estuarino, práticas sustentáveis, noções climáticas)', tipo: 'select', opcoes: ['Concordo Totalmente', 'Concordo um Pouco', 'Não Sei', 'Discordo um Pouco', 'Discordo Totalmente'] },
         { pergunta: 'O tempo de aula e a organização (duplas, compartilhamento de tablets) foram viáveis', key: 'O tempo de aula e a organização (duplas, compartilhamento de tablets) foram viáveis', tipo: 'select', opcoes: ['Concordo Totalmente', 'Concordo um Pouco', 'Não Sei', 'Discordo um Pouco', 'Discordo Totalmente'] },
         { pergunta: 'O painel docente apoiou o acompanhamento formativo (progresso, dificuldades, tomada de decisão)', key: 'O painel docente apoiou o acompanhamento formativo (progresso, dificuldades, tomada de decisão)', tipo: 'select', opcoes: ['Concordo Totalmente', 'Concordo um Pouco', 'Não Sei', 'Discordo um Pouco', 'Discordo Totalmente'] },
@@ -84,7 +84,7 @@ export default {
     },
     nextQuestion() {
       const key = this.perguntaAtual.key;
-      if (this.formData[key] === '_________' && this.customResponses[key]) {
+      if (this.formData[key] === 'Outro' && this.customResponses[key]) {
         this.formData[key] = this.customResponses[key]
       }
 
@@ -121,7 +121,6 @@ export default {
           }, 1800)
         })
         .catch((err) => {
-          // mesmo em erro, mostrar popup e seguir
           this.showWinPopup = true
           audioManager.playAudio(`public/audio/essaesuaarea.wav`);
           setTimeout(() => {
@@ -199,7 +198,6 @@ export default {
                 {{ opcao }}
               </option>
             </select>
-            <!-- se a opção escolhida for 'Outro' mostrar input para resposta personalizada (inline) -->
             <div v-if="formData[perguntaAtual.key] === 'Outro'" class="custom-input-inline">
               <input type="text" v-model="customResponses[perguntaAtual.key]" placeholder="Escreva sua resposta" @input="falar(customResponses[perguntaAtual.key])" />
             </div>
