@@ -2,29 +2,47 @@
   <div class="consent-form">
     <h2>Termo de Livre Consentimento</h2>
     <p ref="termText">
-       Eu, abaixo assinado, autorizo a coleta e utilização dos meus dados para
-      fins do projeto, conforme descrito neste termo.
+      Eu, abaixo assinado, autorizo a coleta e utilização dos meus dados para fins do
+      projeto, conforme descrito neste termo.
     </p>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     <button @click="acceptConsent">Aceitar</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-
+import { sendFormData } from "@/utils/formChecked";
+import { getUserData } from "@/utils/localStorageUtils";
 const termText = ref<HTMLElement | null>(null);
+const errorMessage = ref<string | null>(null);
 
 // Função para lidar com a aceitação do termo
-function acceptConsent() {
-  alert("Consentimento aceito!");
-  window.location.href = "/home"; // Redireciona para a página inicial ou outra página
+async function acceptConsent() {
+  const userData = getUserData();
+  const data = { 
+    nome: "termo",
+    userId: userData?.username || "" // Obtém o username do localStorage
+  }; // Exemplo de dados enviados
+  try {
+    const result = await sendFormData(data);
+    if (result.success) {
+      alert("Consentimento aceito!");
+      window.location.href = "/home"; // Redireciona para a página inicial ou outra página
+    } else {
+      errorMessage.value = `Erro ao enviar consentimento: ${result.error}`;
+    }
+  } catch (error) {
+    errorMessage.value = "Ocorreu um erro inesperado. Tente novamente mais tarde.";
+    console.error(error);
+  }
 }
 
 // Função para leitura do termo em voz alta
 function readTerm() {
   if (termText.value) {
     const text = termText.value.textContent || "";
-    const speech = new SpeechSynthesisUtterance("Termo de Livre consentimento."+text);
+    const speech = new SpeechSynthesisUtterance("Termo de Livre consentimento." + text);
     speech.lang = "pt-BR";
     window.speechSynthesis.speak(speech);
   }
@@ -65,5 +83,10 @@ onMounted(() => {
 
 .consent-form button:hover {
   background-color: #0056b3; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+.error-message {
+  color: red;
+  margin-top: 8px;
 }
 </style>

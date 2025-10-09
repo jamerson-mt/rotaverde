@@ -9,7 +9,7 @@ import { getUserData } from "@/utils/localStorageUtils";
 const isPlaying = inject("isPlaying"); // Certifique-se de que o estado está sendo injetado corretamente
 
 // Verifica se o usuário está logado com base nos dados do localStorage
-const userData = ref(getUserData()?.user || {});
+const userData = ref(getUserData() || {}); // Garantir que userData seja um objeto vazio se getUserData retornar null
 
 // Verifica a role do usuário com base nos dados do localStorage
 
@@ -47,6 +47,9 @@ function stopAudio() {
 </script>
 
 <template>
+  <head>
+    <meta name="mobile-web-app-capable" content="yes" />
+  </head>
   <ion-page>
     <ion-content :fullscreen="true">
       <div>

@@ -1,13 +1,7 @@
 <script>
-import { falar } from '@/utils/falar';
-import { IonContent } from '@ionic/vue';
-import { onMounted } from 'vue';
-import { defineComponent, inject, ref } from "vue";
 import router from '@/router';
-import { useRoute } from 'vue-router';
 import audioManager from '@/utils/audioManager';
 
-const route = useRoute();
 
 export default {
   data() {
@@ -120,7 +114,7 @@ export default {
             router.push('/home')
           }, 1800)
         })
-        .catch((err) => {
+        .catch(() => {
           this.showWinPopup = true
           audioManager.playAudio(`public/audio/essaesuaarea.wav`);
           setTimeout(() => {

@@ -20,7 +20,8 @@ export function saveUserData(user: object) {
 export function getUserData() {
   if (isLocalStorageAvailable()) {
     const userData = localStorage.getItem(USER_KEY);
-    return userData ? JSON.parse(userData) : null;
+    const data = userData ? JSON.parse(userData) : null;
+    return data ? data.user : null; // Corrigido para evitar erro ao acessar 'user'
   }
   return null;
 }
