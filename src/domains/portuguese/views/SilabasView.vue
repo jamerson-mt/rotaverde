@@ -53,39 +53,20 @@ function stopActivityTimer() {
   clearInterval(activityInterval);
 }
 
-const API_URL = import.meta.env.VITE_API_URL;
+// async function sendResultsToAPI() {
+//   let alunoId = getUserId();
+//   if (!alunoId) {
+//     alunoId = "default-user"; // Valor padrão
+//   }
+//   const payload = {
+//     nome: "silabas",
+//     alunoId,
+//     tempo: totalTime.value,
+//     palavrasCompletadas: wordsData.length,
+//   };
 
-async function sendResultsToAPI() {
-  let alunoId = getUserId();
-  if (!alunoId) {
-    alunoId = "default-user"; // Valor padrão
-  }
-  const payload = {
-    nome: "silabas",
-    alunoId,
-    tempo: totalTime.value,
-    palavrasCompletadas: wordsData.length,
-  };
-
-  try {
-    const response = await fetch(`${API_URL}atividade`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(payload),
-    });
-
-    if (response.ok) {
-      console.log("Dados enviados com sucesso!");
-    } else {
-      console.error("Erro ao enviar os dados:", response.statusText);
-    }
-  } catch (error) {
-    console.error("Erro ao enviar os dados:", error);
-  }
-}
+//   console.log("Simulando envio de dados:", payload);
+// }
 
 watch(currentWordIndex, () => {
   initializeGame();
@@ -166,7 +147,7 @@ function checkWord() {
     // Verifica se é a última palavra
     if (currentWordIndex.value === wordsData.length - 1) {
       stopActivityTimer();
-      sendResultsToAPI();
+      // sendResultsToAPI();
     }
   } else {
     feedbackMessage.value = "Foi quase, Tente de novo!";

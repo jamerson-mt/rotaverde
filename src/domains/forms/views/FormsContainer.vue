@@ -4,25 +4,25 @@ import TitleCategories from "@/domains/user/components/TitleCategories.vue";
 import FormCard from "../components/FormCard.vue";
 import { ref, onMounted } from "vue";
 
-const user = getUserData();
-const roles = user?.roles || [];
+// const user = getUserData();
+// const roles = user?.roles || [];
 //const isStudent = roles.includes("aluno");
-const isTeacher = roles.includes("professor");
+// const isTeacher = roles.includes("professor");
 
-const availableForms = ref([]);
+// const availableForms = ref([]);
 
-onMounted(async () => {
-  try {
-    const response = await fetch("http://localhost:5198/api/form");
-    const apiForms = await response.json();
+// onMounted(async () => {
+//   try {
+//     const response = await fetch("http://localhost:5198/api/form");
+//     const apiForms = await response.json();
 
-    availableForms.value = apiForms.filter(
-      (form: any) => form.userId == user.user?.id // 
-    );
-  } catch (error) {
-    console.error("Erro ao buscar os formulários da API:", error);
-  }
-});
+//     availableForms.value = apiForms.filter(
+//       (form: any) => form.userId == user.user?.id // 
+//     );
+//   } catch (error) {
+//     console.error("Erro ao buscar os formulários da API:", error);
+//   }
+// });
 
 // Função para verificar se o formulário já existe e está associado ao userId
 // const formExists = (nome: string) => {
@@ -35,13 +35,13 @@ onMounted(async () => {
   <div class="forms-container">
     <TitleCategories title="Formulários" route="/categorias" />
     <FormCard
-      v-if="!isTeacher" 
+   
       nome="simples"
       title="Formulário Alunos"
       link="/forms/dados-aluno"
     />
     <FormCard
-      v-if="isTeacher "
+     
       nome="docente"
       title="Formulário Docentes"
       link="/forms/dados-docente"

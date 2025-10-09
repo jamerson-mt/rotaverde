@@ -48,8 +48,6 @@ onMounted(() => {
   });
 });
 
-const API_UTL = import.meta.env.VITE_API_URL;
-
 const finalizarAtividade = async () => {
   contador.stop();
   const tempoFinal = contador.getElapsedTime();
@@ -57,25 +55,11 @@ const finalizarAtividade = async () => {
   if (!userId) {
     userId = "default-user"; // Valor padrão
   }
-  console.log("Tempo final:", tempoFinal);
-  try {
-    const response = await fetch(`${API_UTL}atividade`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({ nome: "cacapalavras", alunoId: userId, tempo: tempoFinal }),
-    });
-
-    if (response.ok) {
-      alert("Tempo registrado com sucesso!");
-    } else {
-      console.error("Erro ao enviar o tempo:", response.statusText);
-    }
-  } catch (error) {
-    console.error("Erro ao enviar o tempo:", error);
-  }
+  console.log("Simulando envio de dados:", {
+    nome: "cacapalavras",
+    alunoId: userId,
+    tempo: tempoFinal,
+  });
 };
 </script>
 
