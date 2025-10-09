@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import router from "@/router";
 import { defineProps, reactive, ref, toRefs, watch, onBeforeUnmount } from "vue";
 
 const props = defineProps<{
@@ -18,6 +17,7 @@ const props = defineProps<{
       description: string;
     };
   };
+  finalizarAtividade: () => void;
 }>();
 
 const { quadro } = toRefs(props);
@@ -49,13 +49,16 @@ function clearSelectedWordTimer() {
   }
 }
 
+const todasPalavrasEncontradas = ref(false);
+
 const confirme = (() => {
   if (o1 && o2 && o3 && o4 && o5 && o6) {
+    todasPalavrasEncontradas.value = true;
     document.querySelectorAll(".aviso").forEach(function (valor) {
       valor.setAttribute("style", "opacity:0.8; z-index:2;");
     });
     setTimeout(() => {
-      router.push("/home");
+      props.finalizarAtividade();
     }, 2000);
   }
 });

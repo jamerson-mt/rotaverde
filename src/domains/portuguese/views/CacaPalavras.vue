@@ -5,7 +5,7 @@ import { portugues } from "../store/cacaPalavras";
 import { ref, onMounted, onUnmounted } from "vue";
 import Header from "@/domains/reasoning/components/HeaderTop.vue";
 import { Contador } from "@/utils/Contador";
-
+import { getUserId } from "@/utils/localStorageUtils";
 const { frame, words } = portugues[0];
 
 const refresh = () => {
@@ -49,9 +49,14 @@ onMounted(() => {
 });
 
 const API_UTL = import.meta.env.VITE_API_URL;
+
 const finalizarAtividade = async () => {
   contador.stop();
   const tempoFinal = contador.getElapsedTime();
+  let userId = getUserId();
+  if (!userId) {
+    userId = "default-user"; // Valor padrão
+  }
   console.log("Tempo final:", tempoFinal);
   try {
     const response = await fetch(`${API_UTL}atividade`, {
@@ -60,7 +65,7 @@ const finalizarAtividade = async () => {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify({ atividade: "cacapalavras", tempo: tempoFinal }),
+      body: JSON.stringify({ nome: "cacapalavras", alunoId: userId, tempo: tempoFinal }),
     });
 
     if (response.ok) {
@@ -82,7 +87,7 @@ const finalizarAtividade = async () => {
       </div>
       <div class="content">
         <div class="quadro">
-          <Quadro :quadro="frame" :palavras="words" />
+          <Quadro :quadro="frame" :palavras="words" :finalizarAtividade="finalizarAtividade" />
         </div>
         <div class="palavras">
           <div
@@ -100,7 +105,6 @@ const finalizarAtividade = async () => {
         <div class="tempo">
           <p>Tempo decorrido: {{ tempoDecorrido }} segundos</p>
         </div>
-        <button @click="finalizarAtividade">Finalizar Atividade</button>
       </div>
       <div class="aviso">
         <p class="sucesso">realizado com sucesso!</p>

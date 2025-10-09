@@ -1,6 +1,7 @@
 <script>
 import ListarAlunos from "../components/ListarAlunos.vue";
 import TitleCategories from "@/domains/user/components/TitleCategories.vue";
+import { getUserId } from "@/utils/localStorageUtils";
  
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -28,7 +29,7 @@ export default {
   methods: {
     async fetchStudents() {
       try {
-        const response = await fetch(`${API_URL}aluno`); // Substitua pela URL da API
+        const response = await fetch(`${API_URL}user`); // Substitua pela URL da API
         this.students = await response.json();
       } catch (error) {
         console.error("Erro ao carregar alunos:", error);
@@ -55,25 +56,49 @@ export default {
     },
     async createClass() {
       if (this.step === 1) {
+        // Validação dos dados antes de enviar a requisição
+        if (!this.classData.name || !this.classData.year) {
+          alert("Por favor, preencha todos os campos obrigatórios.");
+          return;
+        }
+
+        const creatorId = getUserId();
+        if (!creatorId) {
+          alert("Usuário não autenticado. Faça login novamente.");
+          return;
+        }
+
         try {
+          const payload = {
+            nome: this.classData.name.trim(),
+            anoLetivo: this.classData.year,
+            turno:0, // Exemplo de valor fixo para turno
+            criadorId: creatorId,
+          };
+
+          console.log("Enviando dados para a API:", payload); // Log para depuração
+
           const response = await fetch(`${API_URL}turma`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              nome: this.classData.name,
-              anoLetivo: this.classData.year,
-            }),
+            credentials: "include",
+            body: JSON.stringify(payload),
           });
+
           if (!response.ok) {
+            const errorDetails = await response.json();
+            console.error("Erro na resposta da API:", errorDetails);
             throw new Error("Erro ao criar turma");
           }
+
           const data = await response.json();
           this.classId = data.id; // Armazena o ID da turma criada
-          window.alert("Turma criada com sucesso!" + data.id); // Substituído por window.alert
+          window.alert("Turma criada com sucesso! ID: " + data.id);
 
           this.nextStep();
         } catch (error) {
           console.error("Erro ao criar turma:", error);
+          alert("Ocorreu um erro ao criar a turma. Tente novamente.");
         }
       }
     },

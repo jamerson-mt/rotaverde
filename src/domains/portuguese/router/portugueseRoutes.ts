@@ -3,7 +3,7 @@ import CacaPalavras from '../views/CacaPalavras.vue';
 import Silabario from '../views/Silabario.vue';
 import EscritaPort from '../views/Escrita.vue';
 import Letras from '../views/Letras.vue';
-import Silabas from '../views/Silabas.vue';
+import Silabas from '../views/SilabasView.vue';
 import Consoantes from '../views/ContainerConsoantes.vue';
 import Vogais from '../views/ContainerVogais.vue';
 import InterTextos from '../views/Inter-Textos.vue';

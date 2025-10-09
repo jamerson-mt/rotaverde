@@ -13,7 +13,7 @@
       <ul>
         <li v-if="!selectedStudents.length">Nenhum aluno selecionado.</li>
         <li v-for="student in selectedStudents" :key="student.id">
-          {{ student.nome }}
+          {{ student.value }}
         </li>
       </ul>
       <button v-if="selectedStudents.length" @click="finalizeSelection">
@@ -43,6 +43,7 @@ const fetchStudents = async () => {
     const response = await fetch(`${API_URL}user`);
     if (!response.ok) throw new Error('Erro ao buscar alunos');
     students.value = await response.json();
+    console.log('Alunos carregados:', students.value);
   } catch (error) {
     console.error('Erro ao buscar alunos:', error);
   }
@@ -88,6 +89,11 @@ onMounted(fetchStudents);
 </script>
 
 <style scoped>
+
+#username{
+  color: red;
+  z-index: 1000;
+}
 .listar-alunos {
   background-color: #ffffff;
   padding: 20px;

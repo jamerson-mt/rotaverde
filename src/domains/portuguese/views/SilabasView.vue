@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import Header from '@/domains/reasoning/components/HeaderTop.vue';
+import { getUserId } from "@/utils/localStorageUtils";
 
 const wordsData = [
   { id: "vitoria-regia", img:"vitoria-regia.png", word: "VITÓRIA-RÉGIA", syllables: ["VI", "TÓ", "RI", "A", "-RÉ", "GI", "A"], definition: "Uma planta aquática gigante da Amazônia, com folhas circulares que podem chegar a mais de 2 metros de diâmetro." },
@@ -19,9 +20,11 @@ const assembledTiles = ref([]);
 const feedbackMessage = ref("");
 const showDefinition = ref(false);
 const isCorrect = ref(false);
+const totalTime = ref(0); // Contador de tempo total em segundos
+let activityInterval = null;
 
 function shuffleArray(array) {
-  let arr = [...array];
+  const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -39,13 +42,58 @@ function initializeGame() {
   isCorrect.value = false;
 }
 
+function startActivityTimer() {
+  clearInterval(activityInterval);
+  activityInterval = setInterval(() => {
+    totalTime.value += 1;
+  }, 1000);
+}
+
+function stopActivityTimer() {
+  clearInterval(activityInterval);
+}
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+async function sendResultsToAPI() {
+  let alunoId = getUserId();
+  if (!alunoId) {
+    alunoId = "default-user"; // Valor padrão
+  }
+  const payload = {
+    nome: "silabas",
+    alunoId,
+    tempo: totalTime.value,
+    palavrasCompletadas: wordsData.length,
+  };
+
+  try {
+    const response = await fetch(`${API_URL}atividade`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(payload),
+    });
+
+    if (response.ok) {
+      console.log("Dados enviados com sucesso!");
+    } else {
+      console.error("Erro ao enviar os dados:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Erro ao enviar os dados:", error);
+  }
+}
+
 watch(currentWordIndex, () => {
   initializeGame();
 });
 
 function speakSyllable(text) {
   if ('speechSynthesis' in window) {
-    let toSpeak = text.length <= 2 ? text.split('').join(' ') : text;
+    const toSpeak = text.length <= 2 ? text.split('').join(' ') : text;
     const utterance = new window.SpeechSynthesisUtterance(toSpeak);
     utterance.lang = 'pt-BR';
     utterance.rate = 0.7;
@@ -114,6 +162,12 @@ function checkWord() {
     showDefinition.value = true;
     isCorrect.value = true;
     speakWordAndDescription(currentWordData.value.word, currentWordData.value.definition);
+
+    // Verifica se é a última palavra
+    if (currentWordIndex.value === wordsData.length - 1) {
+      stopActivityTimer();
+      sendResultsToAPI();
+    }
   } else {
     feedbackMessage.value = "Foi quase, Tente de novo!";
     showDefinition.value = false;
@@ -139,10 +193,12 @@ function handleKeyDown(e) {
 
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown);
+  startActivityTimer(); // Inicia o contador ao montar o componente
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleKeyDown);
+  stopActivityTimer(); // Para o contador ao desmontar o componente
 });
 
 function resetWord() {
@@ -165,6 +221,10 @@ initializeGame();
         class="word-image"
         @click="speakWordAndDescription(currentWordData.word, currentWordData.definition)"
       />
+    </div>
+
+    <div class="timer">
+      <p>Tempo decorrido: {{ totalTime }} segundos</p>
     </div>
 
     <div class="assembled-area">
@@ -426,5 +486,11 @@ initializeGame();
   .modal-grid { grid-template-columns: 1fr; }
   .modal-image img { max-height: 160px; }
   .modal { padding: 14px; }
+}
+.timer {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff4500;
+  margin-bottom: 15px;
 }
 </style>

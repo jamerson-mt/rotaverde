@@ -31,3 +31,8 @@ export function removeUserData() {
     localStorage.removeItem(USER_KEY);
   }
 }
+
+export function getUserId() {
+  const userData = getUserData();
+  return userData ? userData.id : null;
+}

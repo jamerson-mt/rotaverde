@@ -6,7 +6,7 @@ import { ref, onMounted } from "vue";
 
 const user = getUserData();
 const roles = user?.roles || [];
-const isStudent = roles.includes("aluno");
+//const isStudent = roles.includes("aluno");
 const isTeacher = roles.includes("professor");
 
 const availableForms = ref([]);
@@ -35,7 +35,7 @@ onMounted(async () => {
   <div class="forms-container">
     <TitleCategories title="Formulários" route="/categorias" />
     <FormCard
-      v-if="isStudent" 
+      v-if="!isTeacher" 
       nome="simples"
       title="Formulário Alunos"
       link="/forms/dados-aluno"
@@ -46,12 +46,7 @@ onMounted(async () => {
       title="Formulário Docentes"
       link="/forms/dados-docente"
     />
-    <FormCard
-      v-if="isStudent "
-      nome="dadosiniciais"
-      title="Formulário Dados Iniciais"
-      link="/forms/dados-iniciais"
-    />
+    
     <FormCard
       nome="termo"
       title="Termo de Livre Consentimento"
