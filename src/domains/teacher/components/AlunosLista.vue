@@ -24,9 +24,7 @@ function adicionarAluno() {
   mostrarPopup.value = true;
 }
 
-function alternarLista() {
-  listaVisivel.value = !listaVisivel.value;
-}
+
 
 async function removerAluno(id: number) {
   try {
@@ -86,9 +84,7 @@ console.log(props.alunos);
   <div class="alunos-lista">
     <div class="title">
       <h2>Lista de Alunos</h2>
-      <button @click="alternarLista" class="toggle-button">
-        {{ listaVisivel ? "Minimizar" : "Exibir" }}
-      </button>
+      
     </div>
     <div v-if="listaVisivel" class="alunos-container">
       <ul>

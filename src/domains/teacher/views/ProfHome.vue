@@ -23,6 +23,18 @@ const closePopup = () => {
   selectedTurma.value = null;
 };
 
+const turmasMinimized = ref(false); // Estado para controlar a minimização das turmas
+
+const toggleTurmas = () => {
+  turmasMinimized.value = !turmasMinimized.value;
+};
+
+const alunosMinimized = ref(false); // Estado para controlar a minimização dos alunos
+
+const toggleAlunos = () => {
+  alunosMinimized.value = !alunosMinimized.value;
+};
+
 // URL da API obtida da variável de ambiente
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -76,8 +88,14 @@ onMounted(() => {
             <div class="title">
               <h1>Turmas</h1>
               <h2>Mais Recentes</h2>
+              <button class="toggle-button" @click="toggleTurmas">
+                {{ turmasMinimized ? "Mostrar" : "Minimizar" }}
+              </button>
             </div>
-            <div class="turmas-list">
+            <div
+              class="turmas-list"
+              v-show="!turmasMinimized"
+            >
               <TurmaCard
                 v-for="turma in turmas"
                 :key="turma.id"
@@ -92,9 +110,18 @@ onMounted(() => {
                 link="/professor/create-turma"
               />
             </div>
-          </div>
 
-          <AlunosLista :alunos="alunos" />
+            <div class="title">
+              <h1>Alunos</h1>
+              <h2>Lista Completa</h2>
+              <button class="toggle-button" @click="toggleAlunos">
+                {{ alunosMinimized ? "Mostrar" : "Minimizar" }}
+              </button>
+            </div>
+            <div v-show="!alunosMinimized">
+              <AlunosLista :alunos="alunos" />
+            </div>
+          </div>
         </div>
       </ion-content>
     </ion-page>
@@ -117,6 +144,22 @@ onMounted(() => {
   font-family: "Poppins", sans-serif;
 }
 
+.content {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 40px 0 0 0;
+}
+
+.areas{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  padding-bottom: 4rem;
+  
+}
 .background-green {
   position: absolute;
   top: 0;
@@ -154,15 +197,6 @@ onMounted(() => {
   z-index: -1;
 }
 
-.content {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: 55%;
-  background: #fff;
-  border-radius: 40px 0 0 0;
-  padding-left: 1rem;
-}
 
 .navButton {
   position: absolute;
@@ -306,4 +340,46 @@ input[type="checkbox"]:not(:checked) {
 .turmas-list::-webkit-scrollbar-track {
   background: #f0f0f0; /* Cor do fundo da barra de rolagem */
 }
+
+.toggle-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #00664f;
+  border: 2px solid #00664f;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-button:hover {
+  background-color: #00664f;
+  color: #fff;
+}
+
+.page {
+  height: 100vh; /* Garante que a página ocupe toda a altura da viewport */
+  overflow-y: auto; /* Habilita a rolagem vertical */
+  scroll-behavior: smooth; /* Adiciona rolagem suave */
+}
+
+.page::-webkit-scrollbar {
+  width: 8px; /* Define a largura da barra de rolagem */
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: #00664f; /* Cor da barra de rolagem */
+  border-radius: 4px;
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+  background: #004d3a; /* Cor ao passar o mouse */
+}
+
+.page::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Cor do fundo da barra de rolagem */
+}
+
 </style>
