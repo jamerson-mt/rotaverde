@@ -1,17 +1,35 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onBeforeUnmount } from 'vue'
 import TitleCategories from '@/domains/user/components/TitleCategories.vue';
-import Header from '@/domains/reasoning/components/HeaderTop.vue'
+import Header from '@/domains/reasoning/components/HeaderTop.vue';
+import { WordOption, Exercise, exercises } from "../services/attTextos";
 
+const currentExerciseIndex = ref(0)
+const rawText = ref(exercises[currentExerciseIndex.value].text)
 
-const rawText = `Todos os dias jogamos fora muitas coisas: {1}, papéis, latas e plásticos. Mas nem tudo é {2}. Muitos desses materiais podem ser usados de novo. Isso é {3}. Quando reciclamos, ajudamos o planeta. O papel pode virar um novo {4}.`
+function alternateOrder<T>(arr: T[]) {
+  const res: T[] = []
+  let i = 0
+  let j = arr.length - 1
+  while (i <= j) {
+    if (i === j) res.push(arr[i])
+    else {
+      res.push(arr[i])
+      res.push(arr[j])
+    }
+    i++
+    j--
+  }
+  return res
+}
 
-const cards = reactive<Array<{ id: number; text: string; img: string }>>([
-  { id: 1, text: 'garrafas', img: 'img/att-textos/garrafas.png' },
-  { id: 2, text: 'lixo', img: 'img/att-textos/lixo.png' },
-  { id: 3, text: 'reciclar', img: 'img/att-textos/reciclar.png' },
-  { id: 4, text: 'caderno', img: 'img/att-textos/caderno.png' },
-])
+const cards = reactive<Array<{ id: number; text: string; img: string }>>(
+  alternateOrder(exercises[currentExerciseIndex.value].words).map(w => ({ id: w.id, text: w.word, img: w.img }))
+)
+
+const answers = reactive<Record<number, number>>({})
+
+let nextExerciseTimeout: number | null = null
 
 const showImageModal = ref(false)
 const modalImageSrc = ref('')
@@ -32,6 +50,20 @@ function openImageModal(img: string, alt: string = '', duration: number = 1500) 
   }, duration)
 }
 
+function speakDescription(text: string) {
+  try {
+    if ('speechSynthesis' in window) {
+      const synth = (window as any).speechSynthesis
+      try { synth.cancel() } catch (e) {}
+      const utterance = new (window as any).SpeechSynthesisUtterance(text)
+      utterance.lang = 'pt-BR'
+      utterance.rate = 0.95
+      synth.speak(utterance)
+    }
+  } catch (e) {
+  }
+}
+
 function closeImageModal() {
   showImageModal.value = false
   modalImageSrc.value = ''
@@ -42,7 +74,15 @@ function closeImageModal() {
   }
 }
 
-const answers: Record<number, number> = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7 }
+function loadAnswersForExercise(index: number) {
+  Object.keys(answers).forEach(k => delete answers[Number(k)])
+  const ex = exercises[index]
+  ex.words.forEach(w => {
+    answers[w.id] = w.id
+  })
+}
+
+loadAnswersForExercise(currentExerciseIndex.value)
 
 const selectedCard = ref<{ id: number; text: string; img?: string } | null>(null)
 const placedWords = reactive<Record<number, { id: number; text: string; img?: string }>>({})
@@ -67,20 +107,34 @@ const parsedText = computed<Segment[]>(() => {
   const regex = /\{(\d+)\}/g
   let lastIndex = 0
   let match
-  while ((match = regex.exec(rawText)) !== null) {
+  const text = rawText.value
+  while ((match = regex.exec(text)) !== null) {
     const idx = match.index
-    if (idx > lastIndex) parts.push({ type: 'text', value: rawText.slice(lastIndex, idx) })
+    if (idx > lastIndex) parts.push({ type: 'text', value: text.slice(lastIndex, idx) })
     parts.push({ type: 'blank', id: Number(match[1]) })
     lastIndex = regex.lastIndex
   }
-  if (lastIndex < rawText.length) parts.push({ type: 'text', value: rawText.slice(lastIndex) })
+  if (lastIndex < text.length) parts.push({ type: 'text', value: text.slice(lastIndex) })
   return parts
 })
+
+function loadExercise(index: number) {
+  if (index < 0 || index >= exercises.length) return
+  currentExerciseIndex.value = index
+  rawText.value = exercises[index].text
+  cards.splice(0, cards.length, ...alternateOrder(exercises[index].words).map(w => ({ id: w.id, text: w.word, img: w.img })))
+  loadAnswersForExercise(index)
+  Object.keys(placedWords).forEach(k => delete placedWords[Number(k)])
+  Object.keys(placedStatus).forEach(k => delete placedStatus[Number(k)])
+  selectedCard.value = null
+  statusMessage.value = ''
+}
 
 function onDragStart(card: { id: number; text: string }, ev: DragEvent) {
   if (!ev.dataTransfer) return
   ev.dataTransfer.setData('text/plain', String(card.id))
   selectedCard.value = { id: card.id, text: card.text, img: (card as any).img }
+  speakDescription(card.text)
 }
 
 function onDrop(blankId: number, ev: DragEvent) {
@@ -99,6 +153,7 @@ function selectCard(card: { id: number; text: string; img?: string }) {
     selectedCard.value = null
   } else {
     selectedCard.value = { ...card }
+    speakDescription(card.text)
     if (card.img) openImageModal(card.img, card.text)
   }
 }
@@ -144,10 +199,28 @@ function checkAnswers() {
   if (correct === total) {
     statusMessage.value = 'Parabéns — todas as palavras estão corretas!'
     feedbackType.value = 'success'
+    if (nextExerciseTimeout !== null) {
+      clearTimeout(nextExerciseTimeout)
+      nextExerciseTimeout = null
+    }
+    nextExerciseTimeout = window.setTimeout(() => {
+      const next = currentExerciseIndex.value + 1
+      if (next < exercises.length) {
+        loadExercise(next)
+      } else {
+        statusMessage.value = 'Você completou todos os exercícios!'
+        window.setTimeout(() => {
+          loadExercise(0)
+          window.location.href = '/att/roadmap'
+        }, 2000)
+      }
+      nextExerciseTimeout = null
+    }, 1200)
   } else {
     statusMessage.value = `Você acertou ${correct} de ${total}.`
     feedbackType.value = 'failure'
   }
+  if (statusMessage.value) speakDescription(statusMessage.value)
   showFeedback.value = true
   if (feedbackTimeout !== null) clearTimeout(feedbackTimeout)
   feedbackTimeout = window.setTimeout(() => {
@@ -161,6 +234,21 @@ function resetAll() {
   statusMessage.value = ''
   Object.keys(placedStatus).forEach(k => delete placedStatus[Number(k)])
 }
+
+onBeforeUnmount(() => {
+  if (modalTimeout !== null) {
+    clearTimeout(modalTimeout)
+    modalTimeout = null
+  }
+  if (feedbackTimeout !== null) {
+    clearTimeout(feedbackTimeout)
+    feedbackTimeout = null
+  }
+  if (nextExerciseTimeout !== null) {
+    clearTimeout(nextExerciseTimeout)
+    nextExerciseTimeout = null
+  }
+})
 
 </script>
 
@@ -345,7 +433,7 @@ function resetAll() {
 .fade-enter-from, .fade-leave-to { opacity: 0 }
 .fade-enter-to, .fade-leave-from { opacity: 1 }
 
-.cards { display:flex; gap:10px; margin-bottom:2rem; flex-wrap:wrap; }
+.cards { display:flex; gap:10px; margin-bottom:1rem; flex-wrap:wrap; }
 .word-card { padding:8px 12px; border-radius:8px; background:#0b6b58; color:#ffffff; border:1px solid rgba(6,107,88,0.12); cursor:pointer; user-select:none; box-shadow: 0 2px 6px rgba(4,34,24,0.06) }
 .word-card.picked { box-shadow: 0 0 0 6px rgba(11,107,88,0.12); outline: none }
 .word-card.placed { opacity:0.7; filter: saturate(0.95) }
