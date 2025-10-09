@@ -2,8 +2,9 @@
 import { IonContent, IonPage } from "@ionic/vue";
 import Quadro from "@/domains/portuguese/components/QuadroCacapalavras.vue";
 import { portugues } from "../store/cacaPalavras";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import Header from "@/domains/reasoning/components/HeaderTop.vue";
+import { Contador } from "@/utils/Contador";
 
 const { frame, words } = portugues[0];
 
@@ -31,6 +32,46 @@ const pronunciarPalavra = (palavra: { letters: string[]; image: string; descript
   pronunciar(palavra.letters.join(""));
   selectedWord.value = { image: palavra.image, description: palavra.description };
 };
+
+const contador = new Contador();
+const tempoDecorrido = ref(0);
+
+onMounted(() => {
+  contador.start();
+  const interval = setInterval(() => {
+    tempoDecorrido.value = contador.getElapsedTime();
+  }, 1000);
+
+  onUnmounted(() => {
+    clearInterval(interval);
+    contador.stop();
+  });
+});
+
+const API_UTL = import.meta.env.VITE_API_URL;
+const finalizarAtividade = async () => {
+  contador.stop();
+  const tempoFinal = contador.getElapsedTime();
+  console.log("Tempo final:", tempoFinal);
+  try {
+    const response = await fetch(`${API_UTL}atividade`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ atividade: "cacapalavras", tempo: tempoFinal }),
+    });
+
+    if (response.ok) {
+      alert("Tempo registrado com sucesso!");
+    } else {
+      console.error("Erro ao enviar o tempo:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Erro ao enviar o tempo:", error);
+  }
+};
 </script>
 
 <template>
@@ -56,6 +97,10 @@ const pronunciarPalavra = (palavra: { letters: string[]; image: string; descript
           <img :src="selectedWord.image" alt="Imagem da palavra" />
           <p>{{ selectedWord.description }}</p>
         </div>
+        <div class="tempo">
+          <p>Tempo decorrido: {{ tempoDecorrido }} segundos</p>
+        </div>
+        <button @click="finalizarAtividade">Finalizar Atividade</button>
       </div>
       <div class="aviso">
         <p class="sucesso">realizado com sucesso!</p>
@@ -257,5 +302,33 @@ const pronunciarPalavra = (palavra: { letters: string[]; image: string; descript
 .word-details p {
   font-size: 1.2em;
   color: #333;
+}
+
+.tempo {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+}
+
+button {
+  background-color: #28a745; /* Verde mais vibrante */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #218838; /* Verde mais escuro para hover */
+  transform: scale(1.05); /* Leve aumento no tamanho */
+}
+
+button:active {
+  background-color: #1e7e34; /* Verde ainda mais escuro para clique */
+  transform: scale(0.95); /* Leve redução no tamanho */
 }
 </style>
