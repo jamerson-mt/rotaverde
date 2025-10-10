@@ -37,7 +37,7 @@ const modalImageAlt = ref('')
 
 let modalTimeout: number | null = null
 
-function openImageModal(img: string, alt: string = '', duration: number = 1500) {
+function openImageModal(img: string, alt: string = '', duration: number = 3000) {
   modalImageSrc.value = img
   modalImageAlt.value = alt
   showImageModal.value = true

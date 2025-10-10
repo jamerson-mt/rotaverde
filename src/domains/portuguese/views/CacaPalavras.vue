@@ -32,7 +32,8 @@ const pronunciarPalavra = (palavra: { letters: string[]; image: string; descript
   pronunciar(palavra.letters.join(""));
   // selectedWord.value = { image: palavra.image, description: palavra.description };
 };
-
+const API = import.meta.env.VITE_API_URL ;
+console.log(getUserId());
 const contador = new Contador();
 const tempoDecorrido = ref(0);
 
@@ -52,14 +53,35 @@ const finalizarAtividade = async () => {
   contador.stop();
   const tempoFinal = contador.getElapsedTime();
   let userId = getUserId();
+  
   if (!userId) {
     userId = "default-user"; // Valor padrão
   }
-  console.log("Simulando envio de dados:", {
+
+  const dados = {
     nome: "cacapalavras",
     alunoId: userId,
     tempo: tempoFinal,
-  });
+  };
+  try {
+    const response = await fetch(`${API}atividade`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(dados),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.statusText}`);
+    }
+
+    const responseData = await response.json();
+    console.log("Dados salvos com sucesso:", responseData);
+  } catch (error) {
+    console.error("Erro ao salvar os dados:", error);
+  }
 };
 </script>
 
