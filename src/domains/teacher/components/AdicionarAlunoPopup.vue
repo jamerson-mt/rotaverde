@@ -19,7 +19,7 @@ async function adicionarAluno() {
   }
 
   try {
-    const response = await fetch("https://exibba.site/api/auth/register", {
+    const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
