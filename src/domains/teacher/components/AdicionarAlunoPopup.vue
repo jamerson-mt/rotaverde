@@ -35,7 +35,7 @@ async function adicionarAluno() {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => null); // Tenta obter JSON, caso contrário retorna null
-      const errorMessage = errorData?.message || "Erro ao adicionar aluno.";
+      const errorMessage = errorData || "Erro ao adicionar aluno.";
       throw new Error(errorMessage);
     }
 
