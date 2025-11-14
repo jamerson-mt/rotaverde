@@ -141,7 +141,7 @@ export default {
             idade : aluno.idade,
             turmaId: turmaId,
           };
-          const alunoResponse = await fetch(`${API_URL}aluno/${aluno.id}`, {
+          const alunoResponse = await fetch(`${API_URL}user/${aluno.id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -172,7 +172,7 @@ export default {
         for (const aluno of this.turma.alunos) {
           const payload = { turmaId: this.turma.id };
 
-          const response = await fetch(`${API_URL}aluno/${aluno.id}`, {
+          const response = await fetch(`${API_URL}user/${aluno.id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

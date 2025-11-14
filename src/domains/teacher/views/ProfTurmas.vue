@@ -104,7 +104,7 @@ export default {
     },
     async updateStudentClass(student) {
       try {
-        await fetch(`${API_URL}aluno/${student.id}`, {
+        await fetch(`${API_URL}user/${student.id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ turmaId: this.classId }),
