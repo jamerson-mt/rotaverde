@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import { buildApiUrl } from "@/utils/apiUrl";
 
 const nome = ref("");
 const email = ref("jjmt@discente.ifpe.edu.br"); // Email padrão
 const isPopupVisible = ref(false);
 
-const API_URL = import.meta.env.VITE_API_URL;
 const DEFAULT_PASSWORD = import.meta.env.VITE_DEFAULT_PASSWORD;
-
 const password = ref(DEFAULT_PASSWORD); // Usa a senha padrão inicialmente
+const registerEndpoint = buildApiUrl("auth/register");
 
 function fecharPopup() {
   isPopupVisible.value = false;
@@ -21,7 +21,7 @@ async function adicionarAluno() {
   }
 
   try {
-    const response = await fetch(`${API_URL}auth/register`, {
+    const response = await fetch(registerEndpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
