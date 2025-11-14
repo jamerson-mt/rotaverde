@@ -83,7 +83,7 @@ export default {
         };
 
         // Busca todos os alunos
-        const alunosResponse = await fetch(`${API_URL}aluno`);
+        const alunosResponse = await fetch(`${API_URL}user`);
         if (!alunosResponse.ok) {
           throw new Error("Erro ao buscar alunos");
         }
