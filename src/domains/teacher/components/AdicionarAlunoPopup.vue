@@ -8,7 +8,7 @@ const isPopupVisible = ref(false);
 
 const DEFAULT_PASSWORD = import.meta.env.VITE_DEFAULT_PASSWORD;
 const password = ref("@Lunoifp3"); // Usa a senha padrão inicialmente
-const registerEndpoint = buildApiUrl("https://exibba.site/api/auth/register");
+const registerEndpoint = buildApiUrl("auth/register");
 
 function fecharPopup() {
   isPopupVisible.value = false;
