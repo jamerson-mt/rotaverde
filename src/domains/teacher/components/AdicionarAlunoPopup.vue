@@ -8,7 +8,7 @@ const isPopupVisible = ref(false);
 
 const DEFAULT_PASSWORD = import.meta.env.VITE_DEFAULT_PASSWORD;
 const password = ref(DEFAULT_PASSWORD); // Usa a senha padrão inicialmente
-const registerEndpoint = buildApiUrl("auth/register");
+const registerEndpoint = buildApiUrl("https://exibba.site/api/auth/register");
 
 function fecharPopup() {
   isPopupVisible.value = false;
