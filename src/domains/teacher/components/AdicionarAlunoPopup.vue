@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { buildApiUrl } from "@/utils/apiUrl";
 
 const nome = ref("");
 const email = ref("jjmt@discente.ifpe.edu.br"); // Email padrão
@@ -8,7 +7,6 @@ const isPopupVisible = ref(false);
 
 const DEFAULT_PASSWORD = import.meta.env.VITE_DEFAULT_PASSWORD;
 const password = ref("@Lunoifp3"); // Usa a senha padrão inicialmente
-const registerEndpoint = buildApiUrl("auth/register");
 
 function fecharPopup() {
   isPopupVisible.value = false;
@@ -21,7 +19,7 @@ async function adicionarAluno() {
   }
 
   try {
-    const response = await fetch(registerEndpoint, {
+    const response = await fetch("https://exibba.site/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
