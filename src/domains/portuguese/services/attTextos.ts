@@ -47,5 +47,16 @@ export const exercises: Exercise[] = [
         ],
         level: 1,
     },
+    {
+        id: 4,
+        text: "Na APA Estuarina do Canal de Santa Cruz, os {1} protegem a costa e servem de abrigo para muitos {2}. Para evitar {3} e pesca predatória, o turismo precisa ser consciente. A {4} ajuda a reduzir resíduos e preservar a cultura local.",
+        words: [
+            { id: 1, word: 'manguezais', img: 'img/att-textos/manguezais.png' },
+            { id: 2, word: 'peixes', img: 'img/att-textos/peixes.png' },
+            { id: 3, word: 'lixo', img: 'img/att-textos/lixo.png' },
+            { id: 4, word: 'reciclagem', img: 'img/att-textos/reciclar.png' },
+        ],
+        level: 1,
+    },
 
 ]
