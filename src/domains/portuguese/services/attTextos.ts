@@ -62,8 +62,8 @@ export const exercises: Exercise[] = [
         id: 5,
         text: "Em Itapissuma, a identidade cultural aparece com força na culinária e nos pontos históricos da cidade. O tradicional {1}, preparado com ingredientes locais, é muito apreciado pelos moradores. O {2} é um dos lugares mais conhecidos, onde se pode observar os {3} e a beleza natural da região. As praças com {4} completam o cenário de convivência e lazer da comunidade.",
         words: [
-            { id: 1, word: 'Caldeirada', img: 'img/att-textos/caldinho.jpeg' },
-            { id: 2, word: 'Cais de Itapissuma', img: 'img/att-textos/caisdeitapissuma.jpeg' },
+            { id: 1, word: 'Caldeirada', img: 'img/att-textos/caldinho.png' },
+            { id: 2, word: 'Cais de Itapissuma', img: 'img/att-textos/caisdeitapissuma.png' },
             { id: 3, word: 'rios', img: 'img/att-textos/rios.png' },
             { id: 4, word: 'árvores', img: 'img/att-textos/arvores.png' },
         ],
