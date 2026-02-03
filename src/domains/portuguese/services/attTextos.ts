@@ -58,5 +58,16 @@ export const exercises: Exercise[] = [
         ],
         level: 1,
     },
+    {
+        id: 5,
+        text: "Nas festas locais, a cultura de Itapissuma aparece na música, na dança e na comida. Pratos com {1} fazem parte da culinária, e cuidar dos {2} garante a vida marinha que sustenta essa tradição. Evitar jogar {3} no estuário ajuda a proteger o lugar. A {4} mantém a cidade limpa e valoriza a identidade local.",
+        words: [
+            { id: 1, word: 'peixes', img: 'img/att-textos/peixes.png' },
+            { id: 2, word: 'manguezais', img: 'img/att-textos/manguezais.png' },
+            { id: 3, word: 'lixo', img: 'img/att-textos/lixo.png' },
+            { id: 4, word: 'reciclagem', img: 'img/att-textos/reciclar.png' },
+        ],
+        level: 1,
+    },
 
 ]
