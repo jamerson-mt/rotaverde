@@ -42,7 +42,7 @@ function handleLoginClick() {
             <div class="title">
                 <h1>Rota Verde</h1>
                 <p>Ensinado Sustentabilidade,<br> de forma sustentável</p>
-                <IonButton class="route" @click="$refs.falarComponent.falar('welcome','boasvindas', 'essaesuaarea', '/home')">Acessar sem login</IonButton>
+                <IonButton class="route" @click="$refs.falarComponent.falar('welcome','boasvindas', 'moduloseformulario', '/home')">Acessar sem login</IonButton>
                 <IonButton class="route login" @click="handleLoginClick">Acessar com login</IonButton>
             </div>
             <div class="icons">
