@@ -26,7 +26,7 @@ import TitleCategories from "../components/TitleCategories.vue";
         />
 
         <CardLevels
-          fala1="modulo1pt"
+          fala1="modulo2"
           title="Módulo 2"
           descripition="Selecione e escreva palavras iniciais"
           competencia="EF01LP04"
@@ -38,7 +38,7 @@ import TitleCategories from "../components/TitleCategories.vue";
         />
 
         <CardLevels
-          fala1="modulo1pt"
+          fala1="modulo3"
           title="Módulo 3"
           descripition="Construa palavras com temas relacionados à sustentabilidade"
           competencia="EF02LP05"
@@ -50,7 +50,7 @@ import TitleCategories from "../components/TitleCategories.vue";
         />
 
         <CardLevels
-          fala1="modulo1pt"
+          fala1="modulo4"
           title="Módulo 4"
           descripition="Desenvolva textos sobre preservação ambiental"
           competencia="EF03LP06"
