@@ -3,8 +3,12 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { getUserData, removeUserData } from '@/utils/localStorageUtils';
 
+
 const router = useRouter();
-const isLoggedIn = ref(!!getUserData()); 
+const user = getUserData();
+const isLoggedIn = ref(!!user); // 
+const username = ref(user?.username || ''); //
+console.log("User data:", user);
 
 function goToHome() {
   router.push("/categorias");
