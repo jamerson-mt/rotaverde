@@ -48,7 +48,7 @@ async function logout() {
       <div class="user" @click="falar('boasvindas', '', '#')">
         <img src="/public/img/capas/user2.png" />
       </div>
-      <span v-if="username" class="username">{{ username }}</span>
+      <span v-if="user.userName" class="username">{{ user.userName }}</span>
     </div>
     <div id="image" class="w-16 left-5" @click="goToHome">
       <img src="/public/img/iconesSustentabilidade/reciclagem.png" />
