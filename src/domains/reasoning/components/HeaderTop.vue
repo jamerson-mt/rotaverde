@@ -91,10 +91,16 @@ async function logout() {
   background-color: #137e60;
 }
 
-.user {
+.user-section {
   position: absolute;
   top: 25px;
   left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user {
   width: 3rem;
   cursor: pointer;
 }
@@ -103,6 +109,13 @@ async function logout() {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+
+.username {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 #title {
